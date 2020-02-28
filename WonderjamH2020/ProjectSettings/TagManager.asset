@@ -50,6 +50,9 @@ TagManager:
   - name: House
     uniqueID: 847079967
     locked: 0
+  - name: Player
+    uniqueID: 1968513155
+    locked: 0
   - name: AmazonCar
     uniqueID: 3105605387
     locked: 0
