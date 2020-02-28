@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float speed;
+    private float speed = 2;
     [SerializeField]
     private int playerID = 0;
 
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Vector2 input = new Vector2(inputManager.GetAxis("Move Horizontal"), inputManager.GetAxis("Move Vertical"));
+        input = new Vector2(inputManager.GetAxis("Horizontal"), inputManager.GetAxis("Vertical"));
         if (input.magnitude < .1f) input = Vector2.zero;
 
         if( input != Vector2.zero)
