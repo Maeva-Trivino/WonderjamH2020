@@ -1,17 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Gameplay.Delivery;
 using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
+    [SerializeField] private string name = "default";
+    [SerializeField] private int price = 10;
     [Tooltip("Time to reach target")]
     [SerializeField] private float flightDuration = 5f;
     [Tooltip("How hight the missile will reach")]
     [SerializeField] private float height = 5f;
     [SerializeField] private int missileDamage = 5;
     [SerializeField] public House opponentHouse;
+    [SerializeField] public int timeToDeliver;
     private bool launched = false;
 
+
+    public Missile() : base() { }
+
+    public Missile(MissileBlueprint blueprint)
+    {
+        this.name = blueprint.name;
+        this.price = blueprint.price;
+        this.flightDuration = blueprint.flightDuration;
+        this.height = blueprint.height;
+        this.missileDamage = blueprint.missileDamage;
+        this.timeToDeliver = blueprint.timeToDeliver;
+    }
 
     private void Update()
     {
