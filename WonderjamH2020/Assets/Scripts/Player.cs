@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator DisplayPopUp(ChoicePopup choicePopUp)
     {
-        choicePopUp.Display(transform);
+        choicePopUp.Display(transform.position);
         inMenu = true;
         bool choiceMade = false;
         while(!choiceMade)

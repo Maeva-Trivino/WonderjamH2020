@@ -1,14 +1,25 @@
 ﻿using System;
+using UnityEngine;
 
 namespace UI.ChoicePopup
 {
     public class Choice
     {
-        private Func<bool> delegateEnability;
-        private Action delegateAction;
+
+        #region Variables
+        #region Public
         public bool IsEnabled => delegateEnability();
         public string Description { get; private set; }
+        public GameObject graphics;
+        #endregion
 
+        #region Private
+        private Func<bool> delegateEnability;
+        private Action delegateAction;
+        #endregion
+        #endregion
+
+        #region Methods
         public Choice(string description, Action action, Func<bool> enability)
         {
             delegateAction = action;
@@ -17,5 +28,6 @@ namespace UI.ChoicePopup
         }
 
         public void Invoke() => delegateAction();
+        #endregion
     }
 }
