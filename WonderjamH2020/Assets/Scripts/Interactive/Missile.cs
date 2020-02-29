@@ -14,6 +14,10 @@ public class Missile : MonoBehaviour
     [SerializeField] private int missileDamage = 5;
     [SerializeField] public House opponentHouse;
     [SerializeField] public int timeToDeliver;
+    //ScreenShake
+    [SerializeField] public float shakeAmplitude;
+    [SerializeField] public float shakePeriod;
+    [SerializeField] public float shakeDuration;
     private bool launched = false;
 
 
@@ -27,6 +31,9 @@ public class Missile : MonoBehaviour
         this.height = blueprint.height;
         this.missileDamage = blueprint.missileDamage;
         this.timeToDeliver = blueprint.timeToDeliver;
+        this.shakeAmplitude = blueprint.shakeAmplitude;
+        this.shakePeriod = blueprint.shakePeriod;
+        this.shakeDuration = blueprint.shakeDuration;
     }
 
     private void Update()
@@ -37,12 +44,16 @@ public class Missile : MonoBehaviour
         }
     }
 
-    public void Initialize(House _opponentHouse, float _flightDuration,float _height,int _missileDamage)
+    public void Initialize(House _opponentHouse, float _flightDuration,float _height,int _missileDamage,
+                            float _shakeAmplitude, float _shakePeriod, float _shakeDuration)
     {
         opponentHouse = _opponentHouse;
         flightDuration = _flightDuration;
         height = _height;
         missileDamage = _missileDamage;
+        shakeAmplitude = _shakeAmplitude;
+        shakeDuration = _shakeDuration;
+        shakePeriod = _shakePeriod;
     }
 
     public void LaunchMissile()
@@ -58,6 +69,8 @@ public class Missile : MonoBehaviour
     {
         Debug.Log("B O O M");
         opponentHouse.DoDamage(missileDamage);
+        //ScreenShake
+        Camera.main.GetComponent<ScreenShaker>().ScreenShake(shakeAmplitude, shakePeriod,shakeDuration);
         Destroy(gameObject);
     }
 }

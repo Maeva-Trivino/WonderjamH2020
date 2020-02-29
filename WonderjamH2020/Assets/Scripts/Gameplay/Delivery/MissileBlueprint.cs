@@ -11,6 +11,9 @@ namespace Gameplay.Delivery
         [SerializeField] public float height = 5f;
         [SerializeField] public int missileDamage = 5;
         [SerializeField] public int timeToDeliver;
+        [SerializeField] public float shakeAmplitude;
+        [SerializeField] public float shakePeriod;
+        [SerializeField] public float shakeDuration;
 
         public Missile GetMissile()
         {
