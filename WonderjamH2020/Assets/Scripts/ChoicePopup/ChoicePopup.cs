@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.ChoicePopup
+namespace ChoicePopup
 {
     public class ChoicePopup : MonoBehaviour
     {

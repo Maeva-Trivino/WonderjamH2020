@@ -1,8 +1,8 @@
 ﻿using Rewired;
 using UnityEngine;
 using System.Collections;
-using UI.ChoicePopup;
 using System.Collections.Generic;
+using ChoicePopup;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     [Header("UI")]
     [SerializeField]
-    private ChoicePopup choicePopup;
+    private ChoicePopup.ChoicePopup choicePopup;
     #endregion
 
     #region Public
@@ -62,13 +62,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Test
-        bool lol = true;
-        choicePopup.SetChoices(new List<Choice>() {
-                new Choice("Say hello", () => Debug.Log("hello"), () => true),
-                new Choice("Disable this button", () => lol = false, () => lol),
-            });
-        StartCoroutine(DisplayChoicePopup());
+        if (collision.transform.GetComponent<ChoicesSenderBehaviour>())
+        {
+            choicePopup.SetChoices(collision.transform.GetComponent<ChoicesSenderBehaviour>().GetChoices());
+            StartCoroutine(DisplayChoicePopup());
+        }
     }
 
     private IEnumerator DisplayChoicePopup()
