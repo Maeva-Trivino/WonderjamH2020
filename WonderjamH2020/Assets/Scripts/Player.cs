@@ -362,21 +362,23 @@ public class Player : MonoBehaviour
                 slider.transform.localScale = new Vector3(1, 1, 1);
                 slider.value = action.progression;
                 slider.gameObject.SetActive(true);
-                QTEPopup.gameObject.SetActive(true);
+                // QTEPopup.gameObject.SetActive(true);
 
             }
             else
             {
                 text.text = action.name;
                 text.fontSize = 15;
-                button.text = "F";
+                button.text = "";
                 combos.text = "";
                 QTEPopup.GetComponentInChildren<Slider>().gameObject.transform.localScale = new Vector3(0, 0, 0);
-                QTEPopup.gameObject.SetActive(false);
+                // QTEPopup.gameObject.SetActive(false);
 
             }
 
             QTEPopup.transform.position = screenPos;
+            QTEPopup.gameObject.SetActive(true);
+
         }
         else
         {
