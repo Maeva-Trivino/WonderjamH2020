@@ -29,6 +29,7 @@ public class House : ChoicesSenderBehaviour, Interactive
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
     }
 
