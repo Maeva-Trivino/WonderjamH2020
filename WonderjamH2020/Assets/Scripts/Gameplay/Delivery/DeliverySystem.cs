@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Gameplay;
-using Gameplay.Delivery;
 using Rewired;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ public class DeliverySystem : MonoBehaviour
 {
     private Rewired.Player inputManager;
 
+    //TODO Remove (TEST)
     public MissileItem itemPrefab;
 
     private const int LEFT_SIDE_ID = 0;
@@ -33,7 +33,8 @@ public class DeliverySystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(inputManager.GetButtonDown("TEST"))
+        //TODO Remove (TEST)
+        if (inputManager.GetButtonDown("TEST"))
         {
             OrderItem(itemPrefab,0);
         }

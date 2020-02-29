@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Gameplay;
-using Gameplay.Delivery;
 using UnityEngine;
 
 public class DeliveryTruck : MonoBehaviour
@@ -15,7 +14,9 @@ public class DeliveryTruck : MonoBehaviour
     private Vector3 deliveryTargetPosition;
     private Vector3 endPosition;
 
-    public float speed = 100; 
+    public float maxSpeed = 15;
+
+    public ItemBox itemBoxPrefab;
 
     private bool outForDelivery = false;
     public bool IsOutForDelivery
@@ -50,7 +51,7 @@ public class DeliveryTruck : MonoBehaviour
         float distance = 0;
         while ((distance = Vector3.Distance(transform.position, deliveryTargetPosition)) > Mathf.Epsilon)
         {
-            float timelineSpeed = Math.Max(Math.Min(-0.03f * distance * (distance - Vector3.Distance(startingPosition, deliveryTargetPosition)),15),1);
+            float timelineSpeed = Math.Max(Math.Min(-0.03f * distance * (distance - Vector3.Distance(startingPosition, deliveryTargetPosition)), maxSpeed),1);
             float step = timelineSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, deliveryTargetPosition, step);
             yield return null;
@@ -61,8 +62,9 @@ public class DeliveryTruck : MonoBehaviour
 
     public void PutBox()
     {
-        //BOITE !!
-
+        ItemBox newItemBox = Instantiate(itemBoxPrefab, this.transform.position + new Vector3(0, 2.5f, 0), Quaternion.identity);
+        newItemBox.item = itemToDeliver;
+        newItemBox.enabled = true;
         StartCoroutine(LeaveMap());
     }
 
@@ -71,7 +73,7 @@ public class DeliveryTruck : MonoBehaviour
         float distance = 0;
         while ((distance = Vector3.Distance(transform.position, endPosition)) > Mathf.Epsilon)
         {
-            float timelineSpeed = Math.Max(Math.Min(-0.04f * distance * (distance - Vector3.Distance(startingPosition, endPosition)), 15), 0.1f);
+            float timelineSpeed = Math.Max(Math.Min(-0.04f * distance * (distance - Vector3.Distance(startingPosition, endPosition)), maxSpeed), 0.1f);
             float step = timelineSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, endPosition, step);
             yield return null;
