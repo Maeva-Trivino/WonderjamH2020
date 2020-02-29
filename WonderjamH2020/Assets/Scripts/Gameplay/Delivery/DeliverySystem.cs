@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Gameplay;
 using Rewired;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class DeliverySystem : MonoBehaviour
 {
     private Rewired.Player inputManager;
 
     //TODO Remove (TEST)
-    public MissileItem itemPrefab;
+    public Missile itemPrefab;
 
     private const int LEFT_SIDE_ID = 0;
     private const int RIGHT_SIDE_ID = 1;
 
-    public Queue<MissileItem> rightWaitingOrders;
-    public Queue<MissileItem> leftWaitingOrders;
+    public Queue<Missile> rightWaitingOrders;
+    public Queue<Missile> leftWaitingOrders;
 
     public DeliveryTruck rightDeliveryTruck;
     public DeliveryTruck leftDeliveryTruck;
@@ -26,18 +28,20 @@ public class DeliverySystem : MonoBehaviour
     {
         inputManager = ReInput.players.GetPlayer(0);
 
-        rightWaitingOrders = new Queue<MissileItem>();
-        leftWaitingOrders = new Queue<MissileItem>();
+        rightWaitingOrders = new Queue<Missile>();
+        leftWaitingOrders = new Queue<Missile>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         //TODO Remove (TEST)
         if (inputManager.GetButtonDown("TEST2"))
         {
             OrderItem(itemPrefab,0);
         }
+        */
         
         if (leftWaitingOrders.Count > 0 && !leftDeliveryTruck.IsOutForDelivery)
         {
@@ -49,17 +53,15 @@ public class DeliverySystem : MonoBehaviour
             rightDeliveryTruck.Deliver(rightWaitingOrders.Dequeue());
         }
     }
-
-    void OrderItem(MissileItem item,int playerId)
+    public void OrderItem(Missile item,int playerId)
     {
         StartCoroutine(WaitForDelivery(item, playerId));
     }
 
-    IEnumerator WaitForDelivery(MissileItem order,int playerId)
+    IEnumerator WaitForDelivery(Missile order,int playerId)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(order.timeToDeliver);
 
-        //BREAK HERE
         switch (playerId)
         {
             case LEFT_SIDE_ID:

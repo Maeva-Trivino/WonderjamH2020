@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class ItemBox : MonoBehaviour
 {
-    public MissileItem item;
+    public Missile item;
 }

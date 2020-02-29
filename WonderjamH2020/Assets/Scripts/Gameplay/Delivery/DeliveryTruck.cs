@@ -25,8 +25,8 @@ public class DeliveryTruck : MonoBehaviour
         set { outForDelivery = value; }
     }
 
-    private MissileItem itemToDeliver;
-    public MissileItem ItemToDeliver
+    private Missile itemToDeliver;
+    public Missile ItemToDeliver
     {
         get { return itemToDeliver; }
         set { itemToDeliver = value; }
@@ -39,7 +39,7 @@ public class DeliveryTruck : MonoBehaviour
         endPosition = endPoint.position;
     }
 
-    public void Deliver(MissileItem item)
+    public void Deliver(Missile item)
     {
         outForDelivery = true;
         itemToDeliver = item;
