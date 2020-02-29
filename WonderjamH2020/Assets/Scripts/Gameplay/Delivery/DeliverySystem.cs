@@ -34,11 +34,11 @@ public class DeliverySystem : MonoBehaviour
     void Update()
     {
         //TODO Remove (TEST)
-        if (inputManager.GetButtonDown("TEST"))
+        if (inputManager.GetButtonDown("TEST2"))
         {
             OrderItem(itemPrefab,0);
         }
-
+        
         if (leftWaitingOrders.Count > 0 && !leftDeliveryTruck.IsOutForDelivery)
         {
             leftDeliveryTruck.Deliver(leftWaitingOrders.Dequeue());
