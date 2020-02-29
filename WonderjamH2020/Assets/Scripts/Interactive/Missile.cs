@@ -19,8 +19,6 @@ public class Missile : MonoBehaviour
     [SerializeField] public float shakePeriod;
     [SerializeField] public float shakeDuration;
     private bool launched = false;
-    private LTDescr missileTween;
-    private LTDescr missileRotationTween;
     private ParticleSystem fireTray;
 
     public Missile() : base() { }
@@ -69,8 +67,8 @@ public class Missile : MonoBehaviour
         launched = true;
         Vector3[] bezier = {gameObject.transform.position, opponentHouse.transform.position + height * Vector3.up
                             ,gameObject.transform.position + height * Vector3.up, opponentHouse.transform.position};
-        missileTween = LeanTween.move(gameObject, bezier, flightDuration).setEaseInExpo();
-        missileRotationTween = LeanTween.rotateZ(gameObject,180, flightDuration).setEaseInExpo();
+        LeanTween.move(gameObject, bezier, flightDuration).setEaseInExpo();
+        LeanTween.rotateZ(gameObject,180, flightDuration).setEaseInExpo();
     }
 
     private void Explode()
