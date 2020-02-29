@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94fd05062712d14d97d83d99b9a12e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 10
   playerID: 0
   choicePopup: {fileID: 7044404304874971767}
 --- !u!50 &6718952731679234086
@@ -113,7 +113,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
 --- !u!212 &1780928771968591098
 SpriteRenderer:
   m_ObjectHideFlags: 0

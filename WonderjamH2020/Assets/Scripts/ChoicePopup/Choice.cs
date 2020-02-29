@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace UI.ChoicePopup
+namespace ChoicePopup
 {
     public class Choice
     {
