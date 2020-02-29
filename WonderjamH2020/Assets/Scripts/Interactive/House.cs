@@ -1,4 +1,4 @@
-﻿using ChoicePopup;
+using ChoicePopup;
 using System.Collections.Generic;
 using QTE;
 using UnityEngine;
@@ -15,6 +15,8 @@ public class House : ChoicesSenderBehaviour, Interactive
     [SerializeField]
     private int repairingAmount;
 
+    [SerializeField] private Player enemyPlayer;
+    [SerializeField] private EndScreen endScreen;
     public int CurrentHealth
     {
         get { return currentHealth; }
@@ -23,6 +25,11 @@ public class House : ChoicesSenderBehaviour, Interactive
             float newPercentage = (float)value / (float)maxHealth;
             UpdateHealthBar(newPercentage);
             currentHealth = value;
+
+            if (currentHealth <= 0)
+            {
+                endScreen.Show(enemyPlayer.name);
+            }
         }
     }
 
@@ -30,13 +37,7 @@ public class House : ChoicesSenderBehaviour, Interactive
     void Start()
     {
         GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        CurrentHealth = maxHealth;
     }
 
     private void UpdateHealthBar(float newPercentage)
