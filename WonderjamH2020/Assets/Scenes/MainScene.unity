@@ -29505,7 +29505,7 @@ PrefabInstance:
         type: 3}
       propertyPath: opponentHouse
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 122206778}
     - target: {fileID: 3586227844683522293, guid: ba6ba765dcc34784098705a711e61b7d,
         type: 3}
       propertyPath: m_Name
