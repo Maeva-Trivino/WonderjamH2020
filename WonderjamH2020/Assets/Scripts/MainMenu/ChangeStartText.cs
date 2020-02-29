@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Rewired;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ChangeStartText : MonoBehaviour
@@ -13,6 +14,9 @@ public class ChangeStartText : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI creditsText;
+
+    [SerializeField]
+    private TextMeshProUGUI backToMenuText;
     #endregion
 
     //InputManager
@@ -31,6 +35,7 @@ public class ChangeStartText : MonoBehaviour
 
         transform.GetChild(3).GetComponent<Image>().enabled = false;
         transform.GetChild(4).GetComponent<TextMeshProUGUI>().enabled = false;
+        transform.GetChild(5).GetComponent<TextMeshProUGUI>().enabled = false;
     }
 
     // Update is called once per frame
@@ -39,17 +44,25 @@ public class ChangeStartText : MonoBehaviour
         joystick = ReInput.controllers.GetJoystick(0);
         ChangeTextsMenu(startGameText, "Validate", "Start the game");
         ChangeTextsMenu(creditsText, "Credits", "Credits");
+        ChangeTextsMenu(backToMenuText, "Credits", "Back on menu");
 
-        if (!isCredit && inputManager.GetButtonDown("Credits")){
+        if(!isCredit && inputManager.GetButtonDown("Validate"))
+        {
+            SceneManager.LoadScene("MainScene");
+        }
+        else if (!isCredit && inputManager.GetButtonDown("Credits"))
+        {
             isCredit = true;
             transform.GetChild(3).GetComponent<Image>().enabled = true;
             transform.GetChild(4).GetComponent<TextMeshProUGUI>().enabled = true;
+            transform.GetChild(5).GetComponent<TextMeshProUGUI>().enabled = true;
         }
         else if(isCredit && inputManager.GetButtonDown("Credits"))
         {
             isCredit = false;
             transform.GetChild(3).GetComponent<Image>().enabled = false;
             transform.GetChild(4).GetComponent<TextMeshProUGUI>().enabled = false;
+            transform.GetChild(5).GetComponent<TextMeshProUGUI>().enabled = false;
         }
     }
 
