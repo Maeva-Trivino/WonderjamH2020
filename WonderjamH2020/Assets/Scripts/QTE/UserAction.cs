@@ -2,10 +2,10 @@
 
 namespace QTE
 {
-    public class UserAction: MonoBehaviour
+    public class UserAction
     {
-        protected string name;
-        protected float progression;
+        public string name;
+        public float progression;
 
         private System.Action actionToDo;
 
@@ -20,7 +20,7 @@ namespace QTE
 
         public bool IsDone()
         {
-            return progression > 1f;
+            return progression >= 1f;
         }
 
         public void DoAction()
