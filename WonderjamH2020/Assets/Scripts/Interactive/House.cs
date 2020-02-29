@@ -59,6 +59,6 @@ public class House : MonoBehaviour, Interactive
 
     public UserAction GetAction()
     {
-        return new ComboAction(player.inputManager ,new List<string> { "LeftCombo", "RightCombo"}, 2, () => Repair(repairingAmount), "Repair");
+        return new ComboAction(player.inputManager ,new List<string> { "←", "→" }, 2, () => Repair(repairingAmount), "Repair");
     }
 }

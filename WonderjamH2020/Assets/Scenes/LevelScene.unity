@@ -15873,7 +15873,7 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 0
     - _id: 4
-      _name: UpCombo
+      _name: "\u2191"
       _type: 1
       _descriptiveName: button up
       _positiveDescriptiveName: 
@@ -15882,7 +15882,7 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 0
     - _id: 5
-      _name: DownCombo
+      _name: "\u2193"
       _type: 1
       _descriptiveName: Down button
       _positiveDescriptiveName: 
@@ -15891,7 +15891,7 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 0
     - _id: 6
-      _name: LeftCombo
+      _name: "\u2190"
       _type: 1
       _descriptiveName: Left button
       _positiveDescriptiveName: 
@@ -15900,7 +15900,7 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 0
     - _id: 7
-      _name: RightCombo
+      _name: "\u2192"
       _type: 1
       _descriptiveName: Right button
       _positiveDescriptiveName: 

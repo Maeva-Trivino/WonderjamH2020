@@ -41,12 +41,15 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        input = new Vector2(inputManager.GetAxis("Horizontal"), inputManager.GetAxis("Vertical"));
-        if (input.magnitude < .1f) input = Vector2.zero;
-
-        if( input != Vector2.zero)
+        if(!inQTE)
         {
-            direction = input.normalized;
+            input = new Vector2(inputManager.GetAxis("Horizontal"), inputManager.GetAxis("Vertical"));
+            if (input.magnitude < .1f) input = Vector2.zero;
+
+            if( input != Vector2.zero)
+            {
+                direction = input.normalized;
+            }
         }
 
         HandleQTEAction();
@@ -129,23 +132,26 @@ public class Player : MonoBehaviour
         {
             if (inputManager.GetButtonDown("Interact"))
             {
-                Debug.Log("Interact");
-                currentAction.Do();
-                updateQTEPopup(currentAction);
                 if (currentAction.IsDone())
                 {
                     currentAction = null;
                     inQTE = false;
+                    Debug.Log("Set QTE to false (isdone)");
                 }
                 else
                 {
                     inQTE = true;
+                    Debug.Log("Set QTE to true (not is done)");
                 }
+                currentAction.Do();
+                updateQTEPopup(currentAction);
             }
-            else
+            else if(inputManager.GetButtonUp("Interact"))
             {
                 inQTE = false;
                 currentAction = null;
+                Debug.Log("Set QTE to false (button interact up)");
+
             }
         }
     }
@@ -216,6 +222,7 @@ public class Player : MonoBehaviour
 
             if (inQTE)
             {
+                Debug.Log("In QTE");
                 if (! (action is ComboAction))
                 {
                     text.text = "";
@@ -240,18 +247,23 @@ public class Player : MonoBehaviour
                 slider.transform.localScale = new Vector3(1, 1, 1);
                 slider.value = action.progression;
                 slider.gameObject.SetActive(true);
+                QTEPopup.gameObject.SetActive(true);
+
             }
             else
             {
+                Debug.Log("Not in QTE");
+
                 text.text = action.name;
                 text.fontSize = 15;
                 button.text = "F";
                 combos.text = "";
                 QTEPopup.GetComponentInChildren<Slider>().gameObject.transform.localScale = new Vector3(0, 0, 0);
+                QTEPopup.gameObject.SetActive(false);
+
             }
 
             QTEPopup.transform.position = screenPos;
-            QTEPopup.gameObject.SetActive(true);
         }
         else
         {
