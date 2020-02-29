@@ -1,4 +1,5 @@
-﻿using Rewired;
+using System;
+using Rewired;
 using UnityEngine;
 using ChoicePopup;
 using QTE;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 using Gameplay.Delivery;
+using UnityEditor.PackageManager;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -35,6 +37,12 @@ public class Player : MonoBehaviour
 
     #region Public
     public Rewired.Player inputManager;
+
+    public int Lemons
+    {
+        get { return lemons; }
+        set { lemons = value; }
+    }
     #endregion
 
     #region Private
@@ -50,6 +58,8 @@ public class Player : MonoBehaviour
 
 
     private int money = 100;
+    [SerializeField]
+    private int lemons = 0;
 
 
     private Vector2 input, direction = Vector2.down; // direction will be used for animations
@@ -150,22 +160,6 @@ public class Player : MonoBehaviour
         }
 
     }
-
-    private IEnumerator PickUpItemBox(ItemBox itemBox)
-    {
-        isPickingUpItem = true;
-        while (isPickingUpItem)
-        {
-            if (inputManager.GetButtonDown("PickUp"))
-            {
-                //TODO GET ITEM
-                isPickingUpItem = false;
-                Destroy(itemBox.gameObject);
-            }
-
-            yield return null;
-        }
-    }
     #endregion
 
     #region Private
@@ -246,6 +240,28 @@ public class Player : MonoBehaviour
     {
         this.money += lemonadePrice;
         Debug.Log("Grandma now has $" + money);
+    }
+
+    public void HarvestLemons(int lemonsCount)
+    {
+        Debug.Log("LEMONS");
+        Lemons += lemonsCount;
+    }
+
+    private IEnumerator PickUpItemBox(ItemBox itemBox)
+    {
+        isPickingUpItem = true;
+        while (isPickingUpItem)
+        {
+            if (inputManager.GetButtonDown("PickUp"))
+            {
+                //TODO GET ITEM
+                isPickingUpItem = false;
+                Destroy(itemBox.gameObject);
+            }
+
+            yield return null;
+        }
     }
 
     #region QTE
