@@ -14,12 +14,17 @@ public class Missile : MonoBehaviour
     [SerializeField] private int missileDamage = 5;
     [SerializeField] public House opponentHouse;
     [SerializeField] public int timeToDeliver;
+    private bool launched = false;
+    private ParticleSystem fireTray;
+
     //ScreenShake
     [SerializeField] public float shakeAmplitude;
     [SerializeField] public float shakePeriod;
     [SerializeField] public float shakeDuration;
-    private bool launched = false;
-    private ParticleSystem fireTray;
+
+    //Audio
+    [SerializeField] private AudioSource launchSound;
+    [SerializeField] private AudioSource impactSound;
 
     public Missile() : base() { }
 
@@ -34,6 +39,8 @@ public class Missile : MonoBehaviour
         this.shakeAmplitude = blueprint.shakeAmplitude;
         this.shakePeriod = blueprint.shakePeriod;
         this.shakeDuration = blueprint.shakeDuration;
+        this.impactSound = blueprint.impactSound;
+        this.launchSound = blueprint.launchSound;
     }
 
     private void Start()
@@ -50,7 +57,8 @@ public class Missile : MonoBehaviour
     }
 
     public void Initialize(House _opponentHouse, float _flightDuration,float _height,int _missileDamage,
-                            float _shakeAmplitude, float _shakePeriod, float _shakeDuration)
+                            float _shakeAmplitude, float _shakePeriod, float _shakeDuration,
+                            AudioSource _launchSound, AudioSource _impactSound)
     {
         opponentHouse = _opponentHouse;
         flightDuration = _flightDuration;
@@ -59,6 +67,8 @@ public class Missile : MonoBehaviour
         shakeAmplitude = _shakeAmplitude;
         shakeDuration = _shakeDuration;
         shakePeriod = _shakePeriod;
+        launchSound = _launchSound;
+        impactSound = _impactSound;
     }
 
     public void LaunchMissile()
@@ -69,6 +79,7 @@ public class Missile : MonoBehaviour
                             ,gameObject.transform.position + height * Vector3.up, opponentHouse.transform.position};
         LeanTween.move(gameObject, bezier, flightDuration).setEaseInExpo();
         LeanTween.rotateZ(gameObject,180, flightDuration).setEaseInExpo();
+        launchSound.Play();
     }
 
     private void Explode()
@@ -78,6 +89,7 @@ public class Missile : MonoBehaviour
         Camera.main.GetComponent<ScreenShaker>().ScreenShake(shakeAmplitude, shakePeriod,shakeDuration);
         fireTray.Stop();
         DetachParticle();
+        impactSound.Play();
         Destroy(gameObject);
     }
 

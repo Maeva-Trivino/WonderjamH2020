@@ -129,4 +129,6 @@ MonoBehaviour:
   missileDamage: 5
   shakeAmplitude: 0.2
   shakePeriod: 0.05
-  shakeDuration: 2
+  shakeDuration: 1
+  launchSound: {fileID: 0}
+  impactSound: {fileID: 0}

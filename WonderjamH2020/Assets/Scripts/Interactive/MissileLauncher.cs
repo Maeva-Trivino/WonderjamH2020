@@ -15,6 +15,9 @@ public class MissileLauncher : ChoicesSenderBehaviour
     [SerializeField] public float shakeAmplitude = 0.2f;
     [SerializeField] public float shakePeriod = 0.1f;
     [SerializeField] public float shakeDuration = 2;
+    //Audio
+    [SerializeField] private AudioSource launchSound;
+    [SerializeField] private AudioSource impactSound;
 
 
     public void RechargeMissile()
@@ -23,7 +26,8 @@ public class MissileLauncher : ChoicesSenderBehaviour
         {
             missile = Instantiate(missilePrefab, transform).GetComponent<Missile>();
             missile.transform.position = transform.position;
-            missile.Initialize(opponentHouse,flightDuration,height,missileDamage,shakeAmplitude,shakePeriod,shakeDuration);
+            missile.Initialize(opponentHouse,flightDuration,height,missileDamage,shakeAmplitude,shakePeriod,shakeDuration,
+                                launchSound,impactSound);
         }
     }
     public void Fire()
