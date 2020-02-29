@@ -6,9 +6,23 @@ public class House : MonoBehaviour
 {
     [SerializeField]
     protected int currentHealth = 50;
+    protected int maxHealth = 100;
+
+    public HealthBar healthBar;
+
+    public int CurrentHealth
+    {
+        get { return currentHealth;}
+        set
+        {
+            float newPercentage = (float) value / (float) maxHealth;
+            UpdateHealthBar(newPercentage);
+            currentHealth = value;
+        }
+    }
 
     [SerializeField]
-    protected int maxHealth = 100;
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +35,18 @@ public class House : MonoBehaviour
         
     }
 
+    private void UpdateHealthBar(float newPercentage)
+    {
+        if(healthBar != null)
+        {
+            healthBar.UpdateBar(newPercentage);
+        }
+    }
+
     public bool DoDamage(int damage)
     {
-        currentHealth -= damage;
-        if(currentHealth <= 0)
+        CurrentHealth -= damage;
+        if(CurrentHealth <= 0)
         {
             // %TODO% trigger end scene
             return true;
@@ -35,10 +57,10 @@ public class House : MonoBehaviour
 
     public void Repair(int repairPoint)
     {
-        currentHealth += repairPoint;
-        if ( currentHealth > maxHealth)
+        CurrentHealth += repairPoint;
+        if ( CurrentHealth > maxHealth)
         {
-            currentHealth = maxHealth;
+            CurrentHealth = maxHealth;
         }
     }
 }
