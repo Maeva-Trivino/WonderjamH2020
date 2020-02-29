@@ -2,9 +2,9 @@
 
 namespace QTE
 {
-    public class UserAction: MonoBehaviour
+    public class UserAction
     {
-        protected string name;
+        public string name;
         public float progression;
 
         private System.Action actionToDo;

@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private UserAction currentAction;
     private GameObject selected;
     [SerializeField]
-    private GameObject QTEPopup = null;
+    private GameObject QTEPopup;
 
 
     public Rewired.Player inputManager;
@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
         inputManager = ReInput.players.GetPlayer(playerID);
         _rigidbody2D = GetComponent<Rigidbody2D>();
         actionsInRange = new HashSet<GameObject>();
+        updateQTEPopup(null);
+
     }
 
 
@@ -71,6 +73,15 @@ public class Player : MonoBehaviour
         if (interactive != null)
         {
             actionsInRange.Add(collision.gameObject);
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Interactive interactive = collision.GetComponent<Interactive>();
+        if (interactive != null)
+        {
+            actionsInRange.Remove(collision.gameObject);
         }
 
     }
@@ -114,10 +125,11 @@ public class Player : MonoBehaviour
     #region 
     public void HandleQTEAction()
     {
-            if (currentAction != null)
+        if (currentAction != null)
         {
             if (inputManager.GetButtonDown("Interact"))
             {
+                Debug.Log("Interact");
                 currentAction.Do();
                 updateQTEPopup(currentAction);
                 if (currentAction.IsDone())
@@ -232,8 +244,8 @@ public class Player : MonoBehaviour
             else
             {
                 text.text = action.name;
-                text.fontSize = 28;
-                button.text = "Interact";
+                text.fontSize = 15;
+                button.text = "F";
                 combos.text = "";
                 QTEPopup.GetComponentInChildren<Slider>().gameObject.transform.localScale = new Vector3(0, 0, 0);
             }
