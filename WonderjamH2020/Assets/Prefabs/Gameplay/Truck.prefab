@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960297757670316047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -79.4, y: 0, z: 0}
+  m_LocalPosition: {x: 9, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1960297758106252903}
@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960297758065854783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -54.9, y: 0, z: 0}
+  m_LocalPosition: {x: 5.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1960297758106252903}
@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 1960297758106252890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 41.8, y: -11.45, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 9.20811, y: 9.20811, z: 9.20811}
   m_Children:
   - {fileID: 1960297758065854782}
   - {fileID: 1960297757670316046}
@@ -158,6 +158,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deliveryTarget: {fileID: 1960297758065854782}
   endPoint: {fileID: 1960297757670316046}
-  speed: 15
+  maxSpeed: 15
   itemBoxPrefab: {fileID: 2463582256477301501, guid: 09f74b94e0d15af4f988462602530a5a,
     type: 3}
+  stopCarAudio: {fileID: 0}
+  klazonCarAudio: {fileID: 0}
+  startCarAudio: {fileID: 0}
