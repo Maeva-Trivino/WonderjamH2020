@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Rewired;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChangeStartText : MonoBehaviour
 {
@@ -19,10 +20,17 @@ public class ChangeStartText : MonoBehaviour
 
     //Detect Joysticks
     private Joystick joystick;
+
+    //Bool to check if we're in creditView
+    private bool isCredit;
     // Start is called before the first frame update
     void Start()
     {
         inputManager = ReInput.players.GetPlayer(0);
+        isCredit = false;
+
+        transform.GetChild(3).GetComponent<Image>().enabled = false;
+        transform.GetChild(4).GetComponent<TextMeshProUGUI>().enabled = false;
     }
 
     // Update is called once per frame
@@ -31,6 +39,18 @@ public class ChangeStartText : MonoBehaviour
         joystick = ReInput.controllers.GetJoystick(0);
         ChangeTextsMenu(startGameText, "Validate", "Start the game");
         ChangeTextsMenu(creditsText, "Credits", "Credits");
+
+        if (!isCredit && inputManager.GetButtonDown("Credits")){
+            isCredit = true;
+            transform.GetChild(3).GetComponent<Image>().enabled = true;
+            transform.GetChild(4).GetComponent<TextMeshProUGUI>().enabled = true;
+        }
+        else if(isCredit && inputManager.GetButtonDown("Credits"))
+        {
+            isCredit = false;
+            transform.GetChild(3).GetComponent<Image>().enabled = false;
+            transform.GetChild(4).GetComponent<TextMeshProUGUI>().enabled = false;
+        }
     }
 
     private void ChangeTextsMenu(TextMeshProUGUI textMeshToChange, string nameAction, string descriptionAction)
