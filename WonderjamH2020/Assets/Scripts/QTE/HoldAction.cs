@@ -7,9 +7,7 @@ namespace QTE
         public float expectedDuration;
         public float currentDuration;
 
-        public HoldAction(string name) : base(name) {}
-
-        public HoldAction(float expectedDuration,string name = DEFAULT_NAME) : base(name)
+        public HoldAction(System.Action actionToDo,float expectedDuration,string name = DEFAULT_NAME) : base(actionToDo,name)
         {
             this.currentDuration = 0;
             this.expectedDuration = expectedDuration;
@@ -20,7 +18,7 @@ namespace QTE
             currentDuration += Time.deltaTime;
             if (currentDuration >= expectedDuration)
             {
-                //Do action
+                DoAction();
                 progression = 1f;
             }
             else
