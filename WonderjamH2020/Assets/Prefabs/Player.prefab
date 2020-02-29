@@ -152,8 +152,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   playerID: 0
-  choicePopup: {fileID: 7044404304874971767}
   QTEPopup: {fileID: 0}
+  choicePopup: {fileID: 7044404304874971767}
+  lemons: 0
 --- !u!50 &6718952731679234086
 Rigidbody2D:
   serializedVersion: 4
