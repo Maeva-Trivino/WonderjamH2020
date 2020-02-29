@@ -20,7 +20,7 @@ namespace QTE
 
         public bool IsDone()
         {
-            return progression > 1f;
+            return progression >= 1f;
         }
 
         public void DoAction()

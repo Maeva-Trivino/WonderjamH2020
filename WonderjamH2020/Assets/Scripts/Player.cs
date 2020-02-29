@@ -132,18 +132,7 @@ public class Player : MonoBehaviour
         {
             if (inputManager.GetButtonDown("Interact"))
             {
-                if (currentAction.IsDone())
-                {
-                    currentAction = null;
-                    inQTE = false;
-                    Debug.Log("Set QTE to false (isdone)");
-                }
-                else
-                {
-                    inQTE = true;
-                    Debug.Log("Set QTE to true (not is done)");
-                }
-                currentAction.Do();
+                inQTE = true;
                 updateQTEPopup(currentAction);
             }
             else if(inputManager.GetButtonUp("Interact"))
@@ -151,6 +140,18 @@ public class Player : MonoBehaviour
                 inQTE = false;
                 currentAction = null;
                 Debug.Log("Set QTE to false (button interact up)");
+
+            }
+            if (inQTE)
+            {
+                currentAction.Do();
+                if (currentAction.IsDone())
+                {
+                    currentAction = null;
+                    inQTE = false;
+                    Debug.Log("Set QTE to false (isdone)");
+                }
+                updateQTEPopup(currentAction);
 
             }
         }
@@ -168,7 +169,7 @@ public class Player : MonoBehaviour
 
                 foreach (GameObject o in actionsInRange)
                 {
-                    UserAction action = o.GetComponent<Interactive>().GetAction();
+                    UserAction action = o.GetComponent<Interactive>().GetAction(inputManager);
                     float distance = (o.transform.position - transform.position).magnitude;
                     if (action != null && distance < distanceMin)
                     {
@@ -222,7 +223,6 @@ public class Player : MonoBehaviour
 
             if (inQTE)
             {
-                Debug.Log("In QTE");
                 if (! (action is ComboAction))
                 {
                     text.text = "";
@@ -252,8 +252,6 @@ public class Player : MonoBehaviour
             }
             else
             {
-                Debug.Log("Not in QTE");
-
                 text.text = action.name;
                 text.fontSize = 15;
                 button.text = "F";

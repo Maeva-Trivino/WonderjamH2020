@@ -11,5 +11,5 @@ public interface Interactive
     // Désélectionne l'objet
     void Deselect();
 
-    UserAction GetAction();
+    UserAction GetAction(Rewired.Player inputManager);
 }

@@ -13,8 +13,6 @@ public class House : MonoBehaviour, Interactive
     [SerializeField]
     private int repairingAmount;
 
-    [SerializeField]
-    private Player player;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +44,7 @@ public class House : MonoBehaviour, Interactive
         {
             currentHealth = maxHealth;
         }
+        Debug.Log("Hp maison: " + currentHealth);
     }
 
     public void Select()
@@ -57,8 +56,8 @@ public class House : MonoBehaviour, Interactive
     {
     }
 
-    public UserAction GetAction()
+    public UserAction GetAction(Rewired.Player inputManager)
     {
-        return new ComboAction(player.inputManager ,new List<string> { "←", "→" }, 2, () => Repair(repairingAmount), "Repair");
+        return new ComboAction(inputManager ,new List<string> { "←", "→" }, 2, () => Repair(repairingAmount), "Repair");
     }
 }
