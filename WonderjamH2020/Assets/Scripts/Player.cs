@@ -1,8 +1,10 @@
-﻿using Rewired;
+﻿using System;
+using Rewired;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using ChoicePopup;
+using Gameplay.Delivery;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -15,17 +17,25 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int playerID = 0;
 
+    public int PlayerId
+    {
+        get { return playerID;}
+        set { playerID = value; }
+    }
+
     [Header("UI")]
     [SerializeField]
     private ChoicePopup.ChoicePopup choicePopup;
     #endregion
 
     #region Public
+    private int money = 100;
     #endregion
 
     #region Private
     private bool inMenu;
     private bool inQTE;
+    private bool isPickingUpItem;
 
     private Rewired.Player inputManager;
     private Vector2 input, direction = Vector2.down; // direction will be used for animations
@@ -67,6 +77,43 @@ public class Player : MonoBehaviour
             choicePopup.SetChoices(collision.transform.GetComponent<ChoicesSenderBehaviour>().GetChoices());
             StartCoroutine(DisplayChoicePopup());
         }
+
+        if (collision.transform.GetComponent<ChoicesSenderBehaviourWithContext>())
+        {
+            choicePopup.SetChoices(collision.transform.GetComponent<ChoicesSenderBehaviourWithContext>().GetChoices(this));
+            StartCoroutine(DisplayChoicePopup());
+        }
+
+        if (collision.transform.GetComponent<ItemBox>())
+        {
+            ItemBox itemBox = collision.transform.GetComponent<ItemBox>();
+            StartCoroutine(PickUpItemBox(itemBox));
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+       
+        if (other.transform.GetComponent<ItemBox>())
+        {
+            isPickingUpItem = false;
+        }
+    }
+
+    private IEnumerator PickUpItemBox(ItemBox itemBox)
+    {
+        isPickingUpItem = true;
+        while (isPickingUpItem)
+        {
+            if (inputManager.GetButtonDown("Pickup Box"))
+            {
+                //TODO GET ITEM
+                isPickingUpItem = false;
+                Destroy(itemBox.gameObject);
+            }
+
+            yield return null;
+        }
     }
 
     private IEnumerator DisplayChoicePopup()
@@ -98,6 +145,17 @@ public class Player : MonoBehaviour
             yield return true;
         }
         inMenu = false;
+    }
+
+    public bool CanAffordMissile(MissileBlueprint blueprint)
+    {
+        return money >= blueprint.price;
+    }
+
+    // Returns true if successful
+    public void PayForMissile(MissileBlueprint blueprint)
+    {
+        money -= blueprint.price;
     }
     #endregion
 }
