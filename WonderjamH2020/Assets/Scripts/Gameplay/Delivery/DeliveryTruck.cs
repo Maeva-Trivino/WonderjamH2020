@@ -43,42 +43,40 @@ public class DeliveryTruck : MonoBehaviour
     {
         outForDelivery = true;
         itemToDeliver = item;
-        StartCoroutine(MoveToTarget());
-    }
 
-    public IEnumerator MoveToTarget()
-    {
-        float distance = 0;
-        while ((distance = Vector3.Distance(transform.position, deliveryTargetPosition)) > Mathf.Epsilon)
+        LTDescr tweenDesc= LeanTween.move(this.gameObject, deliveryTargetPosition, 5.0f);
+        if (tweenDesc != null)
         {
-            float timelineSpeed = Math.Max(Math.Min(-0.03f * distance * (distance - Vector3.Distance(startingPosition, deliveryTargetPosition)), maxSpeed),1);
-            float step = timelineSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, deliveryTargetPosition, step);
-            yield return null;
+            tweenDesc.setOnComplete(PutBox);
         }
-
-        PutBox();
     }
 
     public void PutBox()
     {
+        StartCoroutine(this.PutBoxCoroutine());
+    }
+
+    public IEnumerator PutBoxCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+
         ItemBox newItemBox = Instantiate(itemBoxPrefab, this.transform.position + new Vector3(0, 2.5f, 0), Quaternion.identity);
         newItemBox.item = itemToDeliver;
         newItemBox.enabled = true;
-        StartCoroutine(LeaveMap());
+
+        yield return new WaitForSeconds(0.5f);
+
+        LTDescr tweenDesc = LeanTween.move(this.gameObject, endPosition, 2.0f);
+        if (tweenDesc != null)
+        {
+            tweenDesc.setOnComplete(LeaveMap);
+        }
     }
 
-    public IEnumerator LeaveMap()
-    {
-        float distance = 0;
-        while ((distance = Vector3.Distance(transform.position, endPosition)) > Mathf.Epsilon)
-        {
-            float timelineSpeed = Math.Max(Math.Min(-0.04f * distance * (distance - Vector3.Distance(startingPosition, endPosition)), maxSpeed), 0.1f);
-            float step = timelineSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, endPosition, step);
-            yield return null;
-        }
 
+
+    public void LeaveMap()
+    {
         this.transform.position = startingPosition;
         itemToDeliver = null;
         outForDelivery = false;
