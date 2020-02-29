@@ -1,34 +1,55 @@
-﻿using System.Collections;
+﻿using ChoicePopup;
 using System.Collections.Generic;
 using QTE;
 using UnityEngine;
 
-public class House : MonoBehaviour, Interactive
+
+public class House : ChoicesSenderBehaviour, Interactive
 {
     [SerializeField]
-    private int currentHealth = 50;
+    protected int currentHealth = 50;
+    protected int maxHealth = 100;
 
-    [SerializeField]
-    private int maxHealth = 100;
+    public HealthBar healthBar;
+    
     [SerializeField]
     private int repairingAmount;
+
+    public int CurrentHealth
+    {
+        get { return currentHealth; }
+        set
+        {
+            float newPercentage = (float)value / (float)maxHealth;
+            UpdateHealthBar(newPercentage);
+            currentHealth = value;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    private void UpdateHealthBar(float newPercentage)
+    {
+        if (healthBar != null)
+        {
+            healthBar.UpdateBar(newPercentage);
+        }
     }
 
     public bool DoDamage(int damage)
     {
-        currentHealth -= damage;
-        if(currentHealth <= 0)
+        CurrentHealth -= damage;
+        if (CurrentHealth <= 0)
         {
             // %TODO% trigger end scene
             return true;
@@ -39,10 +60,10 @@ public class House : MonoBehaviour, Interactive
 
     public void Repair(int repairPoint)
     {
-        currentHealth += repairPoint;
-        if ( currentHealth > maxHealth)
+        CurrentHealth += repairPoint;
+        if (CurrentHealth > maxHealth)
         {
-            currentHealth = maxHealth;
+            CurrentHealth = maxHealth;
         }
         Debug.Log("Hp maison: " + currentHealth);
     }
@@ -59,5 +80,15 @@ public class House : MonoBehaviour, Interactive
     public UserAction GetAction(Rewired.Player inputManager)
     {
         return new ComboAction(inputManager ,new List<string> { "←", "→" }, 2, () => Repair(repairingAmount), "Repair");
+    }
+
+    public override List<Choice> GetChoices()
+    {
+        // Test
+        bool lol = true;
+        return new List<Choice>() {
+                new Choice("Toquer", () => Debug.Log("Knock! Knock!"), () => true),
+                new Choice("Désactiver ce bouton", () => lol = false, () => lol),
+            };
     }
 }

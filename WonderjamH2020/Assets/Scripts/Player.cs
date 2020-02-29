@@ -1,7 +1,7 @@
 ﻿using Rewired;
 using UnityEngine;
 using System.Collections;
-using UI.ChoicePopup;
+using ChoicePopup;
 using QTE;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -10,11 +10,23 @@ using System;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    #region Variables
+    #region Editor
+    [Header("General")]
     [SerializeField]
     private float speed = 2;
     [SerializeField]
     private int playerID = 0;
 
+    [Header("UI")]
+    [SerializeField]
+    private ChoicePopup.ChoicePopup choicePopup;
+    #endregion
+
+    #region Public
+    #endregion
+
+    #region Private
     private bool inMenu;
     private bool inQTE;
 
@@ -28,7 +40,10 @@ public class Player : MonoBehaviour
     public Rewired.Player inputManager;
     private Vector2 input, direction = Vector2.down; // direction will be used for animations
     private Rigidbody2D _rigidbody2D;
+    #endregion
+    #endregion
 
+    #region Methods
     private void Start()
     {
         inputManager = ReInput.players.GetPlayer(playerID);
@@ -59,7 +74,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!inQTE && !inMenu)
+        if (!inQTE && !inMenu)
         {
             _rigidbody2D.MovePosition(_rigidbody2D.position + speed * input * Time.fixedDeltaTime);
         }
@@ -67,10 +82,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ChoicePopup choicePopUp = collision.GetComponent<ChoicePopup>();
-        if(choicePopUp != null)
+        if (collision.transform.GetComponent<ChoicesSenderBehaviour>())
         {
-            StartCoroutine(DisplayPopUp(choicePopUp));
+            choicePopup.SetChoices(collision.transform.GetComponent<ChoicesSenderBehaviour>().GetChoices());
+            StartCoroutine(DisplayChoicePopup());
         }
         Interactive interactive = collision.GetComponent<Interactive>();
         if (interactive != null)
@@ -89,43 +104,38 @@ public class Player : MonoBehaviour
 
     }
 
-    private IEnumerator DisplayPopUp(ChoicePopup choicePopUp)
+    private IEnumerator DisplayChoicePopup()
     {
-        choicePopUp.Display(transform);
+        choicePopup.Display(transform.position);
         inMenu = true;
-        bool choiceMade = false;
-        while(!choiceMade)
+        while (choicePopup.IsVisible)
         {
             if (inputManager.GetButtonDown("Cancel"))
             {
                 Debug.Log("Cancel");
-                choiceMade = true;
-                break;
+                choicePopup.Hide();
             }
-            float input = inputManager.GetAxis("Horizontal");
-            if(inputManager.GetButtonDown("MenuLeft"))
+            else if (inputManager.GetButtonDown("MenuLeft"))
             {
                 Debug.Log("Gauche");
-                choicePopUp.GoLeft();
+                choicePopup.GoLeft();
             }
-            if(inputManager.GetButtonDown("MenuRight"))
+            else if (inputManager.GetButtonDown("MenuRight"))
             {
                 Debug.Log("Droite");
-                choicePopUp.GoRight();
+                choicePopup.GoRight();
             }
             if (inputManager.GetButton("Validate"))
             {
                 Debug.Log("Validé !");
-                choiceMade = true;
-                choicePopUp.Validate();
+                choicePopup.Validate();
             }
             yield return true;
         }
         inMenu = false;
-        choicePopUp.Hide();
     }
 
-    #region 
+    #region QTE
     public void HandleQTEAction()
     {
         if (currentAction != null)
@@ -270,5 +280,5 @@ public class Player : MonoBehaviour
         }
     }
     #endregion
+    #endregion
 }
-
