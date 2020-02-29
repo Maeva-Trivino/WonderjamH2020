@@ -48,7 +48,7 @@ public class ChangeStartText : MonoBehaviour
 
         if(!isCredit && inputManager.GetButtonDown("Validate"))
         {
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("DirectivesMenu");
         }
         else if (!isCredit && inputManager.GetButtonDown("Credits"))
         {
