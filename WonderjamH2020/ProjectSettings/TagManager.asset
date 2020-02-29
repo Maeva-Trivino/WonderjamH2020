@@ -53,6 +53,9 @@ TagManager:
   - name: House
     uniqueID: 847079967
     locked: 0
+  - name: MissileLauncher
+    uniqueID: 1855835939
+    locked: 0
   - name: Player
     uniqueID: 1968513155
     locked: 0
