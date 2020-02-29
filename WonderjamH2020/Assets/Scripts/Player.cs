@@ -139,8 +139,6 @@ public class Player : MonoBehaviour
             {
                 inQTE = false;
                 currentAction = null;
-                Debug.Log("Set QTE to false (button interact up)");
-
             }
             if (inQTE)
             {
@@ -149,7 +147,6 @@ public class Player : MonoBehaviour
                 {
                     currentAction = null;
                     inQTE = false;
-                    Debug.Log("Set QTE to false (isdone)");
                 }
                 updateQTEPopup(currentAction);
 
