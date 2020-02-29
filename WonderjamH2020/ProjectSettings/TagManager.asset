@@ -62,6 +62,9 @@ TagManager:
   - name: Computer
     uniqueID: 1222708271
     locked: 0
+  - name: Explosion
+    uniqueID: 2718704031
+    locked: 0
   - name: UI
     uniqueID: 2629643145
     locked: 0
