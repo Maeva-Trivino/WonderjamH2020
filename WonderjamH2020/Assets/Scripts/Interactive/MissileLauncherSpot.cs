@@ -25,4 +25,8 @@ public class MissileLauncherSpot : MonoBehaviour, Interactive
     public void Select()
     {
     }
+    public void Start()
+    {
+        GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+    }
 }

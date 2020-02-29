@@ -50,17 +50,8 @@ TagManager:
   - name: Walls
     uniqueID: 1920243195
     locked: 0
-  - name: House
-    uniqueID: 847079967
-    locked: 0
-  - name: MissileLauncher
-    uniqueID: 1855835939
-    locked: 0
-  - name: Player
-    uniqueID: 1968513155
-    locked: 0
-  - name: Stand
-    uniqueID: 4178853699
+  - name: PlayerAndCo
+    uniqueID: 2044831227
     locked: 0
   - name: AmazonCar
     uniqueID: 3105605387

@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
             case Mode.MOVING:
                 PlayerMove();
                 PlayerQTE();
+                PlayerOrderInLayer();
                 break;
             case Mode.CHOOSING:
                 PlayerChoose();
@@ -168,6 +169,10 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Private
+    private void PlayerOrderInLayer()
+    {
+        GetComponentInChildren<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+    }
     private void PlayerMove()
     {
         input = new Vector2(inputManager.GetAxis("Horizontal"), inputManager.GetAxis("Vertical"));
