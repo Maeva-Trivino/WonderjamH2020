@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48fdda5d592fd82438602c876107077e, type: 3}
   m_Name: Basic
   m_EditorClassIdentifier: 
-  name: default
+  name: Basic
   price: 10
   flightDuration: 5
   height: 5
