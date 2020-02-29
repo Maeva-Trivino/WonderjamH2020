@@ -15,6 +15,7 @@ public class House : ChoicesSenderBehaviour, Interactive
     [SerializeField]
     private int repairingAmount;
 
+    [SerializeField] private Player enemyPlayer;
     [SerializeField] private EndScreen endScreen;
     public int CurrentHealth
     {
