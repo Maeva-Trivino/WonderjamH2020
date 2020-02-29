@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace ChoicePopup
@@ -21,6 +22,7 @@ namespace ChoicePopup
 
         #region Public
         public bool IsVisible => gameObject.activeInHierarchy;
+        public UnityEvent onClose = new UnityEvent();
         #endregion
 
         #region Private
@@ -72,6 +74,7 @@ namespace ChoicePopup
         public void Hide()
         {
             gameObject.SetActive(false);
+            onClose.Invoke();
         }
 
         public void GoLeft()

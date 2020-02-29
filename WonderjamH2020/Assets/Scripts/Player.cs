@@ -1,12 +1,14 @@
 ﻿using Rewired;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using ChoicePopup;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    #region Enum
+    public enum Mode { MOVING, CHOOSING}
+    #endregion
+
     #region Variables
     #region Editor
     [Header("General")]
@@ -20,9 +22,6 @@ public class Player : MonoBehaviour
     private ChoicePopup.ChoicePopup choicePopup;
     #endregion
 
-    #region Public
-    #endregion
-
     #region Private
     private bool inMenu;
     private bool inQTE;
@@ -32,19 +31,63 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private bool isRunning;
+    private Mode mode;
     #endregion
     #endregion
 
     #region Methods
+    #region Unity
     private void Start()
     {
         inputManager = ReInput.players.GetPlayer(playerID);
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
+        choicePopup.onClose.AddListener(() => mode = Mode.MOVING);
     }
 
 
     private void Update()
+    {
+        switch(mode)
+        {
+            case Mode.MOVING:
+                PlayerMove();
+                break;
+            case Mode.CHOOSING:
+                PlayerChoose();
+                break;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (mode == Mode.MOVING)
+        {
+            _rigidbody2D.MovePosition(_rigidbody2D.position + speed * input * Time.fixedDeltaTime);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.GetComponent<ChoicesSenderBehaviour>())
+        {
+            choicePopup.SetChoices(collision.transform.GetComponent<ChoicesSenderBehaviour>().GetChoices());
+            choicePopup.Display();
+
+            mode = Mode.CHOOSING;
+
+            _animator.SetBool("IsWalkingUp", false);
+            _animator.SetBool("IsWalkingRight", false);
+            _animator.SetBool("IsWalkingDown", false);
+            _animator.SetBool("IsWalkingLeft", false);
+            _animator.SetBool("IsRunningLeft", false);
+            _animator.SetBool("IsRunningRight", false);
+        }
+    }
+    #endregion
+
+    #region Private
+    private void PlayerMove()
     {
         input = new Vector2(inputManager.GetAxis("Horizontal"), inputManager.GetAxis("Vertical"));
         bool isMoving = input.magnitude > .2f;
@@ -78,52 +121,29 @@ public class Player : MonoBehaviour
         _animator.SetBool("IsRunningRight", isRunning && wr);
     }
 
-    private void FixedUpdate()
+    private void PlayerChoose()
     {
-        if (!inQTE && !inMenu)
+        if (inputManager.GetButtonDown("Cancel"))
         {
-            _rigidbody2D.MovePosition(_rigidbody2D.position + speed * input * Time.fixedDeltaTime);
+            Debug.Log("Cancel");
+            choicePopup.Hide();
+        }
+        else if (inputManager.GetButtonDown("MenuLeft"))
+        {
+            Debug.Log("Gauche");
+            choicePopup.GoLeft();
+        }
+        else if (inputManager.GetButtonDown("MenuRight"))
+        {
+            Debug.Log("Droite");
+            choicePopup.GoRight();
+        }
+        if (inputManager.GetButtonDown("Validate"))
+        {
+            Debug.Log("Validé !");
+            choicePopup.Validate();
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.GetComponent<ChoicesSenderBehaviour>())
-        {
-            choicePopup.SetChoices(collision.transform.GetComponent<ChoicesSenderBehaviour>().GetChoices());
-            StartCoroutine(DisplayChoicePopup());
-        }
-    }
-
-    private IEnumerator DisplayChoicePopup()
-    {
-        choicePopup.Display();
-        inMenu = true;
-        while (choicePopup.IsVisible)
-        {
-            if (inputManager.GetButtonDown("Cancel"))
-            {
-                Debug.Log("Cancel");
-                choicePopup.Hide();
-            }
-            else if (inputManager.GetButtonDown("MenuLeft"))
-            {
-                Debug.Log("Gauche");
-                choicePopup.GoLeft();
-            }
-            else if (inputManager.GetButtonDown("MenuRight"))
-            {
-                Debug.Log("Droite");
-                choicePopup.GoRight();
-            }
-            if (inputManager.GetButton("Validate"))
-            {
-                Debug.Log("Validé !");
-                choicePopup.Validate();
-            }
-            yield return true;
-        }
-        inMenu = false;
-    }
+    #endregion
     #endregion
 }
