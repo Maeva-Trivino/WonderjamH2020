@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
         isPickingUpItem = true;
         while (isPickingUpItem)
         {
-            if (inputManager.GetButtonDown("Pickup Box"))
+            if (inputManager.GetButtonDown("PickUp"))
             {
                 //TODO GET ITEM
                 isPickingUpItem = false;
