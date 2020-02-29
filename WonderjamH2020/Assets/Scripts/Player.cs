@@ -2,22 +2,38 @@
 using UnityEngine;
 using System.Collections;
 using UI.ChoicePopup;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    #region Variables
+    #region Editor
+    [Header("General")]
     [SerializeField]
     private float speed = 2;
     [SerializeField]
     private int playerID = 0;
 
+    [Header("UI")]
+    [SerializeField]
+    private ChoicePopup choicePopup;
+    #endregion
+
+    #region Public
+    #endregion
+
+    #region Private
     private bool inMenu;
     private bool inQTE;
 
     private Rewired.Player inputManager;
     private Vector2 input, direction = Vector2.down; // direction will be used for animations
     private Rigidbody2D _rigidbody2D;
+    #endregion
+    #endregion
 
+    #region Methods
     private void Start()
     {
         inputManager = ReInput.players.GetPlayer(playerID);
@@ -30,7 +46,7 @@ public class Player : MonoBehaviour
         input = new Vector2(inputManager.GetAxis("Horizontal"), inputManager.GetAxis("Vertical"));
         if (input.magnitude < .1f) input = Vector2.zero;
 
-        if( input != Vector2.zero)
+        if (input != Vector2.zero)
         {
             direction = input.normalized;
         }
@@ -38,7 +54,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!inQTE && !inMenu)
+        if (!inQTE && !inMenu)
         {
             _rigidbody2D.MovePosition(_rigidbody2D.position + speed * input * Time.fixedDeltaTime);
         }
@@ -46,46 +62,44 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ChoicePopup choicePopUp = collision.GetComponent<ChoicePopup>();
-        if(choicePopUp != null)
-        {
-            StartCoroutine(DisplayPopUp(choicePopUp));
-        }
+        // Test
+        bool lol = true;
+        choicePopup.SetChoices(new List<Choice>() {
+                new Choice("Say hello", () => Debug.Log("hello"), () => true),
+                new Choice("Disable this button", () => lol = false, () => lol),
+            });
+        StartCoroutine(DisplayChoicePopup());
     }
 
-    private IEnumerator DisplayPopUp(ChoicePopup choicePopUp)
+    private IEnumerator DisplayChoicePopup()
     {
-        choicePopUp.Display(transform.position);
+        choicePopup.Display(transform.position);
         inMenu = true;
-        bool choiceMade = false;
-        while(!choiceMade)
+        while (choicePopup.IsVisible)
         {
             if (inputManager.GetButtonDown("Cancel"))
             {
                 Debug.Log("Cancel");
-                choiceMade = true;
-                break;
+                choicePopup.Hide();
             }
-            float input = inputManager.GetAxis("Horizontal");
-            if(inputManager.GetButtonDown("MenuLeft"))
+            else if (inputManager.GetButtonDown("MenuLeft"))
             {
                 Debug.Log("Gauche");
-                choicePopUp.GoLeft();
+                choicePopup.GoLeft();
             }
-            if(inputManager.GetButtonDown("MenuRight"))
+            else if (inputManager.GetButtonDown("MenuRight"))
             {
                 Debug.Log("Droite");
-                choicePopUp.GoRight();
+                choicePopup.GoRight();
             }
             if (inputManager.GetButton("Validate"))
             {
                 Debug.Log("Validé !");
-                choiceMade = true;
-                choicePopUp.Validate();
+                choicePopup.Validate();
             }
             yield return true;
         }
         inMenu = false;
-        choicePopUp.Hide();
     }
+    #endregion
 }

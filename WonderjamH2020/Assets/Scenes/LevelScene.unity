@@ -15809,7 +15809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 50
-  maxHealth: 100
+  healthBar: {fileID: 0}
 --- !u!1001 &1603552202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15822,6 +15822,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1514604506373870212, guid: 68a4fe175eff00147b077d3e60f27cf5,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 1780928771968591098, guid: 68a4fe175eff00147b077d3e60f27cf5,
         type: 3}
       propertyPath: m_SortingLayerID

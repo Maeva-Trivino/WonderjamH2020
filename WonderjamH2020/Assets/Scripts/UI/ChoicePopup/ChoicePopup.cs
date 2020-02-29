@@ -19,8 +19,12 @@ namespace UI.ChoicePopup
         private GameObject choicePrefab;
         #endregion
 
+        #region Public
+        public bool IsVisible => gameObject.activeInHierarchy;
+        #endregion
+
         #region Private
-        private List<Choice> choices;
+        private List<Choice> choices = new List<Choice>();
         private int selection;
         #endregion 
         #endregion
@@ -85,7 +89,7 @@ namespace UI.ChoicePopup
             SetButtonSelected(choices[selection].graphics, false);
 
             ++selection;
-            if (selection >= choices.Count) selection = choices.Count;
+            if (selection > choices.Count - 1) selection = choices.Count - 1;
 
             SetButtonSelected(choices[selection].graphics, true);
         }
