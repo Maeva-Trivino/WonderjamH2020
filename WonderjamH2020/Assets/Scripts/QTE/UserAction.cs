@@ -5,7 +5,7 @@ namespace QTE
     public class UserAction: MonoBehaviour
     {
         protected string name;
-        protected float progression;
+        public float progression;
 
         private System.Action actionToDo;
 

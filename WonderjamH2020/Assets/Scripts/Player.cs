@@ -2,6 +2,10 @@
 using UnityEngine;
 using System.Collections;
 using UI.ChoicePopup;
+using QTE;
+using System.Collections.Generic;
+using UnityEngine.UI;
+using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -14,7 +18,14 @@ public class Player : MonoBehaviour
     private bool inMenu;
     private bool inQTE;
 
-    private Rewired.Player inputManager;
+    private HashSet<GameObject> actionsInRange;
+    private UserAction currentAction;
+    private GameObject selected;
+    [SerializeField]
+    private GameObject QTEPopup = null;
+
+
+    public Rewired.Player inputManager;
     private Vector2 input, direction = Vector2.down; // direction will be used for animations
     private Rigidbody2D _rigidbody2D;
 
@@ -22,6 +33,7 @@ public class Player : MonoBehaviour
     {
         inputManager = ReInput.players.GetPlayer(playerID);
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        actionsInRange = new HashSet<GameObject>();
     }
 
 
@@ -34,6 +46,10 @@ public class Player : MonoBehaviour
         {
             direction = input.normalized;
         }
+
+        HandleQTEAction();
+        UpdateQTESelection();
+
     }
 
     private void FixedUpdate()
@@ -51,6 +67,12 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(DisplayPopUp(choicePopUp));
         }
+        Interactive interactive = collision.GetComponent<Interactive>();
+        if (interactive != null)
+        {
+            actionsInRange.Add(collision.gameObject);
+        }
+
     }
 
     private IEnumerator DisplayPopUp(ChoicePopup choicePopUp)
@@ -88,4 +110,146 @@ public class Player : MonoBehaviour
         inMenu = false;
         choicePopUp.Hide();
     }
+
+    #region 
+    public void HandleQTEAction()
+    {
+            if (currentAction != null)
+        {
+            if (inputManager.GetButtonDown("Interact"))
+            {
+                currentAction.Do();
+                updateQTEPopup(currentAction);
+                if (currentAction.IsDone())
+                {
+                    currentAction = null;
+                    inQTE = false;
+                }
+                else
+                {
+                    inQTE = true;
+                }
+            }
+            else
+            {
+                inQTE = false;
+                currentAction = null;
+            }
+        }
+    }
+    public void UpdateQTESelection()
+    {
+        if (currentAction == null)
+        {
+            if (actionsInRange.Count > 0)
+            {
+                // On cherche l'objet intéractif le plus proche
+                UserAction bestAction = null;
+                float distanceMin = float.PositiveInfinity;
+                GameObject nearest = null;
+
+                foreach (GameObject o in actionsInRange)
+                {
+                    UserAction action = o.GetComponent<Interactive>().GetAction();
+                    float distance = (o.transform.position - transform.position).magnitude;
+                    if (action != null && distance < distanceMin)
+                    {
+                        distanceMin = distance;
+                        nearest = o;
+                        bestAction = action;
+                    }
+                }
+
+                // On désélectionne l'objet sélectionné auparavant
+                if (selected != null)
+                {
+                    selected.GetComponent<Interactive>().Deselect();
+                }
+
+                selected = nearest;
+                // Si l'interactive le plus proche a une action disponible, alors on la selectionne
+                if (nearest != null)
+                {
+                    Interactive interactive = selected.GetComponent<Interactive>();
+                    interactive.Select();
+                }
+
+                //L'action de l'object selectionner devient notre nouvelle action courante
+                currentAction = bestAction;
+
+                updateQTEPopup(currentAction);
+            }
+            else
+            {
+
+                updateQTEPopup(null);
+                if (selected != null)
+                {
+                    selected.GetComponent<Interactive>().Deselect();
+                    selected = null;
+                }
+            }
+        }
+    }
+
+    //Display of the popup
+    private void updateQTEPopup(UserAction action)
+    {
+        if (action != null)
+        {
+            Text text = QTEPopup.GetComponentsInChildren<Text>()[0];
+            Text button = QTEPopup.GetComponentsInChildren<Text>()[1];
+            Text combos = QTEPopup.GetComponentsInChildren<Text>()[2];
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, transform.GetComponentInChildren<Renderer>().bounds.size.y));
+
+            if (inQTE)
+            {
+                if (! (action is ComboAction))
+                {
+                    text.text = "";
+                    button.text = "";
+                    combos.text = "";
+                }
+                else
+                {
+                    ComboAction comboAction = (ComboAction)action;
+                    text.text = "";
+                    combos.text = "";
+                    foreach (string s in comboAction.expectedCombos)
+                    {
+                        combos.text += s + " ";
+                    }
+
+                    combos.text = combos.text.Remove(combos.text.Length - 1);
+                    button.text = "";
+                }
+
+                Slider slider = QTEPopup.GetComponentInChildren<Slider>();
+                slider.transform.localScale = new Vector3(1, 1, 1);
+                slider.value = action.progression;
+                slider.gameObject.SetActive(true);
+            }
+            else
+            {
+                text.text = action.name;
+                text.fontSize = 28;
+                button.text = "Interact";
+                combos.text = "";
+                QTEPopup.GetComponentInChildren<Slider>().gameObject.transform.localScale = new Vector3(0, 0, 0);
+            }
+
+            QTEPopup.transform.position = screenPos;
+            QTEPopup.gameObject.SetActive(true);
+        }
+        else
+        {
+            if (QTEPopup != null && QTEPopup.activeSelf)
+            {
+                QTEPopup.GetComponentInChildren<Slider>().gameObject.transform.localScale = new Vector3(0, 0, 0);
+                QTEPopup.gameObject.SetActive(false);
+            }
+        }
+    }
+    #endregion
 }
+
