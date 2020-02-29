@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Rewired;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EndScreen : MonoBehaviour
 {
@@ -23,9 +24,9 @@ public class EndScreen : MonoBehaviour
 
     private void Update()
     {
-        if (waitingForReturnToMenu && inputManager.GetButtonDown("Return_to_menu"))
+        if (waitingForReturnToMenu && inputManager.GetButtonDown("Cancel"))
         {
-            Debug.Log("RETURN !!");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 
