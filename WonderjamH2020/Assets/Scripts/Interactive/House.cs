@@ -32,4 +32,13 @@ public class House : MonoBehaviour
         return false;
 
     }
+
+    public void Repair(int repairPoint)
+    {
+        currentHealth += repairPoint;
+        if ( currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
 }
