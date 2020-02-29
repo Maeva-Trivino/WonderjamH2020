@@ -28,8 +28,10 @@ public class Player : MonoBehaviour
     private bool inQTE;
 
     private Rewired.Player inputManager;
-    private Vector2 input, direction = Vector2.down; // direction will be used for animations
+    private Vector2 input;
     private Rigidbody2D _rigidbody2D;
+    private Animator _animator;
+    private bool isRunning;
     #endregion
     #endregion
 
@@ -38,18 +40,42 @@ public class Player : MonoBehaviour
     {
         inputManager = ReInput.players.GetPlayer(playerID);
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
 
     private void Update()
     {
         input = new Vector2(inputManager.GetAxis("Horizontal"), inputManager.GetAxis("Vertical"));
-        if (input.magnitude < .1f) input = Vector2.zero;
+        bool isMoving = input.magnitude > .2f;
 
-        if (input != Vector2.zero)
+        if (!isMoving)
         {
-            direction = input.normalized;
+            input = Vector2.zero;
         }
+
+        _animator.SetBool("Walking", !isRunning && isMoving);
+        _animator.speed = isMoving ? input.magnitude : 1;
+
+        bool wu = false, wr = false, wd = false, wl = false;
+        if (input != Vector2.zero && !choicePopup.IsVisible)
+        {
+            if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
+            { // X stringer than Y
+                wl = !(wr = input.x > 0);
+            }
+            else
+            {
+                wd = !(wu = input.y > 0);
+            }
+        }
+
+        _animator.SetBool("IsWalkingUp", wu);
+        _animator.SetBool("IsWalkingRight", wr);
+        _animator.SetBool("IsWalkingDown", wd);
+        _animator.SetBool("IsWalkingLeft", wl);
+        _animator.SetBool("IsRunningLeft", isRunning && wl);
+        _animator.SetBool("IsRunningRight", isRunning && wr);
     }
 
     private void FixedUpdate()
@@ -71,7 +97,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator DisplayChoicePopup()
     {
-        choicePopup.Display(transform.position);
+        choicePopup.Display();
         inMenu = true;
         while (choicePopup.IsVisible)
         {

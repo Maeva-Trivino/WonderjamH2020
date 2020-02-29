@@ -63,9 +63,9 @@ namespace ChoicePopup
         /// Displays the popup at a specific world position
         /// </summary>
         /// <param name="position"></param>
-        public void Display(Vector3 position)
+        public void Display()
         {
-            transform.position = position;
+            // transform.position = position;
             gameObject.SetActive(true);
         }
 
