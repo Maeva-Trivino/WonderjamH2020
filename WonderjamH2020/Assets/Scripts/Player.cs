@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
 
     #region Public
     public Rewired.Player inputManager;
+    public int money = 100;
 
     public int Lemons
     {
@@ -54,7 +55,6 @@ public class Player : MonoBehaviour
     private UserAction currentAction;
     private GameObject selected;
 
-    private int money = 100;
     [SerializeField]
     private int lemons = 0;
 

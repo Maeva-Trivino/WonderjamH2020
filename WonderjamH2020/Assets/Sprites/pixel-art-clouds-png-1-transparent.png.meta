@@ -1,0 +1,607 @@
+fileFormatVersion: 2
+guid: 145c5170e5d5172458165acdfb5085eb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2919058962610987895
+    second: pixel-art-clouds-png-1-transparent_0
+  - first:
+      213: 9056218668069552712
+    second: pixel-art-clouds-png-1-transparent_1
+  - first:
+      213: -6974268891379513134
+    second: pixel-art-clouds-png-1-transparent_2
+  - first:
+      213: -6232844081038901175
+    second: pixel-art-clouds-png-1-transparent_3
+  - first:
+      213: 3328087265698774702
+    second: pixel-art-clouds-png-1-transparent_4
+  - first:
+      213: -4089856593738477661
+    second: pixel-art-clouds-png-1-transparent_5
+  - first:
+      213: 2096255432623733455
+    second: pixel-art-clouds-png-1-transparent_6
+  - first:
+      213: 3446838839127949373
+    second: pixel-art-clouds-png-1-transparent_7
+  - first:
+      213: 3796068641743260197
+    second: pixel-art-clouds-png-1-transparent_8
+  - first:
+      213: 836456602727502478
+    second: pixel-art-clouds-png-1-transparent_9
+  - first:
+      213: 2492384399355175651
+    second: pixel-art-clouds-png-1-transparent_10
+  - first:
+      213: 8449283433711464983
+    second: pixel-art-clouds-png-1-transparent_11
+  - first:
+      213: 1733913878700449300
+    second: pixel-art-clouds-png-1-transparent_12
+  - first:
+      213: 1578672570516856677
+    second: pixel-art-clouds-png-1-transparent_13
+  - first:
+      213: 4654283720772822518
+    second: pixel-art-clouds-png-1-transparent_14
+  - first:
+      213: 8412970455109902678
+    second: pixel-art-clouds-png-1-transparent_15
+  - first:
+      213: 1398245957485584176
+    second: pixel-art-clouds-png-1-transparent_16
+  - first:
+      213: 5770740458082341068
+    second: pixel-art-clouds-png-1-transparent_17
+  - first:
+      213: -2926860934262844174
+    second: pixel-art-clouds-png-1-transparent_18
+  - first:
+      213: 8241416978399044569
+    second: pixel-art-clouds-png-1-transparent_19
+  - first:
+      213: -989878483065911529
+    second: pixel-art-clouds-png-1-transparent_20
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_0
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 601
+        width: 27
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77329d029a4928820800000000000000
+      internalID: 2919058962610987895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_1
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 563
+        width: 69
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8420c8e85e62ead70800000000000000
+      internalID: 9056218668069552712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_2
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 460
+        width: 242
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d84441056b663f90800000000000000
+      internalID: -6974268891379513134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_3
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 593
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 940c741d45d7089a0800000000000000
+      internalID: -6232844081038901175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_4
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 593
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaef9753cbdbf2e20800000000000000
+      internalID: 3328087265698774702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 458
+        width: 284
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3afcde3d819ed37c0800000000000000
+      internalID: -4089856593738477661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_6
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 581
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fca3504a535671d10800000000000000
+      internalID: 2096255432623733455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_7
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 456
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d30cd3c79a1a5df20800000000000000
+      internalID: 3446838839127949373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_8
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 460
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52a4b1631585ea430800000000000000
+      internalID: 3796068641743260197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_9
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 261
+        width: 296
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e825a9339d0bb9b00800000000000000
+      internalID: 836456602727502478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_10
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 358
+        width: 41
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e26a4fe76ab69220800000000000000
+      internalID: 2492384399355175651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_11
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 265
+        width: 263
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 712f6f84482e14570800000000000000
+      internalID: 8449283433711464983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_12
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 42
+        width: 258
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41e5f0b6c79101810800000000000000
+      internalID: 1733913878700449300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_13
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 90
+        width: 208
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56f5f46b65298e510800000000000000
+      internalID: 1578672570516856677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_14
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 186
+        width: 58
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f52c847266579040800000000000000
+      internalID: 4654283720772822518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_15
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 78
+        width: 40
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 651aeaa1e00e0c470800000000000000
+      internalID: 8412970455109902678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_16
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 130
+        width: 40
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03fdd844a41976310800000000000000
+      internalID: 1398245957485584176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_17
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 81
+        width: 66
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc019f63fd9c51050800000000000000
+      internalID: 5770740458082341068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_18
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 34
+        width: 71
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f49b4acc73b167d0800000000000000
+      internalID: -2926860934262844174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_19
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 39
+        width: 39
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d32953b3156f5270800000000000000
+      internalID: 8241416978399044569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel-art-clouds-png-1-transparent_20
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 28
+        width: 74
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 717cd06a3ce3342f0800000000000000
+      internalID: -989878483065911529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
