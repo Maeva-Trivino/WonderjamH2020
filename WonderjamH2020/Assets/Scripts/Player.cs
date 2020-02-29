@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Public
-    private int money = 100;
+    public Rewired.Player inputManager;
     #endregion
 
     #region Private
@@ -47,7 +47,9 @@ public class Player : MonoBehaviour
     private GameObject QTEPopup;
 
 
-    public Rewired.Player inputManager;
+    private int money = 100;
+
+
     private Vector2 input, direction = Vector2.down; // direction will be used for animations
     private Rigidbody2D _rigidbody2D;
     #endregion
@@ -112,6 +114,7 @@ public class Player : MonoBehaviour
         Interactive interactive = collision.GetComponent<Interactive>();
         if (interactive != null)
         {
+            currentAction = null;
             actionsInRange.Add(collision.gameObject);
         }
     }
@@ -126,6 +129,7 @@ public class Player : MonoBehaviour
         Interactive interactive = other.GetComponent<Interactive>();
         if (interactive != null)
         {
+            currentAction = null;
             actionsInRange.Remove(other.gameObject);
         }
 
@@ -189,6 +193,12 @@ public class Player : MonoBehaviour
         money -= blueprint.price;
     }
 
+    public void SellLemonade(int lemonadePrice)
+    {
+        this.money += lemonadePrice;
+        Debug.Log("Grandma now has $" + money);
+    }
+
     #region QTE
     public void HandleQTEAction()
     {
@@ -230,7 +240,7 @@ public class Player : MonoBehaviour
 
                 foreach (GameObject o in actionsInRange)
                 {
-                    UserAction action = o.GetComponent<Interactive>().GetAction(inputManager);
+                    UserAction action = o.GetComponent<Interactive>().GetAction(this);
                     float distance = (o.transform.position - transform.position).magnitude;
                     if (action != null && distance < distanceMin)
                     {
