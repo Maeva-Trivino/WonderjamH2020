@@ -14,7 +14,15 @@ public class ChangeStartText : MonoBehaviour
     void Start()
     {
         inputManager = ReInput.players.GetPlayer(0);
-        Debug.Log(inputManager.controllers.maps.GetFirstButtonMapWithAction("Validate", true).elementIdentifierName);
+        Joystick joystick = ReInput.controllers.GetJoystick(0);
+        if (joystick == null)
+        {
+            Debug.Log(inputManager.controllers.maps.GetFirstButtonMapWithAction(ControllerType.Keyboard,"Validate", true).elementIdentifierName);
+        }
+        else
+        {
+            Debug.Log(inputManager.controllers.maps.GetFirstButtonMapWithAction(ControllerType.Joystick, "Validate", true).elementIdentifierName);
+        }
 
     }
 
