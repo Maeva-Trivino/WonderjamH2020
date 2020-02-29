@@ -1,14 +1,19 @@
 ﻿using ChoicePopup;
 using System.Collections.Generic;
+using QTE;
 using UnityEngine;
 
-public class House : ChoicesSenderBehaviour
+
+public class House : ChoicesSenderBehaviour, Interactive
 {
     [SerializeField]
     protected int currentHealth = 50;
     protected int maxHealth = 100;
 
     public HealthBar healthBar;
+    
+    [SerializeField]
+    private int repairingAmount;
 
     public int CurrentHealth
     {
@@ -20,8 +25,6 @@ public class House : ChoicesSenderBehaviour
             currentHealth = value;
         }
     }
-
-    [SerializeField]
 
     // Start is called before the first frame update
     void Start()
@@ -62,9 +65,24 @@ public class House : ChoicesSenderBehaviour
         {
             CurrentHealth = maxHealth;
         }
+        Debug.Log("Hp maison: " + currentHealth);
     }
 
-    public override List<Choice> GetChoices()
+    public void Select()
+    {
+        // Pas de surbrillance de la maison quand elle est a porté
+    }
+
+    public void Deselect()
+    {
+    }
+
+    public UserAction GetAction(Rewired.Player inputManager)
+    {
+        return new ComboAction(inputManager ,new List<string> { "←", "→" }, 2, () => Repair(repairingAmount), "Repair");
+    }
+
+    public override List<Choice> GetChoices(Player contextPlayer)
     {
         // Test
         bool lol = true;

@@ -16,11 +16,12 @@ namespace QTE
         private Rewired.Player inputManager;
 
 
-        public ComboAction(List<string> expectedCombos, int comboGoal, System.Action actionToDo,string name = DEFAULT_NAME) : base(actionToDo,name)
+        public ComboAction(Rewired.Player inputManager, List<string> expectedCombos, int comboGoal, System.Action actionToDo,string name = DEFAULT_NAME) : base(actionToDo,name)
         {
             this.actualCombo = 0;
             this.comboGoal = comboGoal;
             this.expectedCombos = expectedCombos;
+            this.inputManager = inputManager;
             comboBuffer = new Queue<string>();
             expectedCombos.ForEach(comboBuffer.Enqueue);
         }
@@ -38,6 +39,7 @@ namespace QTE
             if (inputManager.GetButtonDown(comboBuffer.Peek()))
             {
                 comboBuffer.Dequeue();
+                Debug.Log("Combo +1");
             }
                 
 
