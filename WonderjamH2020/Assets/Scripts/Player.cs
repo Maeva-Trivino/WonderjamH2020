@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         input = new Vector2(inputManager.GetAxis("Horizontal"), inputManager.GetAxis("Vertical"));
-        if (inQTE || inMenu || input.magnitude < .1f) input = Vector2.zero;
+        if (input.magnitude < .1f) input = Vector2.zero;
 
         if( input != Vector2.zero)
         {
@@ -38,7 +38,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rigidbody2D.MovePosition(_rigidbody2D.position + speed * input * Time.fixedDeltaTime);
+        if(!inQTE && !inMenu)
+        {
+            _rigidbody2D.MovePosition(_rigidbody2D.position + speed * input * Time.fixedDeltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -54,6 +57,16 @@ public class Player : MonoBehaviour
         while(!choiceMade)
         {
             float input = inputManager.GetAxis("Horizontal");
+            if(input < -0.1f)
+            {
+                //deplacer choix a gauche
+                Debug.Log("Gauche");
+            }
+            if(input > 0.1f)
+            {
+                //deplacer choix a gauche
+                Debug.Log("Droite");
+            }
             if (inputManager.GetButton("Validate"))
             {
                 Debug.Log("Validé !");
