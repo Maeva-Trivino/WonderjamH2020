@@ -34,12 +34,12 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Public
-    private int money = 100;
+    public Rewired.Player inputManager;
     #endregion
 
     #region Private
     private bool inMenu;
-    private bool inQTE;
+    // private bool inQTE; Si vous voyez cette ligne vous pouvez la supprimeer
     private bool isPickingUpItem;
 
     private HashSet<GameObject> actionsInRange;
@@ -49,8 +49,10 @@ public class Player : MonoBehaviour
     private GameObject QTEPopup;
 
 
-    private Rewired.Player inputManager;
-    private Vector2 input;
+    private int money = 100;
+
+
+    private Vector2 input, direction = Vector2.down; // direction will be used for animations
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private bool isRunning;
@@ -77,6 +79,7 @@ public class Player : MonoBehaviour
         {
             case Mode.MOVING:
                 PlayerMove();
+                PlayerQTE();
                 break;
             case Mode.CHOOSING:
                 PlayerChoose();
@@ -126,6 +129,7 @@ public class Player : MonoBehaviour
         Interactive interactive = collision.GetComponent<Interactive>();
         if (interactive != null)
         {
+            currentAction = null;
             actionsInRange.Add(collision.gameObject);
         }
     }
@@ -140,6 +144,7 @@ public class Player : MonoBehaviour
         Interactive interactive = other.GetComponent<Interactive>();
         if (interactive != null)
         {
+            currentAction = null;
             actionsInRange.Remove(other.gameObject);
         }
 
@@ -173,7 +178,7 @@ public class Player : MonoBehaviour
             input = Vector2.zero;
         }
 
-        _animator.SetBool("Walking", !isRunning && isMoving);
+        //_animator.SetBool("Walking", !isRunning && isMoving);
         _animator.speed = isMoving ? input.magnitude : 1;
 
         bool wu = false, wr = false, wd = false, wl = false;
@@ -232,6 +237,12 @@ public class Player : MonoBehaviour
         money -= blueprint.price;
     }
 
+    public void SellLemonade(int lemonadePrice)
+    {
+        this.money += lemonadePrice;
+        Debug.Log("Grandma now has $" + money);
+    }
+
     #region QTE
     public void HandleQTEAction()
     {
@@ -239,21 +250,21 @@ public class Player : MonoBehaviour
         {
             if (inputManager.GetButtonDown("Interact"))
             {
-                inQTE = true;
+                mode = Mode.QTEING; // inQTE = true;
                 updateQTEPopup(currentAction);
             }
             else if (inputManager.GetButtonUp("Interact"))
             {
-                inQTE = false;
+                mode = Mode.MOVING; // = false;
                 currentAction = null;
             }
-            if (inQTE)
+            if (mode == Mode.QTEING)
             {
                 currentAction.Do();
                 if (currentAction.IsDone())
                 {
                     currentAction = null;
-                    inQTE = false;
+                    mode = Mode.MOVING; //inQTE = false;
                 }
                 updateQTEPopup(currentAction);
 
@@ -273,7 +284,7 @@ public class Player : MonoBehaviour
 
                 foreach (GameObject o in actionsInRange)
                 {
-                    UserAction action = o.GetComponent<Interactive>().GetAction(inputManager);
+                    UserAction action = o.GetComponent<Interactive>().GetAction(this);
                     float distance = (o.transform.position - transform.position).magnitude;
                     if (action != null && distance < distanceMin)
                     {
@@ -325,7 +336,7 @@ public class Player : MonoBehaviour
             Text combos = QTEPopup.GetComponentsInChildren<Text>()[2];
             Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, transform.GetComponentInChildren<Renderer>().bounds.size.y));
 
-            if (inQTE)
+            if (mode == Mode.QTEING)
             {
                 if (!(action is ComboAction))
                 {
