@@ -1,6 +1,7 @@
 ﻿using Rewired;
 using UnityEngine;
 using System.Collections;
+using UI.ChoicePopup;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -9,8 +10,7 @@ public class Player : MonoBehaviour
     private float speed = 2;
     [SerializeField]
     private int playerID = 0;
-    [SerializeField]
-    private GameObject popUp;
+
     private bool inMenu;
     private bool inQTE;
 
@@ -46,34 +46,46 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(DisplayPopUp());
+        ChoicePopup choicePopUp = collision.GetComponent<ChoicePopup>();
+        if(choicePopUp != null)
+        {
+            StartCoroutine(DisplayPopUp(choicePopUp));
+        }
     }
 
-    private IEnumerator DisplayPopUp()
+    private IEnumerator DisplayPopUp(ChoicePopup choicePopUp)
     {
+        choicePopUp.Display(transform);
         inMenu = true;
-        //popUp.SetActive(true); 
         bool choiceMade = false;
         while(!choiceMade)
         {
-            float input = inputManager.GetAxis("Horizontal");
-            if(input < -0.1f)
+            if (inputManager.GetButtonDown("Cancel"))
             {
-                //deplacer choix a gauche
-                Debug.Log("Gauche");
+                Debug.Log("Cancel");
+                choiceMade = true;
+                break;
             }
-            if(input > 0.1f)
+            float input = inputManager.GetAxis("Horizontal");
+            if(inputManager.GetButtonDown("MenuLeft"))
             {
-                //deplacer choix a gauche
+                Debug.Log("Gauche");
+                choicePopUp.GoLeft();
+            }
+            if(inputManager.GetButtonDown("MenuRight"))
+            {
                 Debug.Log("Droite");
+                choicePopUp.GoRight();
             }
             if (inputManager.GetButton("Validate"))
             {
                 Debug.Log("Validé !");
                 choiceMade = true;
+                choicePopUp.Validate();
             }
             yield return true;
         }
         inMenu = false;
+        choicePopUp.Hide();
     }
 }
