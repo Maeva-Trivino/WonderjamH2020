@@ -23,11 +23,14 @@ public class Missile : MonoBehaviour
         }
     }
 
+
+
     public void LaunchMissile()
     {
         Vector3[] bezier = {gameObject.transform.position, opponentHouse.transform.position + height * Vector3.up
-                            ,gameObject.transform.position + height* Vector3.up, opponentHouse.transform.position};
-        LeanTween.move(gameObject, bezier, flightDuration);
+                            ,gameObject.transform.position + height * Vector3.up, opponentHouse.transform.position};
+        LeanTween.move(gameObject, bezier, flightDuration).setEaseInExpo();
+        LeanTween.rotateZ(gameObject,180, flightDuration).setEaseInExpo();
     }
 
     private void Explode()
