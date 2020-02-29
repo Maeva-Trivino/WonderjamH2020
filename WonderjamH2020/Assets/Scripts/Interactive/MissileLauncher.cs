@@ -36,7 +36,7 @@ public class MissileLauncher : ChoicesSenderBehaviour
         Debug.Log("Upgrade");
     }
 
-    public override List<Choice> GetChoices()
+    public override List<Choice> GetChoices(Player contextPlayer)
     {
         return new List<Choice>() {
                 new Choice("Feu !", () => Fire(), () => true),

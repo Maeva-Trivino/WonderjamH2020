@@ -1,17 +1,19 @@
-﻿using System;
-using Rewired;
+﻿using Rewired;
 using UnityEngine;
-using System.Collections;
 using ChoicePopup;
-using Gameplay.Delivery;
 using QTE;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine.UI;
-using System;
+using Gameplay.Delivery;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    #region Enum
+    public enum Mode { MOVING, CHOOSING, QTEING }
+    #endregion
+
     #region Variables
     #region Editor
     [Header("General")]
@@ -22,7 +24,7 @@ public class Player : MonoBehaviour
 
     public int PlayerId
     {
-        get { return playerID;}
+        get { return playerID; }
         set { playerID = value; }
     }
 
@@ -47,44 +49,53 @@ public class Player : MonoBehaviour
     private GameObject QTEPopup;
 
 
-    public Rewired.Player inputManager;
-    private Vector2 input, direction = Vector2.down; // direction will be used for animations
+    private Rewired.Player inputManager;
+    private Vector2 input;
     private Rigidbody2D _rigidbody2D;
+    private Animator _animator;
+    private bool isRunning;
+    private Mode mode;
     #endregion
     #endregion
 
     #region Methods
+    #region Unity
     private void Start()
     {
         inputManager = ReInput.players.GetPlayer(playerID);
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponentInChildren<Animator>();
+        choicePopup.onClose.AddListener(() => mode = Mode.MOVING);
         actionsInRange = new HashSet<GameObject>();
         updateQTEPopup(null);
-
     }
 
 
     private void Update()
     {
-        if(!inQTE)
+        switch (mode)
         {
-            input = new Vector2(inputManager.GetAxis("Horizontal"), inputManager.GetAxis("Vertical"));
-            if (input.magnitude < .1f) input = Vector2.zero;
-
-            if( input != Vector2.zero)
-            {
-                direction = input.normalized;
-            }
+            case Mode.MOVING:
+                PlayerMove();
+                break;
+            case Mode.CHOOSING:
+                PlayerChoose();
+                break;
+            case Mode.QTEING:
+                PlayerQTE();
+                break;
         }
+    }
 
+    private void PlayerQTE()
+    {
         HandleQTEAction();
         UpdateQTESelection();
-
     }
 
     private void FixedUpdate()
     {
-        if (!inQTE && !inMenu)
+        if (mode == Mode.MOVING)
         {
             _rigidbody2D.MovePosition(_rigidbody2D.position + speed * input * Time.fixedDeltaTime);
         }
@@ -94,14 +105,17 @@ public class Player : MonoBehaviour
     {
         if (collision.transform.GetComponent<ChoicesSenderBehaviour>())
         {
-            choicePopup.SetChoices(collision.transform.GetComponent<ChoicesSenderBehaviour>().GetChoices());
-            StartCoroutine(DisplayChoicePopup());
-        }
+            choicePopup.SetChoices(collision.transform.GetComponent<ChoicesSenderBehaviour>().GetChoices(this));
+            choicePopup.Display();
 
-        if (collision.transform.GetComponent<ChoicesSenderBehaviourWithContext>())
-        {
-            choicePopup.SetChoices(collision.transform.GetComponent<ChoicesSenderBehaviourWithContext>().GetChoices(this));
-            StartCoroutine(DisplayChoicePopup());
+            mode = Mode.CHOOSING;
+
+            _animator.SetBool("IsWalkingUp", false);
+            _animator.SetBool("IsWalkingRight", false);
+            _animator.SetBool("IsWalkingDown", false);
+            _animator.SetBool("IsWalkingLeft", false);
+            _animator.SetBool("IsRunningLeft", false);
+            _animator.SetBool("IsRunningRight", false);
         }
 
         if (collision.transform.GetComponent<ItemBox>())
@@ -118,7 +132,7 @@ public class Player : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-       
+
         if (other.transform.GetComponent<ItemBox>())
         {
             isPickingUpItem = false;
@@ -146,36 +160,65 @@ public class Player : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
 
-    private IEnumerator DisplayChoicePopup()
+    #region Private
+    private void PlayerMove()
     {
-        choicePopup.Display(transform.position);
-        inMenu = true;
-        while (choicePopup.IsVisible)
+        input = new Vector2(inputManager.GetAxis("Horizontal"), inputManager.GetAxis("Vertical"));
+        bool isMoving = input.magnitude > .2f;
+
+        if (!isMoving)
         {
-            if (inputManager.GetButtonDown("Cancel"))
-            {
-                Debug.Log("Cancel");
-                choicePopup.Hide();
-            }
-            else if (inputManager.GetButtonDown("MenuLeft"))
-            {
-                Debug.Log("Gauche");
-                choicePopup.GoLeft();
-            }
-            else if (inputManager.GetButtonDown("MenuRight"))
-            {
-                Debug.Log("Droite");
-                choicePopup.GoRight();
-            }
-            if (inputManager.GetButton("Validate"))
-            {
-                Debug.Log("Validé !");
-                choicePopup.Validate();
-            }
-            yield return true;
+            input = Vector2.zero;
         }
-        inMenu = false;
+
+        _animator.SetBool("Walking", !isRunning && isMoving);
+        _animator.speed = isMoving ? input.magnitude : 1;
+
+        bool wu = false, wr = false, wd = false, wl = false;
+        if (input != Vector2.zero && !choicePopup.IsVisible)
+        {
+            if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
+            { // X stringer than Y
+                wl = !(wr = input.x > 0);
+            }
+            else
+            {
+                wd = !(wu = input.y > 0);
+            }
+        }
+
+        _animator.SetBool("IsWalkingUp", wu);
+        _animator.SetBool("IsWalkingRight", wr);
+        _animator.SetBool("IsWalkingDown", wd);
+        _animator.SetBool("IsWalkingLeft", wl);
+        _animator.SetBool("IsRunningLeft", isRunning && wl);
+        _animator.SetBool("IsRunningRight", isRunning && wr);
+    }
+
+    private void PlayerChoose()
+    {
+        if (inputManager.GetButtonDown("Cancel"))
+        {
+            Debug.Log("Cancel");
+            choicePopup.Hide();
+        }
+        else if (inputManager.GetButtonDown("MenuLeft"))
+        {
+            Debug.Log("Gauche");
+            choicePopup.GoLeft();
+        }
+        else if (inputManager.GetButtonDown("MenuRight"))
+        {
+            Debug.Log("Droite");
+            choicePopup.GoRight();
+        }
+        if (inputManager.GetButtonDown("Validate"))
+        {
+            Debug.Log("Validé !");
+            choicePopup.Validate();
+        }
     }
 
     public bool CanAffordMissile(MissileBlueprint blueprint)
@@ -199,7 +242,7 @@ public class Player : MonoBehaviour
                 inQTE = true;
                 updateQTEPopup(currentAction);
             }
-            else if(inputManager.GetButtonUp("Interact"))
+            else if (inputManager.GetButtonUp("Interact"))
             {
                 inQTE = false;
                 currentAction = null;
@@ -284,7 +327,7 @@ public class Player : MonoBehaviour
 
             if (inQTE)
             {
-                if (! (action is ComboAction))
+                if (!(action is ComboAction))
                 {
                     text.text = "";
                     button.text = "";
@@ -333,6 +376,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+    #endregion
     #endregion
     #endregion
 }

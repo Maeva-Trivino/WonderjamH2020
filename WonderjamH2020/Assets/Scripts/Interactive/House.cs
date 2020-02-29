@@ -82,7 +82,7 @@ public class House : ChoicesSenderBehaviour, Interactive
         return new ComboAction(inputManager ,new List<string> { "←", "→" }, 2, () => Repair(repairingAmount), "Repair");
     }
 
-    public override List<Choice> GetChoices()
+    public override List<Choice> GetChoices(Player contextPlayer)
     {
         // Test
         bool lol = true;
