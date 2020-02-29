@@ -39,7 +39,6 @@ namespace QTE
             if (inputManager.GetButtonDown(comboBuffer.Peek()))
             {
                 comboBuffer.Dequeue();
-                Debug.Log("Combo +1");
             }
                 
 

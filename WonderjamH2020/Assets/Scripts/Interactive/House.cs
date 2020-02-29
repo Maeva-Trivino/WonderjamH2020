@@ -77,12 +77,12 @@ public class House : ChoicesSenderBehaviour, Interactive
     {
     }
 
-    public UserAction GetAction(Rewired.Player inputManager)
+    public UserAction GetAction(Player player)
     {
-        return new ComboAction(inputManager ,new List<string> { "←", "→" }, 2, () => Repair(repairingAmount), "Repair");
+        return new ComboAction(player.inputManager ,new List<string> { "←", "→" }, 2, () => Repair(repairingAmount), "Repair");
     }
 
-    public override List<Choice> GetChoices()
+    public override List<Choice> GetChoices(Player contextPlayer)
     {
         // Test
         bool lol = true;

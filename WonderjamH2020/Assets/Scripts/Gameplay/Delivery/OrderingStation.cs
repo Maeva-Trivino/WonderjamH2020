@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using ChoicePopup;
 using Gameplay.Delivery;
-using UnityEngine.Serialization;
 
-public class OrderingStation : ChoicesSenderBehaviourWithContext
+public class OrderingStation : ChoicesSenderBehaviour
 {
      private DeliverySystem deliverySystem;
     [SerializeField] private List<MissileBlueprint> missileBlueprints;
