@@ -19,7 +19,9 @@ public class Missile : MonoBehaviour
     [SerializeField] public float shakePeriod;
     [SerializeField] public float shakeDuration;
     private bool launched = false;
-
+    private LTDescr missileTween;
+    private LTDescr missileRotationTween;
+    private ParticleSystem fireTray;
 
     public Missile() : base() { }
 
@@ -34,6 +36,11 @@ public class Missile : MonoBehaviour
         this.shakeAmplitude = blueprint.shakeAmplitude;
         this.shakePeriod = blueprint.shakePeriod;
         this.shakeDuration = blueprint.shakeDuration;
+    }
+
+    private void Start()
+    {
+        fireTray = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Update()
@@ -58,19 +65,26 @@ public class Missile : MonoBehaviour
 
     public void LaunchMissile()
     {
+        fireTray.Play();
         launched = true;
         Vector3[] bezier = {gameObject.transform.position, opponentHouse.transform.position + height * Vector3.up
                             ,gameObject.transform.position + height * Vector3.up, opponentHouse.transform.position};
-        LeanTween.move(gameObject, bezier, flightDuration).setEaseInExpo();
-        LeanTween.rotateZ(gameObject,180, flightDuration).setEaseInExpo();
+        missileTween = LeanTween.move(gameObject, bezier, flightDuration).setEaseInExpo();
+        missileRotationTween = LeanTween.rotateZ(gameObject,180, flightDuration).setEaseInExpo();
     }
 
     private void Explode()
     {
         Debug.Log("B O O M");
         opponentHouse.DoDamage(missileDamage);
-        //ScreenShake
         Camera.main.GetComponent<ScreenShaker>().ScreenShake(shakeAmplitude, shakePeriod,shakeDuration);
+        fireTray.Stop();
+        DetachParticle();
         Destroy(gameObject);
+    }
+
+    private void DetachParticle()
+    {
+        transform.DetachChildren();
     }
 }
