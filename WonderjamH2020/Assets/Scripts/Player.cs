@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
         get { return playerID; }
         set { playerID = value; }
     }
+    [SerializeField]
+    private GameObject QTEPopup;
 
     [Header("UI")]
     [SerializeField]
@@ -46,23 +48,17 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Private
-    private bool inMenu;
-    // private bool inQTE; Si vous voyez cette ligne vous pouvez la supprimeer
     private bool isPickingUpItem;
 
     private HashSet<GameObject> actionsInRange;
     private UserAction currentAction;
     private GameObject selected;
-    [SerializeField]
-    private GameObject QTEPopup;
-
 
     private int money = 100;
     [SerializeField]
     private int lemons = 0;
 
-
-    private Vector2 input, direction = Vector2.down; // direction will be used for animations
+    private Vector2 input;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private bool isRunning;
