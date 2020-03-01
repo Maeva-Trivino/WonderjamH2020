@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
                 currentPopup.Hide();
                 currentPopup = null;
             }
-            else
+            else if(currentPopup == null || currentPopup == LabelPopup)
             {
                 LabelPopup.SetText(selection.GetComponent<Interactable>().GetDecription(this));
                 if (currentPopup == null)

@@ -22,6 +22,10 @@ public class MissileLauncher : ChoicesSenderBehaviour
     [SerializeField] private Transform spawnPointOffSet;
     [SerializeField] private Transform firePoint;
 
+    private void Start()
+    {
+        GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+    }
 
     public void OrderMissile(Player contextPlayer)
     {
