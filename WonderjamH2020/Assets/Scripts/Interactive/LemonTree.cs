@@ -66,6 +66,6 @@ public class LemonTree : QTEBehaviour
     public override UserAction GetAction(Player contextPlayer)
     {
         return HasLemons ? new ComboAction(contextPlayer.inputManager, new List<string> { "←", "→" }, 3,
-            () => HarvestLemons(contextPlayer), "Pick up") : null;
+            () => HarvestLemons(contextPlayer), "Ramasser") : null;
     }
 }

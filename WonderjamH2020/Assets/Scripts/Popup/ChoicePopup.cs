@@ -9,9 +9,9 @@ namespace Popup
     public class ChoicePopup : Popup
     {
         #region Consts
-        private readonly static Color COLOR_DISABLED = new Color(.6f, .4f, .4f);
+        private readonly static Color COLOR_DISABLED = new Color(.6f, .4f, .4f, .75f);
         private readonly static Color COLOR_ENABLED = Color.white;
-        private readonly static Vector3 SCALE_SELECTED = Vector3.one * 1.1f;
+        private readonly static Vector3 SCALE_SELECTED = Vector3.one * 1.2f;
         private readonly static Vector3 SCALE_NORMAL = Vector3.one;
         #endregion
 
@@ -118,7 +118,17 @@ namespace Popup
         }
         private void SetButtonSelected(GameObject button, bool isSelected)
         {
-            ((RectTransform)button.transform).localScale = isSelected ? SCALE_SELECTED : SCALE_NORMAL;
+            if(isSelected)
+            {
+                LeanTween.value(button, 0, 1, .2f).setLoopPingPong().setEaseInOutSine().setOnUpdate((float val) =>
+                {
+                    button.transform.localScale = SCALE_NORMAL * (1 - val) + SCALE_SELECTED * val;
+                });
+            } else
+            {
+                LeanTween.cancel(button);
+                ((RectTransform)button.transform).localScale = SCALE_NORMAL;
+            }
         }
 
         private void InitializeChoice(GameAction choice, int index, int maxIndex)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Popup;
 using Interactive.Base;
+using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -163,8 +164,7 @@ public class Player : MonoBehaviour
             }
             else if (inputManager.GetButtonDown("Cancel"))
             {
-                currentPopup.Hide();
-                currentPopup = null;
+                HideCurrentPopup();
             }
             else if(currentPopup == null || currentPopup == LabelPopup)
             {
@@ -172,10 +172,7 @@ public class Player : MonoBehaviour
                 if (string.IsNullOrWhiteSpace(text))
                 {
                     if (currentPopup != null)
-                    {
-                        currentPopup.Hide();
-                        currentPopup = null;
-                    }
+                        HideCurrentPopup();
                     return;
                 }
 
@@ -187,8 +184,7 @@ public class Player : MonoBehaviour
         }
         else if (currentPopup != null)
         {
-            currentPopup.Hide();
-            currentPopup = null;
+            HideCurrentPopup();
         }
     }
 
@@ -338,6 +334,12 @@ public class Player : MonoBehaviour
     {
         actionsInRange.Remove(toDestroy);
         Destroy(toDestroy);
+    }
+
+    public void HideCurrentPopup()
+    {
+        currentPopup.Hide();
+        currentPopup = null;
     }
     #endregion
 }
