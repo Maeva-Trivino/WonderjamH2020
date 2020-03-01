@@ -52,7 +52,7 @@ public class MissileLauncherSpot : QTEBehaviour, OrderItem
         }
         else
         {
-            return new ComboAction(contextPlayer.inputManager, new List<string> {"→"}, 5,
+            return new ComboAction(contextPlayer.inputManager, new List<string> { "←", "→", "→" }, 1,
                 () => OrderMissileLauncher(contextPlayer), "Build");
         }
     }
