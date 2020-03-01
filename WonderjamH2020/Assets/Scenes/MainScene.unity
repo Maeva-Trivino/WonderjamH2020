@@ -31294,6 +31294,7 @@ MonoBehaviour:
   initialTime: 300
   redHouse: {fileID: 400467956}
   blueHouse: {fileID: 1077463638}
+  endScreen: {fileID: 85566275}
   bipCompteurAudio: {fileID: 94249266}
   bipStartGameAudio: {fileID: 1526211644}
   endGameAudio: {fileID: 1771800794}

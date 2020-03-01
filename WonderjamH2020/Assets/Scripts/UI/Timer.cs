@@ -22,7 +22,7 @@ public class Timer : MonoBehaviour
 
     [SerializeField] private House redHouse;
     [SerializeField] private House blueHouse;
-    //[SerializeField] private EndScreen endScreen;
+    [SerializeField] private EndScreen endScreen;
 
     #region music
     [SerializeField]
@@ -91,9 +91,13 @@ public class Timer : MonoBehaviour
         {
             blueHouse.EndGame();
         }
-        else
+        else if (redHouse.CurrentHealth < blueHouse.CurrentHealth)
         {
             redHouse.EndGame();
+        }
+        else
+        {
+            endScreen.ShowDraw();
         }
     }
 

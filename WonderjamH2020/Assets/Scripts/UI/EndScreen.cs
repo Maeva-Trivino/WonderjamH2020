@@ -37,4 +37,11 @@ public class EndScreen : MonoBehaviour
         container.SetActive(true);
         waitingForReturnToMenu = true;
     }
+
+    public void ShowDraw()
+    {
+        winnerMessage.SetText(string.Format("Draw ! None of you were fast enough !"));
+        container.SetActive(true);
+        waitingForReturnToMenu = true;
+    }
 }
