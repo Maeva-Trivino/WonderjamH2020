@@ -8,6 +8,9 @@ public class LemonadeStand : QTEBehaviour
     private int lemonadePrice;
 
     [SerializeField]
+    private int lemonsPerLemonade = 1;
+
+    [SerializeField]
     private AudioSource sellLemonadeAudio;
 
     // Start is called before the first frame update
@@ -19,13 +22,13 @@ public class LemonadeStand : QTEBehaviour
     public void SellLemonade(Player player)
     {
         sellLemonadeAudio.Play();
-        player.SellLemonade(lemonadePrice);
+        player.SellLemonade(lemonadePrice, lemonsPerLemonade);
         Debug.Log("Lemonade Sold");
     }
 
     public override UserAction GetAction(Player contextPlayer)
     {
-        if (!contextPlayer.CanMakeLemonade())
+        if (!contextPlayer.CanMakeLemonade(lemonsPerLemonade))
         {
             return null;
         }
