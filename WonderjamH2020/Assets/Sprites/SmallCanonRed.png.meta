@@ -14,6 +14,18 @@ TextureImporter:
   - first:
       213: -7635686054532226773
     second: SmallCanonRed_3
+  - first:
+      213: -7058647876876041419
+    second: SmallCanonRed_0
+  - first:
+      213: 5508752489466521689
+    second: SmallCanonRed_1
+  - first:
+      213: 41567770040523512
+    second: SmallCanonRed_2
+  - first:
+      213: 4989842438332308357
+    second: SmallCanonRed_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -113,10 +125,10 @@ TextureImporter:
       name: SmallCanonRed_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 33
-        width: 29
-        height: 25
+        x: 0
+        y: 48
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +136,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d6c02c6625c8d9a0800000000000000
-      internalID: -6207995317516712240
+      spriteID: 5330d308725aa0e90800000000000000
+      internalID: -7058647876876041419
       vertices: []
       indices: 
       edges: []
@@ -134,10 +146,10 @@ TextureImporter:
       name: SmallCanonRed_1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 33
-        width: 29
-        height: 25
+        x: 32
+        y: 48
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +157,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 882002bfa5cafbed0800000000000000
-      internalID: -2396006969977601400
+      spriteID: 958633ad335037c40800000000000000
+      internalID: 5508752489466521689
       vertices: []
       indices: 
       edges: []
@@ -155,10 +167,10 @@ TextureImporter:
       name: SmallCanonRed_2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 29
-        height: 25
+        x: 0
+        y: 0
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c423e6a79b77febf0800000000000000
-      internalID: -292883812249095604
+      spriteID: 8fade57aaada39000800000000000000
+      internalID: 41567770040523512
       vertices: []
       indices: 
       edges: []
@@ -176,10 +188,10 @@ TextureImporter:
       name: SmallCanonRed_3
       rect:
         serializedVersion: 2
-        x: 33
-        y: 1
-        width: 29
-        height: 25
+        x: 32
+        y: 0
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,8 +199,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b21e33f2df7980690800000000000000
-      internalID: -7635686054532226773
+      spriteID: 58b57f5a24b7f3540800000000000000
+      internalID: 4989842438332308357
       vertices: []
       indices: 
       edges: []

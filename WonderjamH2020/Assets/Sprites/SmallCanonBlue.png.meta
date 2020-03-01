@@ -14,6 +14,24 @@ TextureImporter:
   - first:
       213: -5929953872553136953
     second: SmallCanonBlue_3
+  - first:
+      213: -3592693337524384978
+    second: SmallCanonBlue_0
+  - first:
+      213: -7476489106027372018
+    second: SmallCanonBlue_1
+  - first:
+      213: 3967298366999396692
+    second: SmallCanonBlue_2
+  - first:
+      213: 6212951843599881396
+    second: SmallCanonBlue_3
+  - first:
+      213: 8265006995441350365
+    second: SmallCanonBlue_4
+  - first:
+      213: -2065133217220612955
+    second: SmallCanonBlue_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -43,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -75,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -87,7 +105,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,10 +131,10 @@ TextureImporter:
       name: SmallCanonBlue_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 33
-        width: 29
-        height: 25
+        x: 0
+        y: 48
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4955532c05ad0210800000000000000
-      internalID: 1300877338930927949
+      spriteID: e2b42f5c170342ec0800000000000000
+      internalID: -3592693337524384978
       vertices: []
       indices: 
       edges: []
@@ -134,10 +152,10 @@ TextureImporter:
       name: SmallCanonBlue_1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 33
-        width: 29
-        height: 25
+        x: 32
+        y: 48
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6faab64521ada6a70800000000000000
-      internalID: 8821102592419146486
+      spriteID: e02292c25cc2e3890800000000000000
+      internalID: -7476489106027372018
       vertices: []
       indices: 
       edges: []
@@ -155,10 +173,10 @@ TextureImporter:
       name: SmallCanonBlue_2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 29
-        height: 25
+        x: 0
+        y: 0
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b10eb3ca4bcb6de0800000000000000
-      internalID: -1338752942240562766
+      spriteID: 4518cfa58dcae0730800000000000000
+      internalID: 3967298366999396692
       vertices: []
       indices: 
       edges: []
@@ -176,10 +194,10 @@ TextureImporter:
       name: SmallCanonBlue_3
       rect:
         serializedVersion: 2
-        x: 33
-        y: 1
-        width: 29
-        height: 25
+        x: 32
+        y: 0
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,8 +205,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7cca4040f5294bda0800000000000000
-      internalID: -5929953872553136953
+      spriteID: 4b4116cb8c6d83650800000000000000
+      internalID: 6212951843599881396
       vertices: []
       indices: 
       edges: []

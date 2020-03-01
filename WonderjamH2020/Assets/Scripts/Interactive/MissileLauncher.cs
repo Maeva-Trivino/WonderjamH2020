@@ -35,6 +35,7 @@ public class MissileLauncher : ChoicesSenderBehaviour
         if(missile != null)
         {
             missile.LaunchMissile();
+            GetComponent<Animator>().SetTrigger("shoot");
         }
     }
 
