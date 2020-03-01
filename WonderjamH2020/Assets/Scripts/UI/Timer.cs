@@ -16,8 +16,23 @@ public class Timer : MonoBehaviour
     float remainingTime;
     bool timeIsTicking = false;
 
+    //InputManagers
     public Rewired.Player inputManager1;
     public Rewired.Player inputManager2;
+
+    #region music
+    [SerializeField]
+    private AudioSource bipCompteurAudio;
+
+    [SerializeField]
+    private AudioSource bipStartGameAudio;
+
+    [SerializeField]
+    private AudioSource endGameAudio;
+
+    [SerializeField]
+    private AudioSource themeAudio;
+    #endregion
 
 
     // Start is called before the first frame update
@@ -53,6 +68,8 @@ public class Timer : MonoBehaviour
     public void PauseTimer()
     {
         timeIsTicking = false;
+        themeAudio.Stop();
+        endGameAudio.Play();
     }
 
     public void UnpauseTimer()
@@ -70,21 +87,25 @@ public class Timer : MonoBehaviour
         inputManager2.controllers.maps.SetAllMapsEnabled(false);
 
         int compteur = 3;
+        bipCompteurAudio.Play();
 
-        while(compteur != 1)
+        while (compteur != 1)
         {
             yield return new WaitForSeconds(1.0f);
+            bipCompteurAudio.Play();
             compteur--;
             timerStartGameText.text = compteur.ToString();
         }
 
         yield return new WaitForSeconds(1.0f);
+        bipStartGameAudio.Play();
         timerStartGameText.text = "GO !";
         yield return new WaitForSeconds(1.0f);
         timerStartGameText.text = null;
 
         inputManager1.controllers.maps.SetAllMapsEnabled(true);
         inputManager2.controllers.maps.SetAllMapsEnabled(true);
+        themeAudio.Play();
         timeIsTicking = true;
     }
 }
