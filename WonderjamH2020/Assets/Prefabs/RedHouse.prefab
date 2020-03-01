@@ -100,7 +100,7 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: {fileID: 0}
   repairingAmount: 5
-  reparationCosts: 0
+  reparationCosts: 15
   ownerPlayer: {fileID: 0}
   enemyPlayer: {fileID: 0}
   endScreen: {fileID: 0}
