@@ -87,7 +87,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
     {
         return new List<GameAction>() {
                 new GameAction("Feu !", () => Fire(), () => charged),
-                new GameAction("Recharger", () => OrderMissile(contextPlayer), () => CanOrder(contextPlayer)),
+                new GameAction(string.Format("Recharger {0}$",missilePrice), () => OrderMissile(contextPlayer), () => CanOrder(contextPlayer)),
                 new GameAction("Upgrade", () => Upgrade(), () => true)
             };
     }
