@@ -11,7 +11,6 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
     [SerializeField] private float flightDuration = 5f;
     [SerializeField] private float height = 5f;
     [SerializeField] private int missileDamage = 5;
-    [SerializeField] private Transform spawnPointOffSet;
     [SerializeField] private Transform firePoint;
     //ShakeCreen
     [SerializeField] public float shakeAmplitude = 0.2f;
@@ -88,7 +87,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
     {
         return new List<GameAction>() {
                 new GameAction("Feu !", () => Fire(), () => charged),
-                new GameAction("Recharger", () => OrderMissile(contextPlayer), () => CanOrder(contextPlayer)),
+                new GameAction(string.Format("Recharger {0}$",missilePrice), () => OrderMissile(contextPlayer), () => CanOrder(contextPlayer)),
                 new GameAction("Upgrade", () => Upgrade(), () => true)
             };
     }
