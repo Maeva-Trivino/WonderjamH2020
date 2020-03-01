@@ -23,7 +23,6 @@ public class LemonadeStand : QTEBehaviour
     {
         sellLemonadeAudio.Play();
         player.SellLemonade(lemonadePrice, lemonsPerLemonade);
-        Debug.Log("Lemonade Sold");
     }
 
     public override UserAction GetAction(Player contextPlayer)
@@ -34,7 +33,7 @@ public class LemonadeStand : QTEBehaviour
         }
         else
         {
-            return new ComboAction(contextPlayer.inputManager, new List<string> { "←", "→" }, 2, () => SellLemonade(contextPlayer), "Sell");
+            return new ComboAction(contextPlayer.inputManager, new List<string> { "←", "→" }, 2, () => SellLemonade(contextPlayer), string.Format("Sell for {0}$ Costs {1} lemon"+(lemonsPerLemonade > 1 ? "s" : ""),lemonadePrice,lemonsPerLemonade));
 
         }
     }
