@@ -4,7 +4,12 @@ using Assets.Scripts.Gameplay.Delivery;
 using Gameplay;
 using UnityEngine;
 
-public class ItemBox : MonoBehaviour
+public class ItemBox
 {
     public OrderItem item;
+
+    public ItemBox(OrderItem item)
+    {
+        this.item = item;
+    }
 }

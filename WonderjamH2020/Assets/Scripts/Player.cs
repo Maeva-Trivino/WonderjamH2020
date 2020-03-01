@@ -229,12 +229,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.GetComponent<ItemBox>())
-        {
-            ItemBox itemBox = collision.transform.GetComponent<ItemBox>();
-            StartCoroutine(PickUpItemBox(itemBox));
-        }
-
         Interactable interactive = collision.GetComponent<Interactable>();
         if (interactive != null && !actionsInRange.Contains(collision.gameObject))
         {
@@ -244,12 +238,6 @@ public class Player : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-
-        if (other.transform.GetComponent<ItemBox>())
-        {
-            isPickingUpItem = false;
-        }
-
         Interactable interactive = other.GetComponent<Interactable>();
         if (interactive != null)
         {
@@ -359,22 +347,6 @@ public class Player : MonoBehaviour
     public void HarvestLemons(int lemonsCount)
     {
         lemons += lemonsCount;
-    }
-
-    private IEnumerator PickUpItemBox(ItemBox itemBox)
-    {
-        isPickingUpItem = true;
-        while (isPickingUpItem)
-        {
-            if (inputManager.GetButtonDown("Interact"))
-            {
-                itemBox.item.Use(this);
-                isPickingUpItem = false;
-                Destroy(itemBox.gameObject);
-            }
-
-            yield return null;
-        }
     }
     #endregion
     #endregion
