@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-namespace ChoicePopup
+namespace Interactive.Base
 {
-    public class Choice
+    public class GameAction
     {
 
         #region Variables
@@ -20,7 +20,7 @@ namespace ChoicePopup
         #endregion
 
         #region Methods
-        public Choice(string description, Action action, Func<bool> enability)
+        public GameAction(string description, Action action, Func<bool> enability)
         {
             delegateAction = action;
             delegateEnability = enability;

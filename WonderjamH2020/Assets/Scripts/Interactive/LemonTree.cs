@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using QTE;
+using Interactive.Base;
 using UnityEngine;
 
-public class LemonTree : MonoBehaviour, Interactive
+public class LemonTree : QTEBehaviour
 {
     public Sprite spriteWithLemons;
     public Sprite spriteWithoutLemons;
@@ -39,20 +39,6 @@ public class LemonTree : MonoBehaviour, Interactive
         HasLemons = true;
     }
 
-    public void Select()
-    {
-    }
-
-    public void Deselect()
-    {
-    }
-
-    public UserAction GetAction(Player player)
-    {
-        return new ComboAction(player.inputManager, new List<string> {"←", "→"}, 3,
-            () => HarvestLemons(player), "Pick up");
-    }
-
     public void HarvestLemons(Player player)
     {
         HasLemons = false;
@@ -71,5 +57,11 @@ public class LemonTree : MonoBehaviour, Interactive
         float timeToWait = Random.Range(refreshTimeMin, refreshTimeMax);
         yield return new WaitForSeconds(timeToWait);
         HasLemons = true;
+    }
+
+    public override UserAction GetAction(Player contextPlayer)
+    {
+        return new ComboAction(contextPlayer.inputManager, new List<string> { "←", "→" }, 3,
+            () => HarvestLemons(contextPlayer), "Pick up");
     }
 }

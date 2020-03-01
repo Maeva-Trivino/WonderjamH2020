@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Interactive.Base;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace ChoicePopup
+namespace Popup
 {
-    public class ChoicePopup : MonoBehaviour
+    public class ChoicePopup : Popup
     {
         #region Consts
         private readonly static Color COLOR_DISABLED = new Color(.8f, .8f, .8f);
@@ -21,13 +22,12 @@ namespace ChoicePopup
         #endregion
 
         #region Public
-        public bool IsVisible => gameObject.activeInHierarchy;
-        public UnityEvent onClose = new UnityEvent();
         #endregion
 
         #region Private
-        private List<Choice> choices = new List<Choice>();
+        private List<GameAction> choices = new List<GameAction>();
         private int selection;
+        private Rewired.Player inputManager;
         #endregion 
         #endregion
 
@@ -35,46 +35,47 @@ namespace ChoicePopup
         #region Unity
         private void Update()
         {
-            // Chech if an item should be enable during display
-            foreach (Choice choice in choices)
+            // Check if an item should be enable during display
+            foreach (GameAction choice in choices)
                 SetButtonEnabled(choice.graphics, choice.IsEnabled);
+
+
+            if (inputManager == null)
+                return;
+
+            if (inputManager.GetButtonDown("MenuLeft"))
+            {
+                GoLeft();
+            }
+            else if (inputManager.GetButtonDown("MenuRight"))
+            {
+                GoRight();
+            }
+            if (inputManager.GetButtonDown("Interact"))
+            {
+                Validate();
+            }
         }
         #endregion
 
         #region Public
-        public void SetChoices(List<Choice> choices)
+        public void SetChoices(List<GameAction> choices)
         {
             foreach (Transform child in transform)
                 Destroy(child.gameObject);
 
             selection = 0;
-            choices.Add(new Choice("Fermer", () => Hide(), () => true));
+            choices.Add(new GameAction("Fermer", () => Hide(), () => true));
 
             for (int i = 0; i < choices.Count; i++)
             {
-                Choice choice = choices[i];
+                GameAction choice = choices[i];
                 choice.graphics = Instantiate(choicePrefab);
                 InitializeChoice(choice, i, choices.Count - 1);
             }
 
             SetButtonSelected(choices[selection].graphics, true);
             this.choices = choices;
-        }
-
-        /// <summary>
-        /// Displays the popup at a specific world position
-        /// </summary>
-        /// <param name="position"></param>
-        public void Display()
-        {
-            // transform.position = position;
-            gameObject.SetActive(true);
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);
-            onClose.Invoke();
         }
 
         public void GoLeft()
@@ -102,6 +103,8 @@ namespace ChoicePopup
             if (choices[selection].IsEnabled)
                 choices[selection].Invoke();
         }
+
+        public void SetInputManager(Rewired.Player m) => inputManager = m;
         #endregion
 
         #region Private
@@ -114,7 +117,7 @@ namespace ChoicePopup
             ((RectTransform)button.transform).localScale = isSelected ? SCALE_SELECTED : SCALE_NORMAL;
         }
 
-        private void InitializeChoice(Choice choice, int index, int maxIndex)
+        private void InitializeChoice(GameAction choice, int index, int maxIndex)
         {
             GameObject button = choice.graphics;
             button.transform.SetParent(transform);

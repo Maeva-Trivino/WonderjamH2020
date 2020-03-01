@@ -1,10 +1,8 @@
-using ChoicePopup;
-using System.Collections.Generic;
-using QTE;
 using UnityEngine;
+using Interactive.Base;
+using System.Collections.Generic;
 
-
-public class House : ChoicesSenderBehaviour, Interactive
+public class House : ChoicesSenderBehaviour
 {
     [SerializeField]
     protected int currentHealth = 50;
@@ -70,27 +68,18 @@ public class House : ChoicesSenderBehaviour, Interactive
         Debug.Log("Hp maison: " + currentHealth);
     }
 
-    public void Select()
-    {
-        // Pas de surbrillance de la maison quand elle est a porté
-    }
-
-    public void Deselect()
-    {
-    }
-
     public UserAction GetAction(Player player)
     {
         return new ComboAction(player.inputManager ,new List<string> { "←", "→" }, 2, () => Repair(repairingAmount), "Repair");
     }
 
-    public override List<Choice> GetChoices(Player contextPlayer)
+    public override List<GameAction> GetChoices(Player contextPlayer)
     {
         // Test
         bool lol = true;
-        return new List<Choice>() {
-                new Choice("Toquer", () => Debug.Log("Knock! Knock!"), () => true),
-                new Choice("Désactiver ce bouton", () => lol = false, () => lol),
+        return new List<GameAction>() {
+                new GameAction("Toquer", () => Debug.Log("Knock! Knock!"), () => true),
+                new GameAction("Désactiver ce bouton", () => lol = false, () => lol),
             };
     }
 }

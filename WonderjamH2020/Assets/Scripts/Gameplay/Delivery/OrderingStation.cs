@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using ChoicePopup;
 using Gameplay.Delivery;
+using Interactive.Base;
 
 public class OrderingStation : ChoicesSenderBehaviour
 {
@@ -13,11 +13,11 @@ public class OrderingStation : ChoicesSenderBehaviour
         deliverySystem = this.GetComponent<DeliverySystem>();
     }
 
-    public override List<Choice> GetChoices(Player contextPlayer)
+    public override List<GameAction> GetChoices(Player contextPlayer)
     {
-        List<Choice> choices = new List<Choice>();
+        List<GameAction> choices = new List<GameAction>();
 
-        missileBlueprints.ForEach((blueprint => choices.Add(new Choice(blueprint.name,() =>
+        missileBlueprints.ForEach((blueprint => choices.Add(new GameAction(blueprint.name,() =>
         {
             //TODO Feedback
             if (contextPlayer.CanAffordMissile(blueprint))

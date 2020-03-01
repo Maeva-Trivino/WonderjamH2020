@@ -1906,16 +1906,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 382924459}
     m_Modifications:
-    - target: {fileID: 2029420117338643615, guid: 719eed4fe2f381b44aa20ac60d628daf,
-        type: 3}
-      propertyPath: QTEPopup
-      value: 
-      objectReference: {fileID: 417313636}
     - target: {fileID: 4781375910495078806, guid: 719eed4fe2f381b44aa20ac60d628daf,
         type: 3}
       propertyPath: m_Name
       value: BluePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 5253074327475691751, guid: 719eed4fe2f381b44aa20ac60d628daf,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 8835243088690199202, guid: 719eed4fe2f381b44aa20ac60d628daf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2216,10 +2216,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5842d69373f4e114eb5b7ff6f86a1e71, type: 3}
---- !u!224 &283445934 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9169798961506460670, guid: 5842d69373f4e114eb5b7ff6f86a1e71,
-    type: 3}
+--- !u!4 &283445934 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 283445933}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &306777263
@@ -2312,7 +2311,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 417313637}
+  - {fileID: 429188980}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2642,18 +2641,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.935314, y: 11.774656}
   m_EdgeRadius: 0
---- !u!1 &417313636 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9169798961506460669, guid: 5842d69373f4e114eb5b7ff6f86a1e71,
-    type: 3}
-  m_PrefabInstance: {fileID: 429188979}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &417313637 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9169798961506460670, guid: 5842d69373f4e114eb5b7ff6f86a1e71,
-    type: 3}
-  m_PrefabInstance: {fileID: 429188979}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &429188979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2891,6 +2878,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5842d69373f4e114eb5b7ff6f86a1e71, type: 3}
+--- !u!4 &429188980 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 429188979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &458908087
 GameObject:
   m_ObjectHideFlags: 0
@@ -29334,21 +29326,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 1514604506373870212, guid: 68a4fe175eff00147b077d3e60f27cf5,
+    - target: {fileID: 647445156995623581, guid: 68a4fe175eff00147b077d3e60f27cf5,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 1780928771968591098, guid: 68a4fe175eff00147b077d3e60f27cf5,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1968513155
-      objectReference: {fileID: 0}
-    - target: {fileID: 1780928771968591098, guid: 68a4fe175eff00147b077d3e60f27cf5,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4217500600221724888, guid: 68a4fe175eff00147b077d3e60f27cf5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29404,21 +29386,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4217500600221724888, guid: 68a4fe175eff00147b077d3e60f27cf5,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4217500600221724888, guid: 68a4fe175eff00147b077d3e60f27cf5,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643784083068196581, guid: 68a4fe175eff00147b077d3e60f27cf5,
-        type: 3}
-      propertyPath: QTEPopup
-      value: 
-      objectReference: {fileID: 1921936224}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68a4fe175eff00147b077d3e60f27cf5, type: 3}
 --- !u!4 &1603552203 stripped
@@ -30568,12 +30535,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903849076}
   m_CullTransparentMesh: 0
---- !u!1 &1921936224 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9169798961506460669, guid: 5842d69373f4e114eb5b7ff6f86a1e71,
-    type: 3}
-  m_PrefabInstance: {fileID: 283445933}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1940780123
 GameObject:
   m_ObjectHideFlags: 0
