@@ -2,7 +2,7 @@ using UnityEngine;
 using Interactive.Base;
 using System.Collections.Generic;
 
-public class House : ChoicesSenderBehaviour
+public class House : QTEBehaviour
 {
     [SerializeField]
     protected int currentHealth;
@@ -185,24 +185,15 @@ public class House : ChoicesSenderBehaviour
         endScreen.Show(enemyPlayer.PlayerId);
     }
 
-    public UserAction GetAction(Player player)
+    public override UserAction GetAction(Player contextPlayer)
     {
-        if (CurrentHealth == maxHealth || player.money < reparationCosts)
+        if (CurrentHealth == maxHealth || contextPlayer.money < reparationCosts)
         {
             return null;
-        } else
-        {
-            return new ComboAction(player.inputManager ,new List<string> { "←", "→" }, 2, () => Repair(player, repairingAmount), "Repair");
         }
-    }
-
-    public override List<GameAction> GetChoices(Player contextPlayer)
-    {
-        // Test
-        bool lol = true;
-        return new List<GameAction>() {
-                new GameAction("Toquer", () => Debug.Log("Knock! Knock!"), () => true),
-                new GameAction("Désactiver ce bouton", () => lol = false, () => lol),
-            };
+        else
+        {
+            return new ComboAction(contextPlayer.inputManager, new List<string> { "←", "→" }, 2, () => Repair(contextPlayer, repairingAmount), "Repair - $" + reparationCosts);
+        }
     }
 }

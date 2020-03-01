@@ -3256,13 +3256,13 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: {fileID: 162934920}
   repairingAmount: 5
-  reparationCosts: 0
+  reparationCosts: 15
   ownerPlayer: {fileID: 1062285800}
   enemyPlayer: {fileID: 1259327765}
   endScreen: {fileID: 85566275}
   themeAudio: {fileID: 63588026}
   endGameAudio: {fileID: 1771800794}
-  repairHouseAudio: {fileID: 0}
+  repairHouseAudio: {fileID: 618101357}
   sprites:
   - {fileID: 3107508111494870052, guid: e83ef9e8cb780974ba5d441fcfb39aab, type: 3}
   - {fileID: -8184418211298074948, guid: e83ef9e8cb780974ba5d441fcfb39aab, type: 3}
@@ -3452,6 +3452,7 @@ Transform:
   - {fileID: 1793576601}
   - {fileID: 206270589}
   - {fileID: 63588027}
+  - {fileID: 618101356}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3551,6 +3552,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &618101356 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7017925749711401524, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+    type: 3}
+  m_PrefabInstance: {fileID: 677338423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &618101357 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 475617188411140482, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+    type: 3}
+  m_PrefabInstance: {fileID: 677338423}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &645039034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1644033324521927735, guid: eb1482d3d2c2b43219d50d3dc29eeeaf,
@@ -3563,6 +3576,75 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 41611282}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &677338423
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 458908088}
+    m_Modifications:
+    - target: {fileID: 5657785273574982016, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+        type: 3}
+      propertyPath: m_Name
+      value: reparer_maison
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017925749711401524, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017925749711401524, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017925749711401524, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017925749711401524, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017925749711401524, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017925749711401524, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017925749711401524, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017925749711401524, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017925749711401524, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017925749711401524, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017925749711401524, guid: 03dd9208d242b48c99e25e8980b8ce6a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 03dd9208d242b48c99e25e8980b8ce6a, type: 3}
 --- !u!1001 &691165901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4401,13 +4483,13 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: {fileID: 20713874}
   repairingAmount: 5
-  reparationCosts: 0
+  reparationCosts: 15
   ownerPlayer: {fileID: 1259327765}
   enemyPlayer: {fileID: 1259327765}
   endScreen: {fileID: 85566275}
-  themeAudio: {fileID: 0}
-  endGameAudio: {fileID: 0}
-  repairHouseAudio: {fileID: 0}
+  themeAudio: {fileID: 63588026}
+  endGameAudio: {fileID: 1771800794}
+  repairHouseAudio: {fileID: 618101357}
   sprites:
   - {fileID: 1661193485724221311, guid: e83ef9e8cb780974ba5d441fcfb39aab, type: 3}
   - {fileID: 7819105419346469886, guid: e83ef9e8cb780974ba5d441fcfb39aab, type: 3}

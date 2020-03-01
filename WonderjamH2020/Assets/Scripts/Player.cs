@@ -139,9 +139,11 @@ public class Player : MonoBehaviour
                 }
                 else if (script is QTEBehaviour)
                 {
-                    QTEBehaviour iObj = script as QTEBehaviour;
+                    UserAction action = (script as QTEBehaviour).GetAction(this);
+                    if (action == null)
+                        return;
                     currentPopup = QTEPopup;
-                    QTEPopup.SetAction(iObj.GetAction(this));
+                    QTEPopup.SetAction(action);
                 }
 
                 // Display popup
@@ -160,7 +162,10 @@ public class Player : MonoBehaviour
             }
             else if(currentPopup == null || currentPopup == LabelPopup)
             {
-                LabelPopup.SetText(selection.GetComponent<Interactable>().GetDecription(this));
+                string text = selection.GetComponent<Interactable>().GetDecription(this);
+                if (string.IsNullOrWhiteSpace(text))
+                    return;
+                LabelPopup.SetText(text);
                 if (currentPopup == null)
                     LabelPopup.Display();
                 currentPopup = LabelPopup;
