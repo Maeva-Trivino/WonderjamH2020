@@ -41,3 +41,33 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 352503557
+    locked: 0
+  - name: BackGround
+    uniqueID: 2536310487
+    locked: 0
+  - name: Walls
+    uniqueID: 1920243195
+    locked: 0
+  - name: Lemon Trees
+    uniqueID: 473639117
+    locked: 0
+  - name: PlayerAndCo
+    uniqueID: 2044831227
+    locked: 0
+  - name: AmazonCar
+    uniqueID: 3105605387
+    locked: 0
+  - name: Missile
+    uniqueID: 1066314539
+    locked: 0
+  - name: Computer
+    uniqueID: 1222708271
+    locked: 0
+  - name: Explosion
+    uniqueID: 2718704031
+    locked: 0
+  - name: UI
+    uniqueID: 2629643145
+    locked: 0
