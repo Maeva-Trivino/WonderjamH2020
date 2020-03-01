@@ -78,7 +78,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
     public override List<GameAction> GetChoices(Player contextPlayer)
     {
         return new List<GameAction>() {
-                new GameAction("Feu !", () => Fire(), () => missile != null),
+                new GameAction("Feu !", () => Fire(), () => charged),
                 new GameAction("Recharger", () => OrderMissile(contextPlayer), () => CanOrder(contextPlayer)),
                 new GameAction("Upgrade", () => Upgrade(), () => true)
             };
