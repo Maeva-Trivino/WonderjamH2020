@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
-public class LabelPopup : MonoBehaviour
+namespace Popup
 {
-    [SerializeField]
-    private Text text;
-
-    public void SetText(string label)
+    public class LabelPopup : Popup
     {
-        text.text = label;
+        [SerializeField]
+        private TMPro.TextMeshProUGUI text;
+
+        public void SetText(string label)
+        {
+            text.text = label;
+        }
     }
 }

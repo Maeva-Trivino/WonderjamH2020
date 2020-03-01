@@ -51,9 +51,13 @@ namespace Popup
             {
                 GoRight();
             }
-            if (inputManager.GetButtonDown("Interact"))
+            else if (inputManager.GetButtonDown("Interact"))
             {
                 Validate();
+            }
+            else if (inputManager.GetButtonDown("Cancel"))
+            {
+                Hide();
             }
         }
         #endregion
