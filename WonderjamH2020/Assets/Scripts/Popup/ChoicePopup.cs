@@ -9,7 +9,7 @@ namespace Popup
     public class ChoicePopup : Popup
     {
         #region Consts
-        private readonly static Color COLOR_DISABLED = new Color(.6f, .4f, .4f, .75f);
+        private readonly static Color COLOR_DISABLED = new Color(.5f, .5f, .5f, .75f);
         private readonly static Color COLOR_ENABLED = Color.white;
         private readonly static Vector3 SCALE_SELECTED = Vector3.one * 1.2f;
         private readonly static Vector3 SCALE_NORMAL = Vector3.one;
@@ -68,12 +68,14 @@ namespace Popup
             foreach (Transform child in transform)
                 Destroy(child.gameObject);
 
-            selection = 0;
+            selection = -1;
             choices.Add(new GameAction("Close", () => Hide(), () => true));
 
             for (int i = 0; i < choices.Count; i++)
             {
                 GameAction choice = choices[i];
+                if (selection == -1 && choice.IsEnabled)
+                    selection = i;
                 choice.graphics = Instantiate(choicePrefab);
                 InitializeChoice(choice, i, choices.Count - 1);
             }
