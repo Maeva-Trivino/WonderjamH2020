@@ -1,8 +1,6 @@
-﻿using System.Collections;
+﻿using Interactive.Base;
 using System.Collections.Generic;
 using UnityEngine;
-using ChoicePopup;
-using System;
 
 public class MissileLauncher : ChoicesSenderBehaviour
 {
@@ -39,12 +37,12 @@ public class MissileLauncher : ChoicesSenderBehaviour
         Debug.Log("Upgrade");
     }
 
-    public override List<Choice> GetChoices(Player contextPlayer)
+    public override List<GameAction> GetChoices(Player contextPlayer)
     {
-        return new List<Choice>() {
-                new Choice("Feu !", () => Fire(), () => true),
-                new Choice("Recharger", () => RechargeMissile(), () => true),
-                new Choice("Upgrade", () => Upgrade(), () => true)
+        return new List<GameAction>() {
+                new GameAction("Feu !", () => Fire(), () => true),
+                new GameAction("Recharger", () => RechargeMissile(), () => true),
+                new GameAction("Upgrade", () => Upgrade(), () => true)
             };
     }
 }
