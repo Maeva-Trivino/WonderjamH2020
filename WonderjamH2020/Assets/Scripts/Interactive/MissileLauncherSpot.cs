@@ -7,7 +7,10 @@ public class MissileLauncherSpot : QTEBehaviour
 {
     [SerializeField]
     private GameObject missileLauncherPrefab;
-
+    [SerializeField]
+    private House opponentHouse;
+    [SerializeField] private AudioSource impactSound;
+    [SerializeField] private AudioSource launchSound;
 
     public void Start()
     {
@@ -16,7 +19,11 @@ public class MissileLauncherSpot : QTEBehaviour
 
     public void BuildMissileLauncher(Player contextPlayer)
     {
-        Instantiate(missileLauncherPrefab, transform.position, Quaternion.identity);
+        GameObject missileLauncher = Instantiate(missileLauncherPrefab, transform.position, Quaternion.identity);
+        MissileLauncher ml = missileLauncher.GetComponent<MissileLauncher>();
+        ml.opponentHouse = opponentHouse;
+        ml.impactSound = impactSound;
+        ml.launchSound = launchSound;
         contextPlayer.DestroyInteractive(this.gameObject);
     }
 
