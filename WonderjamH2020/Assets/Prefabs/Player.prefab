@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94fd05062712d14d97d83d99b9a12e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 5
+  baseSpeed: 10
   playerID: 0
   dashCoefficient: 2.5
   dashDuration: 0.1
@@ -213,9 +213,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
+  m_Offset: {x: 0, y: -0.116284035}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.21628404
 --- !u!1 &3382180867575017397
 GameObject:
   m_ObjectHideFlags: 0

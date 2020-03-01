@@ -72,13 +72,6 @@ public class Player : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         actionsInRange = new HashSet<GameObject>();
         choicePopup.SetInputManager(inputManager);
-        if(playerID == 0)
-        {
-            Speak("I'm the one selling Lemonade on Sunday !", 1f,0f) ;
-        } else
-        {
-            Speak("You wish, old cow !", 1f, -1);
-        }
     }
 
 
@@ -248,7 +241,7 @@ public class Player : MonoBehaviour
 
     public void ChangeMood(float newPercentage)
     {
-        speed = baseSpeed + (1 - newPercentage) * (baseSpeed * 2.5f);
+        speed = baseSpeed + (1 - newPercentage) * (baseSpeed * 1.4f);
 
         //Maj Color
         newPercentage = map(newPercentage, 0, 1, .2f, 1);
@@ -334,7 +327,7 @@ public class Player : MonoBehaviour
 
     public bool CanMakeLemonade(int lemonsAmount)
     {
-        return lemons > lemonsAmount;
+        return lemons >= lemonsAmount;
     }
 
     public void SellLemonade(int lemonadePrice,int lemonsAmount)
@@ -360,12 +353,12 @@ public class Player : MonoBehaviour
 
     public void Speak(string message, float baseTime= 1.5f, float delay=0f)
     {
-        DialoguePopup.SetText(message);
+        //DialoguePopup.SetText(message);
         if(delay == -1)
         {
             delay = baseTime;
         }
-        StartCoroutine(DialoguePopup.PopupDeactivation(delay,baseTime+delay));
+        StartCoroutine(DialoguePopup.PopupDeactivation(delay, baseTime, message));  ;
     }
     #endregion
 }
