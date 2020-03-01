@@ -48,7 +48,6 @@ public class Missile : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(Vector2.Distance(transform.position, target));
         if(launched && Vector2.Distance(transform.position, target) < 0.1f)
         {
             Explode();

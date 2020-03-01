@@ -958,7 +958,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -33129,6 +33129,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1062285800}
   moneyText: {fileID: 1289203417}
+--- !u!114 &1669413488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1983690473855999637, guid: e60060d42cf43ce4a92cb57e58b5b582,
+    type: 3}
+  m_PrefabInstance: {fileID: 220693554}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb59de15bf515d34e9b03897e825e33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1693581925
 GameObject:
   m_ObjectHideFlags: 0
@@ -34611,6 +34623,7 @@ GameObject:
   - component: {fileID: 1919667564}
   - component: {fileID: 1919667566}
   - component: {fileID: 1919667565}
+  - component: {fileID: 1919667567}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -34699,6 +34712,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1919667567
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919667563}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 25a07fddbe76786419e42fd3dad5120b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1924598633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35610,6 +35642,11 @@ PrefabInstance:
       propertyPath: repairHouseAudio
       value: 
       objectReference: {fileID: 1226191493}
+    - target: {fileID: 1092555953443743268, guid: cc7a0fa7b409d476781456e4eaa2b138,
+        type: 3}
+      propertyPath: dialogueSystem
+      value: 
+      objectReference: {fileID: 1669413488}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc7a0fa7b409d476781456e4eaa2b138, type: 3}
 --- !u!1001 &5296167572870819814
@@ -35654,6 +35691,11 @@ PrefabInstance:
       propertyPath: repairHouseAudio
       value: 
       objectReference: {fileID: 1226191493}
+    - target: {fileID: 5296167573144389650, guid: c874db1decfbd44e69b52dd82f833407,
+        type: 3}
+      propertyPath: dialogueSystem
+      value: 
+      objectReference: {fileID: 1669413488}
     - target: {fileID: 5296167573144389652, guid: c874db1decfbd44e69b52dd82f833407,
         type: 3}
       propertyPath: m_Name
