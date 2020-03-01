@@ -42,11 +42,11 @@ public class ChangeStartText : MonoBehaviour
     void Update()
     {
         joystick = ReInput.controllers.GetJoystick(0);
-        ChangeTextsMenu(startGameText, "Validate", "Start the game");
+        ChangeTextsMenu(startGameText, "Interact", "Start the game");
         ChangeTextsMenu(creditsText, "Credits", "Credits");
         ChangeTextsMenu(backToMenuText, "Credits", "Back on menu");
 
-        if(!isCredit && inputManager.GetButtonDown("Validate"))
+        if(!isCredit && inputManager.GetButtonDown("Interact"))
         {
             SceneManager.LoadScene("DirectivesMenu");
         }
