@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     private Vector2 input;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
-    private bool isRunning;
+    private bool IsRunning => speed > 15f;
     private bool canMove = true;
     private float speed;
     #endregion
@@ -254,8 +254,8 @@ public class Player : MonoBehaviour
         _animator.SetBool("IsWalkingRight", wr);
         _animator.SetBool("IsWalkingDown", wd);
         _animator.SetBool("IsWalkingLeft", wl);
-        _animator.SetBool("IsRunningLeft", isRunning && wl);
-        _animator.SetBool("IsRunningRight", isRunning && wr);
+        _animator.SetBool("IsRunningLeft", IsRunning && wl);
+        _animator.SetBool("IsRunningRight", IsRunning && wr);
         _animator.speed = isMoving ? input.magnitude : 1;
     }
 

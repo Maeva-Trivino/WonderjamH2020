@@ -460,6 +460,11 @@ PrefabInstance:
       propertyPath: m_subTextObjects.Array.data[1]
       value: 
       objectReference: {fileID: 3771029367801280868}
+    - target: {fileID: 3876217452430539591, guid: e71024afa2e328e4d9ec6c8be993ab0d,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 4098
+      objectReference: {fileID: 0}
     - target: {fileID: 9169798961506460669, guid: e71024afa2e328e4d9ec6c8be993ab0d,
         type: 3}
       propertyPath: m_Name
