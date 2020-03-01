@@ -20,6 +20,10 @@ public class Timer : MonoBehaviour
     public Rewired.Player inputManager1;
     public Rewired.Player inputManager2;
 
+    [SerializeField] private House redHouse;
+    [SerializeField] private House blueHouse;
+    //[SerializeField] private EndScreen endScreen;
+
     #region music
     [SerializeField]
     private AudioSource bipCompteurAudio;
@@ -41,6 +45,9 @@ public class Timer : MonoBehaviour
         inputManager1 = ReInput.players.GetPlayer(0);
         inputManager2 = ReInput.players.GetPlayer(1);
 
+        redHouse.RegisterTimer(this);
+        blueHouse.RegisterTimer(this);
+
         StartCoroutine(ResetTimer());
     }
 
@@ -54,7 +61,8 @@ public class Timer : MonoBehaviour
             {
                 remainingTime = 0f;
                 PauseTimer();
-                // %TODO% Trigger endscene
+
+                EndGame();
             }
             string secondes = ((int)remainingTime % 60).ToString();
             if(secondes.Length == 1)
@@ -75,6 +83,18 @@ public class Timer : MonoBehaviour
     public void UnpauseTimer()
     {
         timeIsTicking = true;
+    }
+
+    private void EndGame()
+    {
+        if (redHouse.CurrentHealth > blueHouse.CurrentHealth)
+        {
+            blueHouse.EndGame();
+        }
+        else
+        {
+            redHouse.EndGame();
+        }
     }
 
     public IEnumerator ResetTimer()

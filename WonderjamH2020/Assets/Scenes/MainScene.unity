@@ -927,7 +927,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -31292,6 +31292,8 @@ MonoBehaviour:
   timerText: {fileID: 1903849078}
   timerStartGameText: {fileID: 120281692}
   initialTime: 300
+  redHouse: {fileID: 400467956}
+  blueHouse: {fileID: 1077463638}
   bipCompteurAudio: {fileID: 94249266}
   bipStartGameAudio: {fileID: 1526211644}
   endGameAudio: {fileID: 1771800794}
