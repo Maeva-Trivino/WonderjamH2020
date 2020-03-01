@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     #region Unity
     private void Start()
     {
+        speed = baseSpeed;
         inputManager = ReInput.players.GetPlayer(playerID);
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
