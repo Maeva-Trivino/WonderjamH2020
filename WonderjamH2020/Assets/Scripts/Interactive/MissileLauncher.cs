@@ -1,8 +1,9 @@
 ﻿using Interactive.Base;
 using System.Collections.Generic;
+using Assets.Scripts.Gameplay.Delivery;
 using UnityEngine;
 
-public class MissileLauncher : ChoicesSenderBehaviour
+public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
 {
     [SerializeField] private GameObject missilePrefab;
     private Missile missile;
@@ -30,10 +31,11 @@ public class MissileLauncher : ChoicesSenderBehaviour
 
     public void OrderMissile(Player contextPlayer)
     {
-        if (contextPlayer.CanAffordMissile(missilePrice))
+        if (contextPlayer.CanAfford(missilePrice))
         {
-            contextPlayer.PayForMissile(missilePrice);
+            contextPlayer.Pay(missilePrice);
             deliverySystem.OrderItem(this,contextPlayer.PlayerId);
+            deliverySystem.CanOrder = false;
         }
     }
 
@@ -58,6 +60,7 @@ public class MissileLauncher : ChoicesSenderBehaviour
                                 launchSound, impactSound);
             missile.LaunchMissile();
             GetComponent<Animator>().SetTrigger("shoot");
+            deliverySystem.CanOrder = true;
             charged = false;
         }
     }
@@ -70,9 +73,14 @@ public class MissileLauncher : ChoicesSenderBehaviour
     public override List<GameAction> GetChoices(Player contextPlayer)
     {
         return new List<GameAction>() {
-                new GameAction("Feu !", () => Fire(), () => charged),
-                new GameAction("Recharger", () => OrderMissile(contextPlayer), () => contextPlayer.CanAffordMissile(missilePrice)),
+                new GameAction("Feu !", () => Fire(), () => missile != null),
+                new GameAction("Recharger", () => OrderMissile(contextPlayer), () => CanOrder(contextPlayer)),
                 new GameAction("Upgrade", () => Upgrade(), () => true)
             };
+    }
+
+    public void Use(Player contextPlayer)
+    {
+        RechargeMissile();
     }
 }
