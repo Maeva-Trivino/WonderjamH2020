@@ -14,6 +14,8 @@ namespace Gameplay.Delivery
         [SerializeField] public float shakeAmplitude;
         [SerializeField] public float shakePeriod;
         [SerializeField] public float shakeDuration;
+        [SerializeField] public AudioSource impactSound;
+        [SerializeField] public AudioSource launchSound;
 
         public Missile GetMissile()
         {

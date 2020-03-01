@@ -1,8 +1,6 @@
-﻿using System.Collections;
+﻿using Interactive.Base;
 using System.Collections.Generic;
 using UnityEngine;
-using ChoicePopup;
-using System;
 
 public class MissileLauncher : ChoicesSenderBehaviour
 {
@@ -15,6 +13,9 @@ public class MissileLauncher : ChoicesSenderBehaviour
     [SerializeField] public float shakeAmplitude = 0.2f;
     [SerializeField] public float shakePeriod = 0.1f;
     [SerializeField] public float shakeDuration = 2;
+    //Audio
+    [SerializeField] private AudioSource launchSound;
+    [SerializeField] private AudioSource impactSound;
 
 
     public void RechargeMissile()
@@ -23,7 +24,8 @@ public class MissileLauncher : ChoicesSenderBehaviour
         {
             missile = Instantiate(missilePrefab, transform).GetComponent<Missile>();
             missile.transform.position = transform.position;
-            missile.Initialize(opponentHouse,flightDuration,height,missileDamage,shakeAmplitude,shakePeriod,shakeDuration);
+            missile.Initialize(opponentHouse,flightDuration,height,missileDamage,shakeAmplitude,shakePeriod,shakeDuration,
+                                launchSound,impactSound);
         }
     }
     public void Fire()
@@ -39,12 +41,12 @@ public class MissileLauncher : ChoicesSenderBehaviour
         Debug.Log("Upgrade");
     }
 
-    public override List<Choice> GetChoices(Player contextPlayer)
+    public override List<GameAction> GetChoices(Player contextPlayer)
     {
-        return new List<Choice>() {
-                new Choice("Feu !", () => Fire(), () => true),
-                new Choice("Recharger", () => RechargeMissile(), () => true),
-                new Choice("Upgrade", () => Upgrade(), () => true)
+        return new List<GameAction>() {
+                new GameAction("Feu !", () => Fire(), () => true),
+                new GameAction("Recharger", () => RechargeMissile(), () => true),
+                new GameAction("Upgrade", () => Upgrade(), () => true)
             };
     }
 }
