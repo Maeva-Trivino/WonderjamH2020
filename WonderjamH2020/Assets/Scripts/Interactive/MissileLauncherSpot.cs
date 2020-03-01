@@ -59,7 +59,7 @@ public class MissileLauncherSpot : QTEBehaviour, OrderItem
         else
         {
             return new ComboAction(contextPlayer.inputManager, new List<string> { "←", "→", "→" }, 1,
-                () => OrderMissileLauncher(contextPlayer), string.Format("Build {0}$",buildingCosts));
+                () => OrderMissileLauncher(contextPlayer), "Build - $" + buildingCosts);
         }
     }
 

@@ -78,17 +78,11 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
         return canOrder && contextPlayer.CanAfford(missilePrice);
     }
 
-    private void Upgrade()
-    {
-        Debug.Log("Upgrade");
-    }
-
     public override List<GameAction> GetChoices(Player contextPlayer)
     {
         return new List<GameAction>() {
-                new GameAction("Feu !", () => Fire(), () => charged),
-                new GameAction(string.Format("Recharger {0}$",missilePrice), () => OrderMissile(contextPlayer), () => CanOrder(contextPlayer)),
-                new GameAction("Upgrade", () => Upgrade(), () => true)
+                new GameAction("Fire !", () => {Fire(); contextPlayer.HideCurrentPopup(); }, () => charged),
+                new GameAction("Reload - $" + missilePrice, () => {OrderMissile(contextPlayer); contextPlayer.HideCurrentPopup(); }, () => CanOrder(contextPlayer))
             };
     }
 
