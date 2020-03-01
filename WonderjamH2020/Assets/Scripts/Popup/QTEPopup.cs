@@ -22,9 +22,25 @@ namespace Popup
 
         #region Methods
         #region Unity
-        private void Update()
+        private void Update() => UpdateDisplay();
+        #endregion
+        #region Public
+        public void SetAction(UserAction action)
         {
+            qte = action;
+            UpdateDisplay();
+        }
 
+        public override void Hide()
+        {
+            slider.transform.localScale = new Vector3(0, 0, 0);
+            base.Hide();
+        }
+        #endregion
+
+        #region Private
+        private void UpdateDisplay()
+        {
             if (qte == null)
                 return;
 
@@ -52,25 +68,7 @@ namespace Popup
 
             slider.transform.localScale = new Vector3(1, 1, 1);
             slider.value = qte.progression;
-            slider.gameObject.SetActive(true);
-
-            // transform.position = screenPos;
-            gameObject.SetActive(true);
         }
-        #endregion
-        #region Public
-        public void SetAction(UserAction action)
-        {
-            qte = action;
-        }
-
-        public override void Hide()
-        {
-            slider.transform.localScale = new Vector3(0, 0, 0);
-            base.Hide();
-        }
-        #endregion
-        #region Private
         #endregion
         #endregion
     }
