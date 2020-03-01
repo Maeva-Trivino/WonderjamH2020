@@ -3,8 +3,9 @@ using UnityEngine;
 using Gameplay.Delivery;
 using Interactive.Base;
 
-public class OrderingStation : ChoicesSenderBehaviour
+public class OrderingStation
 {
+    /*
      private DeliverySystem deliverySystem;
     [SerializeField] private List<MissileBlueprint> missileBlueprints;
 
@@ -34,4 +35,5 @@ public class OrderingStation : ChoicesSenderBehaviour
         Missile orderedMissile = blueprint.GetMissile();
         deliverySystem.OrderItem(orderedMissile,playerId);
     }
+    */
 }
