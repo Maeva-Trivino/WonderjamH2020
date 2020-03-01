@@ -17,7 +17,7 @@ public class MissileLauncher : ChoicesSenderBehaviour
     [SerializeField] public AudioSource launchSound;
     [SerializeField] public AudioSource impactSound;
 
-    [SerializeField] private DeliverySystem deliverySystem;
+    [SerializeField] public DeliverySystem deliverySystem;
     [SerializeField] private int missilePrice = 100;
 
 

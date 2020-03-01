@@ -246,6 +246,7 @@ MonoBehaviour:
   opponentHouse: {fileID: 0}
   impactSound: {fileID: 0}
   launchSound: {fileID: 0}
+  deliverySystem: {fileID: 0}
 --- !u!212 &39297181
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2639,6 +2640,11 @@ PrefabInstance:
       propertyPath: impactSound
       value: 
       objectReference: {fileID: 1536899885}
+    - target: {fileID: 7058775737493793122, guid: f07f87f6e26f65f458ada609cfa12410,
+        type: 3}
+      propertyPath: deliverySystem
+      value: 
+      objectReference: {fileID: 299509017}
     - target: {fileID: 7058775737493793124, guid: f07f87f6e26f65f458ada609cfa12410,
         type: 3}
       propertyPath: m_Name
@@ -3083,6 +3089,11 @@ PrefabInstance:
       propertyPath: impactSound
       value: 
       objectReference: {fileID: 1536899885}
+    - target: {fileID: 7058775737493793122, guid: f07f87f6e26f65f458ada609cfa12410,
+        type: 3}
+      propertyPath: deliverySystem
+      value: 
+      objectReference: {fileID: 299509017}
     - target: {fileID: 7058775737493793124, guid: f07f87f6e26f65f458ada609cfa12410,
         type: 3}
       propertyPath: m_Name
@@ -3672,6 +3683,11 @@ PrefabInstance:
       propertyPath: impactSound
       value: 
       objectReference: {fileID: 1536899885}
+    - target: {fileID: 1372411034300599228, guid: 04eb24f64e06ddc47975e1bf121d38eb,
+        type: 3}
+      propertyPath: deliverySystem
+      value: 
+      objectReference: {fileID: 299509017}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04eb24f64e06ddc47975e1bf121d38eb, type: 3}
 --- !u!4 &693829975 stripped
@@ -17251,6 +17267,11 @@ PrefabInstance:
       propertyPath: impactSound
       value: 
       objectReference: {fileID: 1536899885}
+    - target: {fileID: 7058775737493793122, guid: f07f87f6e26f65f458ada609cfa12410,
+        type: 3}
+      propertyPath: deliverySystem
+      value: 
+      objectReference: {fileID: 299509017}
     - target: {fileID: 7058775737493793124, guid: f07f87f6e26f65f458ada609cfa12410,
         type: 3}
       propertyPath: m_Name
@@ -30167,6 +30188,11 @@ PrefabInstance:
       propertyPath: impactSound
       value: 
       objectReference: {fileID: 1536899885}
+    - target: {fileID: 1372411034300599228, guid: 04eb24f64e06ddc47975e1bf121d38eb,
+        type: 3}
+      propertyPath: deliverySystem
+      value: 
+      objectReference: {fileID: 299509017}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04eb24f64e06ddc47975e1bf121d38eb, type: 3}
 --- !u!4 &1499945085 stripped
@@ -31847,6 +31873,11 @@ PrefabInstance:
       propertyPath: impactSound
       value: 
       objectReference: {fileID: 1536899885}
+    - target: {fileID: 1372411034300599228, guid: 04eb24f64e06ddc47975e1bf121d38eb,
+        type: 3}
+      propertyPath: deliverySystem
+      value: 
+      objectReference: {fileID: 299509017}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04eb24f64e06ddc47975e1bf121d38eb, type: 3}
 --- !u!4 &1943445263 stripped

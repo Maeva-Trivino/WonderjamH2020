@@ -11,6 +11,7 @@ public class MissileLauncherSpot : QTEBehaviour
     private House opponentHouse;
     [SerializeField] private AudioSource impactSound;
     [SerializeField] private AudioSource launchSound;
+    [SerializeField] private DeliverySystem deliverySystem;
 
     public void Start()
     {
@@ -24,6 +25,7 @@ public class MissileLauncherSpot : QTEBehaviour
         ml.opponentHouse = opponentHouse;
         ml.impactSound = impactSound;
         ml.launchSound = launchSound;
+        ml.deliverySystem = deliverySystem;
         contextPlayer.DestroyInteractive(this.gameObject);
     }
 
