@@ -15,7 +15,7 @@ public class Missile : MonoBehaviour
     [SerializeField] public House opponentHouse;
     [SerializeField] public int timeToDeliver;
     private bool launched = false;
-    private ParticleSystem fireTray;
+    [SerializeField] private ParticleSystem fireTray;
 
     //ScreenShake
     [SerializeField] public float shakeAmplitude;
@@ -41,11 +41,6 @@ public class Missile : MonoBehaviour
         this.shakeDuration = blueprint.shakeDuration;
         this.impactSound = blueprint.impactSound;
         this.launchSound = blueprint.launchSound;
-    }
-
-    private void Start()
-    {
-        fireTray = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Update()

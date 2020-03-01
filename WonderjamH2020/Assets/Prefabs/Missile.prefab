@@ -51,6 +51,7 @@ MonoBehaviour:
   missileDamage: 40
   opponentHouse: {fileID: 0}
   timeToDeliver: 0
+  fireTray: {fileID: 2697119613272888835}
   shakeAmplitude: 0
   shakePeriod: 0
   shakeDuration: 0
