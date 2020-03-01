@@ -7,6 +7,9 @@ public class LemonadeStand : QTEBehaviour
     [SerializeField]
     private int lemonadePrice;
 
+    [SerializeField]
+    private AudioSource sellLemonadeAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +18,7 @@ public class LemonadeStand : QTEBehaviour
 
     public void SellLemonade(Player player)
     {
+        sellLemonadeAudio.Play();
         player.SellLemonade(lemonadePrice);
         Debug.Log("Lemonade Sold");
     }
