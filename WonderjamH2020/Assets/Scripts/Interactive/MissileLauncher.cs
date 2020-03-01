@@ -17,6 +17,17 @@ public class MissileLauncher : ChoicesSenderBehaviour
     [SerializeField] private AudioSource launchSound;
     [SerializeField] private AudioSource impactSound;
 
+    [SerializeField] private DeliverySystem deliverySystem;
+    [SerializeField] private int missilePrice = 100;
+
+    public void OrderMissile(Player contextPlayer)
+    {
+        if (contextPlayer.CanAffordMissile(missilePrice))
+        {
+            contextPlayer.PayForMissile(missilePrice);
+            deliverySystem.OrderItem(this,contextPlayer.PlayerId);
+        }
+    }
 
     public void RechargeMissile()
     {
@@ -46,7 +57,7 @@ public class MissileLauncher : ChoicesSenderBehaviour
     {
         return new List<GameAction>() {
                 new GameAction("Feu !", () => Fire(), () => true),
-                new GameAction("Recharger", () => RechargeMissile(), () => true),
+                new GameAction("Recharger", () => OrderMissile(contextPlayer), () => contextPlayer.CanAffordMissile(missilePrice)),
                 new GameAction("Upgrade", () => Upgrade(), () => true)
             };
     }

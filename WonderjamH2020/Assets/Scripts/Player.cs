@@ -259,15 +259,15 @@ public class Player : MonoBehaviour
         _animator.speed = isMoving ? input.magnitude : 1;
     }
 
-    public bool CanAffordMissile(MissileBlueprint blueprint)
+    public bool CanAffordMissile(int price)
     {
-        return money >= blueprint.price;
+        return money >= price;
     }
 
     // Returns true if successful
-    public void PayForMissile(MissileBlueprint blueprint)
+    public void PayForMissile(int price)
     {
-        money -= blueprint.price;
+        money -= price;
     }
 
     public void SellLemonade(int lemonadePrice)
@@ -287,9 +287,9 @@ public class Player : MonoBehaviour
         isPickingUpItem = true;
         while (isPickingUpItem)
         {
-            if (inputManager.GetButtonDown("PickUp"))
+            if (inputManager.GetButtonDown("Interact"))
             {
-                //TODO GET ITEM
+                itemBox.recipient.RechargeMissile();
                 isPickingUpItem = false;
                 Destroy(itemBox.gameObject);
             }

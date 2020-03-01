@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class ItemBox : MonoBehaviour
 {
-    public Missile item;
+    public MissileLauncher recipient;
 }

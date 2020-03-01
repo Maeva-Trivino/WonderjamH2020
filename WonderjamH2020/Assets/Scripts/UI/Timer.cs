@@ -81,6 +81,10 @@ public class Timer : MonoBehaviour
     {
         remainingTime = initialTime;
         string secondes = ((int)remainingTime % 60).ToString();
+        if (secondes.Length == 1)
+        {
+            secondes = "0" + secondes;
+        }
         timerText.text = ((int)remainingTime / 60).ToString() + ":" + secondes;
 
         inputManager1.controllers.maps.SetAllMapsEnabled(false);
