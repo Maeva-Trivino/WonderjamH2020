@@ -2,8 +2,6 @@ using Rewired;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using UnityEngine.UI;
-using Gameplay.Delivery;
 using Popup;
 using Interactive.Base;
 
@@ -127,15 +125,6 @@ public class Player : MonoBehaviour
                 if (currentPopup != null)
                     currentPopup.Hide();
 
-                // Set static player
-                canMove = false;
-                _animator.SetBool("IsWalkingUp", false);
-                _animator.SetBool("IsWalkingRight", false);
-                _animator.SetBool("IsWalkingDown", false);
-                _animator.SetBool("IsWalkingLeft", false);
-                _animator.SetBool("IsRunningLeft", false);
-                _animator.SetBool("IsRunningRight", false);
-
                 // Start interaction
                 Interactable script = selection.GetComponent<Interactable>();
                 if (script is ChoicesSenderBehaviour)
@@ -149,9 +138,19 @@ public class Player : MonoBehaviour
                     UserAction action = (script as QTEBehaviour).GetAction(this);
                     if (action == null)
                         return;
+
                     currentPopup = QTEPopup;
                     QTEPopup.SetAction(action);
                 }
+
+                // Set static player
+                canMove = false;
+                _animator.SetBool("IsWalkingUp", false);
+                _animator.SetBool("IsWalkingRight", false);
+                _animator.SetBool("IsWalkingDown", false);
+                _animator.SetBool("IsWalkingLeft", false);
+                _animator.SetBool("IsRunningLeft", false);
+                _animator.SetBool("IsRunningRight", false);
 
                 // Display popup
                 currentPopup.Display();
@@ -171,7 +170,15 @@ public class Player : MonoBehaviour
             {
                 string text = selection.GetComponent<Interactable>().GetDecription(this);
                 if (string.IsNullOrWhiteSpace(text))
+                {
+                    if (currentPopup != null)
+                    {
+                        currentPopup.Hide();
+                        currentPopup = null;
+                    }
                     return;
+                }
+
                 LabelPopup.SetText(text);
                 if (currentPopup == null)
                     LabelPopup.Display();
