@@ -12,6 +12,8 @@ public class House : ChoicesSenderBehaviour
     
     [SerializeField]
     private int repairingAmount;
+    [SerializeField]
+    private int reparationCosts;
 
     [SerializeField] private Player enemyPlayer;
     [SerializeField] private EndScreen endScreen;
@@ -58,7 +60,7 @@ public class House : ChoicesSenderBehaviour
 
     }
 
-    public void Repair(int repairPoint)
+    public void Repair(Player player, int repairPoint)
     {
         CurrentHealth += repairPoint;
         if (CurrentHealth > maxHealth)
@@ -66,11 +68,18 @@ public class House : ChoicesSenderBehaviour
             CurrentHealth = maxHealth;
         }
         Debug.Log("Hp maison: " + currentHealth);
+        player.money -= reparationCosts;
     }
 
     public UserAction GetAction(Player player)
     {
-        return new ComboAction(player.inputManager ,new List<string> { "←", "→" }, 2, () => Repair(repairingAmount), "Repair");
+        if (CurrentHealth == maxHealth || player.money < reparationCosts)
+        {
+            return null;
+        } else
+        {
+            return new ComboAction(player.inputManager ,new List<string> { "←", "→" }, 2, () => Repair(player, repairingAmount), "Repair");
+        }
     }
 
     public override List<GameAction> GetChoices(Player contextPlayer)
