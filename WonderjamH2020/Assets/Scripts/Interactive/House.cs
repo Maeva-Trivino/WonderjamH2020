@@ -63,7 +63,7 @@ public class House : ChoicesSenderBehaviour
 
             if (currentHealth <= 0)
             {
-                endScreen.Show(enemyPlayer.name);
+                endScreen.Show(enemyPlayer.PlayerId);
             }
         }
     }

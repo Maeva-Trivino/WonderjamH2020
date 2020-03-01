@@ -31,9 +31,9 @@ public class EndScreen : MonoBehaviour
     }
 
 
-    public void Show(string winner)
+    public void Show(int winnerId)
     {
-        winnerMessage.SetText(string.Format("Congratulations ! {0} has won !", winner));
+        winnerMessage.SetText(string.Format("Congratulations ! Player {0} has won !", winnerId));
         container.SetActive(true);
         waitingForReturnToMenu = true;
     }
