@@ -9,7 +9,7 @@ public class Cat : QTEBehaviour
     private AudioSource meowAudio;
     public override UserAction GetAction(Player contextPlayer)
     {
-        return new ComboAction(contextPlayer.inputManager, new List<string> { "↑", "↑", "↓", "↓", "←", "→", "←", "→", "B", "A" }, 1, () => Meow(), "Pet");
+        return new ComboAction(contextPlayer.inputManager, new List<string> { "M", "E", "O", "W"}, 7, () => Meow(), "Pet");
     }
     private void Meow()
     {
