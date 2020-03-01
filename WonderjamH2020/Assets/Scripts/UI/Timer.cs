@@ -142,7 +142,14 @@ public class Timer : MonoBehaviour
 
         inputManager1.controllers.maps.SetAllMapsEnabled(true);
         inputManager2.controllers.maps.SetAllMapsEnabled(true);
-        themeAudio.Play();
+
+        StartCoroutine(StartThemeAudio());
         timeIsTicking = true;
+    }
+
+    public IEnumerator StartThemeAudio()
+    {
+        yield return new WaitForSeconds(1.0f);
+        themeAudio.Play();
     }
 }
