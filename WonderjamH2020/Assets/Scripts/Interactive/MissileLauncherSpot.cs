@@ -14,10 +14,12 @@ public class MissileLauncherSpot : QTEBehaviour, OrderItem
     [SerializeField] private AudioSource impactSound;
     [SerializeField] private AudioSource launchSound;
     [SerializeField] private DeliverySystem deliverySystem;
+    private bool canOrder;
 
     public void Start()
     {
         GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        canOrder = true;
     }
 
     public void OrderMissileLauncher(Player contextPlayer)
@@ -27,7 +29,7 @@ public class MissileLauncherSpot : QTEBehaviour, OrderItem
             deliverySystem.OrderItem(this,contextPlayer.PlayerId);
             Debug.Log(buildingCosts);
             contextPlayer.Pay(buildingCosts);
-            deliverySystem.CanOrder = false;
+            canOrder = false;
         }
     }
 
@@ -40,12 +42,11 @@ public class MissileLauncherSpot : QTEBehaviour, OrderItem
         ml.launchSound = launchSound;
         ml.deliverySystem = deliverySystem;
         contextPlayer.DestroyInteractive(this.gameObject);
-        deliverySystem.CanOrder = true;
     }
 
     public override UserAction GetAction(Player contextPlayer)
     {
-        if (!deliverySystem.CanOrder || !contextPlayer.CanAfford(buildingCosts))
+        if (!canOrder || !contextPlayer.CanAfford(buildingCosts))
         {
             return null;
         }

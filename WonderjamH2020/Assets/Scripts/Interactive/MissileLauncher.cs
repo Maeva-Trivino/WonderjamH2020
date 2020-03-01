@@ -28,9 +28,12 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
 
     private bool charged = false;
 
+    [SerializeField] private bool canOrder;
+
     private void Start()
     {
         GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        canOrder = true;
     }
 
     public void OrderMissile(Player contextPlayer)
@@ -39,7 +42,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
         {
             contextPlayer.Pay(missilePrice);
             deliverySystem.OrderItem(this,contextPlayer.PlayerId);
-            deliverySystem.CanOrder = false;
+            canOrder = false;
         }
     }
 
@@ -65,7 +68,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
                                 launchSound, impactSound);
             missile.LaunchMissile();
             GetComponent<Animator>().SetTrigger("shoot");
-            deliverySystem.CanOrder = true;
+            canOrder = true;
             cannonReady.StopReady();
             charged = false;
         }
@@ -73,7 +76,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
 
     public bool CanOrder(Player contextPlayer)
     {
-        return deliverySystem.CanOrder && contextPlayer.CanAfford(missilePrice);
+        return canOrder && contextPlayer.CanAfford(missilePrice);
     }
 
     private void Upgrade()
