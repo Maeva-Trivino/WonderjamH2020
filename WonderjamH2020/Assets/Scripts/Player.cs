@@ -74,10 +74,10 @@ public class Player : MonoBehaviour
         choicePopup.SetInputManager(inputManager);
         if(playerID == 0)
         {
-            Speak("I'm the one selling Lemonade on Sunday !") ;
+            Speak("I'm the one selling Lemonade on Sunday !", 1f,0f) ;
         } else
         {
-            Speak("You wish !", -1);
+            Speak("You wish, old cow !", 1f, -1);
         }
     }
 
@@ -373,16 +373,14 @@ public class Player : MonoBehaviour
         Destroy(toDestroy);
     }
 
-    public void Speak(string message, float delay=0)
+    public void Speak(string message, float baseTime= 1.5f, float delay=0f)
     {
-        float baseTime = 1.5f;
-        DialoguePopup.Display();
         DialoguePopup.SetText(message);
         if(delay == -1)
         {
-            delay += baseTime;
+            delay = baseTime;
         }
-        StartCoroutine(DialoguePopup.PopupDeactivation(baseTime+delay));
+        StartCoroutine(DialoguePopup.PopupDeactivation(delay,baseTime+delay));
     }
     #endregion
 }
