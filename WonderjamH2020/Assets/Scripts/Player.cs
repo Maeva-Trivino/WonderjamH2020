@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     private QTEPopup QTEPopup;
     [SerializeField]
     private LabelPopup LabelPopup;
+    [SerializeField]
+    private DialoguePopup DialoguePopup;
 
     [SerializeField]
     Timer timer;
@@ -70,6 +72,7 @@ public class Player : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         actionsInRange = new HashSet<GameObject>();
         choicePopup.SetInputManager(inputManager);
+        Speak("Meurs !");
     }
 
 
@@ -362,6 +365,13 @@ public class Player : MonoBehaviour
     {
         actionsInRange.Remove(toDestroy);
         Destroy(toDestroy);
+    }
+
+    public void Speak(string message)
+    {
+        DialoguePopup.Display();
+        DialoguePopup.SetText(message);
+        StartCoroutine(DialoguePopup.PopupDeactivation(3f));
     }
     #endregion
 }

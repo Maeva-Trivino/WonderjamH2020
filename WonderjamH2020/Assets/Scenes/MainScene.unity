@@ -2661,6 +2661,16 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 1940780126}
+    - target: {fileID: 2718942523964638560, guid: 719eed4fe2f381b44aa20ac60d628daf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474861334418592572, guid: 719eed4fe2f381b44aa20ac60d628daf,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 4781375910495078806, guid: 719eed4fe2f381b44aa20ac60d628daf,
         type: 3}
       propertyPath: m_Name
@@ -31717,6 +31727,16 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 1940780126}
+    - target: {fileID: 8080490505385695558, guid: 68a4fe175eff00147b077d3e60f27cf5,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080490505385695558, guid: 68a4fe175eff00147b077d3e60f27cf5,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68a4fe175eff00147b077d3e60f27cf5, type: 3}
 --- !u!4 &1603552203 stripped
