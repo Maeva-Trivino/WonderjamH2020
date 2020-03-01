@@ -11,10 +11,15 @@ public class MissileLauncherSpot : QTEBehaviour, OrderItem
     [SerializeField]
     private House opponentHouse;
     [SerializeField] private int buildingCosts;
-    [SerializeField] private AudioSource impactSound;
-    [SerializeField] private AudioSource launchSound;
     [SerializeField] private DeliverySystem deliverySystem;
     private bool canOrder;
+
+    //Audio
+    [SerializeField] private AudioSource impactSound;
+    [SerializeField] private AudioSource launchSound;
+    [SerializeField] private AudioSource constructionSound;
+
+    
 
     public void Start()
     {
@@ -35,6 +40,7 @@ public class MissileLauncherSpot : QTEBehaviour, OrderItem
 
     public void BuildMissileLauncher(Player contextPlayer)
     {
+        constructionSound.Play();
         GameObject missileLauncher = Instantiate(missileLauncherPrefab, transform.position, Quaternion.identity);
         MissileLauncher ml = missileLauncher.GetComponent<MissileLauncher>();
         ml.opponentHouse = opponentHouse;
