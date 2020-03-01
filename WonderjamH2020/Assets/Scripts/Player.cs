@@ -334,7 +334,7 @@ public class Player : MonoBehaviour
 
     public bool CanMakeLemonade(int lemonsAmount)
     {
-        return lemons > lemonsAmount;
+        return lemons >= lemonsAmount;
     }
 
     public void SellLemonade(int lemonadePrice,int lemonsAmount)
