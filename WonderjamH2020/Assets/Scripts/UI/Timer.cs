@@ -72,17 +72,26 @@ public class Timer : MonoBehaviour
             timerText.text = ((int)remainingTime / 60).ToString() + ":" + secondes;
         }
     }
+    public bool TimeIsStopped()
+    {
+        return !timeIsTicking;
+    }
 
     public void PauseTimer()
     {
         timeIsTicking = false;
-        themeAudio.Stop();
-        endGameAudio.Play();
+        themeAudio.Pause();
+        if(remainingTime < 0f)
+        {
+            themeAudio.Stop();
+            endGameAudio.Play();
+        }
     }
 
     public void UnpauseTimer()
     {
         timeIsTicking = true;
+        themeAudio.UnPause();
     }
 
     private void EndGame()
