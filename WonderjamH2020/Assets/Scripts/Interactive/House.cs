@@ -27,6 +27,8 @@ public class House : QTEBehaviour
 
     [SerializeField] private EndScreen endScreen;
 
+    [SerializeField] private DialogueSystem dialogueSystem;
+
     [SerializeField]
     private AudioSource themeAudio;
 
@@ -159,38 +161,17 @@ public class House : QTEBehaviour
         CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
-            if(ownerPlayer.PlayerId == 0)
-            {
-                ownerPlayer.Speak("NOOOOO ! YOU'LL PAY FOR THIS !", 1f, 0f);
-                enemyPlayer.Speak("Hahahahah Haha Haa \n *cough violently*", 1f, 0f);
-
-            }
-            else
-            {
-                enemyPlayer.Speak("Hahahahah Haha Haa \n *cough violently*", 1f, 0f);
-                ownerPlayer.Speak("I'm the one selling Lemonade on Sunday !", 1f, 0f);
-            }
+            dialogueSystem.DisplayDamagedHouseDialogue(ownerPlayer, enemyPlayer, HouseState.Destroyed);
             return true;
         }
-        if (ownerPlayer.PlayerId == 0 && ((float)CurrentHealth/maxHealth) <= 0.75f && !lightlyDamagedDialogueTriggered)
+        if (((float)CurrentHealth/maxHealth) <= 0.75f && !lightlyDamagedDialogueTriggered)
         {
-            ownerPlayer.Speak("I'm the one selling Lemonade on Sunday !", 1f, 0f);
+            dialogueSystem.DisplayDamagedHouseDialogue(ownerPlayer, enemyPlayer, HouseState.LightlyDamaged);
             lightlyDamagedDialogueTriggered = true;
         } 
-        else if (ownerPlayer.PlayerId == 1 && ((float)CurrentHealth / maxHealth) <= 0.75f && !lightlyDamagedDialogueTriggered)
+        else if (((float)CurrentHealth / maxHealth) <= 0.3f && !heavilyDamagedDialogueTriggered)
         {
-            ownerPlayer.Speak("I'm the one selling Lemonade on Sunday !", 1f, 0f);
-            lightlyDamagedDialogueTriggered = true;
-
-        }
-        else if (ownerPlayer.PlayerId == 0 && ((float)CurrentHealth / maxHealth) <= 0.3f && !heavilyDamagedDialogueTriggered)
-        {
-            ownerPlayer.Speak("I'm the one selling Lemonade on Sunday !", 1f, 0f);
-            heavilyDamagedDialogueTriggered = true;
-        }
-        else if (ownerPlayer.PlayerId == 1 && ((float)CurrentHealth / maxHealth) <= 0.3f && !heavilyDamagedDialogueTriggered)
-        {
-            ownerPlayer.Speak("I'm the one selling Lemonade on Sunday !", 1f, 0f);
+            dialogueSystem.DisplayDamagedHouseDialogue(ownerPlayer, enemyPlayer, HouseState.HeavilyDamaged);
             heavilyDamagedDialogueTriggered = true;
         }
         return false;

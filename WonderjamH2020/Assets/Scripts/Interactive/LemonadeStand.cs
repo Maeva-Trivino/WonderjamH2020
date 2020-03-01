@@ -34,7 +34,7 @@ public class LemonadeStand : QTEBehaviour
         }
         else
         {
-            return new ComboAction(contextPlayer.inputManager, new List<string> { "←", "↑", "→", "↓" }, 1, () => SellLemonade(contextPlayer), "Sell");
+            return new ComboAction(contextPlayer.inputManager, new List<string> { "←", "→" }, 2, () => SellLemonade(contextPlayer), "Sell");
 
         }
     }

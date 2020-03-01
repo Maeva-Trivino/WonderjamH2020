@@ -101,7 +101,7 @@ MonoBehaviour:
   spriteWithoutLemons: {fileID: -4588854041495768185, guid: aa97911fb1e1b9e4abb3c22d8b57eee5,
     type: 3}
   lemonsPerBatchMin: 3
-  lemonsPerBatchMax: 5
+  lemonsPerBatchMax: 3
   refreshTimeMin: 10
   refreshTimeMax: 15
   pickupLemonAudio: {fileID: 0}

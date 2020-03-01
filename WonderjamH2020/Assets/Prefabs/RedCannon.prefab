@@ -307,7 +307,7 @@ MonoBehaviour:
   opponentHouse: {fileID: 0}
   flightDuration: 2
   height: 10
-  missileDamage: 30
+  missileDamage: 10
   spawnPointOffSet: {fileID: 3362013827553848098}
   firePoint: {fileID: 1445020995889875243}
   shakeAmplitude: 0.2
@@ -316,8 +316,9 @@ MonoBehaviour:
   launchSound: {fileID: 0}
   impactSound: {fileID: 0}
   deliverySystem: {fileID: 0}
-  missilePrice: 100
+  missilePrice: 20
   cannonReady: {fileID: 1441331560720639749}
+  canOrder: 0
 --- !u!95 &7266403573407675313
 Animator:
   serializedVersion: 3
