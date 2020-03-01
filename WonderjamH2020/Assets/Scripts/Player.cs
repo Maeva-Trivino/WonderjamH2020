@@ -276,20 +276,29 @@ public class Player : MonoBehaviour
         _animator.speed = isMoving ? input.magnitude : 1;
     }
 
-    public bool CanAffordMissile(int price)
+    public bool CanAfford(int price)
     {
         return money >= price;
     }
 
     // Returns true if successful
-    public void PayForMissile(int price)
+    public void Pay(int price)
     {
+        Debug.Log(money);
+        Debug.Log(price);
+        Debug.Log(money);
         money -= price;
+    }
+
+    public bool CanMakeLemonade()
+    {
+        return lemons > 0;
     }
 
     public void SellLemonade(int lemonadePrice)
     {
         this.money += lemonadePrice;
+        this.lemons -= 1;
         Debug.Log("Grandma now has $" + money);
     }
 
@@ -306,7 +315,7 @@ public class Player : MonoBehaviour
         {
             if (inputManager.GetButtonDown("Interact"))
             {
-                itemBox.recipient.RechargeMissile();
+                itemBox.item.Use(this);
                 isPickingUpItem = false;
                 Destroy(itemBox.gameObject);
             }

@@ -21,11 +21,11 @@ public class OrderingStation
         missileBlueprints.ForEach((blueprint => choices.Add(new GameAction(blueprint.name,() =>
         {
             //TODO Feedback
-            if (contextPlayer.CanAffordMissile(blueprint))
+            if (contextPlayer.CanAfford(blueprint))
             {
                 ChooseMissile(blueprint, contextPlayer.PlayerId);
             }
-        },() => contextPlayer.CanAffordMissile(blueprint)))));
+        },() => contextPlayer.CanAfford(blueprint)))));
 
         return choices;
     }

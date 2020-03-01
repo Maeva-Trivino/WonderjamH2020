@@ -25,6 +25,14 @@ public class LemonadeStand : QTEBehaviour
 
     public override UserAction GetAction(Player contextPlayer)
     {
-        return new ComboAction(contextPlayer.inputManager, new List<string> { "←", "↑", "→", "↓" }, 1, () => SellLemonade(contextPlayer), "Sell");
+        if (!contextPlayer.CanMakeLemonade())
+        {
+            return null;
+        }
+        else
+        {
+            return new ComboAction(contextPlayer.inputManager, new List<string> { "←", "↑", "→", "↓" }, 1, () => SellLemonade(contextPlayer), "Sell");
+
+        }
     }
 }

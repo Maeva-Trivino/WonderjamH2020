@@ -48,6 +48,7 @@ MonoBehaviour:
   missileLauncherPrefab: {fileID: 2958956078741284333, guid: fe897f08b7632304db4834b3e3caa5b0,
     type: 3}
   opponentHouse: {fileID: 0}
+  buildingCosts: 20
   impactSound: {fileID: 0}
   launchSound: {fileID: 0}
   deliverySystem: {fileID: 0}

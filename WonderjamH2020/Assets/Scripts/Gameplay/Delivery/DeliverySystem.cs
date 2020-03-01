@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Assets.Scripts.Gameplay.Delivery;
 using Gameplay;
 using Rewired;
 using UnityEngine;
@@ -17,21 +18,24 @@ public class DeliverySystem : MonoBehaviour
     [SerializeField]
     private int timeForDelivery;
 
-    private Queue<MissileLauncher> rightWaitingOrders;
-    private Queue<MissileLauncher> leftWaitingOrders;
+    private Queue<OrderItem> rightWaitingOrders;
+    private Queue<OrderItem> leftWaitingOrders;
 
     [SerializeField]
     private DeliveryTruck rightDeliveryTruck;
     [SerializeField]
     private DeliveryTruck leftDeliveryTruck;
 
+    public bool CanOrder;
+
+
     // Start is called before the first frame update
     void Start()
     {
         inputManager = ReInput.players.GetPlayer(0);
-
-        rightWaitingOrders = new Queue<MissileLauncher>();
-        leftWaitingOrders = new Queue<MissileLauncher>();
+        CanOrder = true;
+        rightWaitingOrders = new Queue<OrderItem>();
+        leftWaitingOrders = new Queue<OrderItem>();
     }
 
     // Update is called once per frame
@@ -47,12 +51,13 @@ public class DeliverySystem : MonoBehaviour
             rightDeliveryTruck.Deliver(rightWaitingOrders.Dequeue());
         }
     }
-    public void OrderItem(MissileLauncher recipient,int playerId)
+
+    public void OrderItem(OrderItem recipient,int playerId)
     {
         StartCoroutine(WaitForDelivery(recipient, playerId));
     }
 
-    IEnumerator WaitForDelivery(MissileLauncher order,int playerId)
+    IEnumerator WaitForDelivery(OrderItem order,int playerId)
     {
         yield return new WaitForSeconds(timeForDelivery);
 
