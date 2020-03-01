@@ -72,7 +72,7 @@ public class House : ChoicesSenderBehaviour
             {
                 themeAudio.Stop();
                 endGameAudio.Play();
-                endScreen.Show(enemyPlayer.name);
+                endScreen.Show(enemyPlayer.PlayerId);
             }
         }
     }
