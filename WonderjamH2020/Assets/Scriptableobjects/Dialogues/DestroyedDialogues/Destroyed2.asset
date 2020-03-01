@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Destroyed2
   m_EditorClassIdentifier: 
   textSpeaker1: Get wrecked !
-  textSpeaker2: I'm no done with you !\nYou better watch your back.
+  textSpeaker2: I'm no done with you ! Better watch your back.
   timeSpeaker1: 2
   timeSpeaker2: 2
   beginDialogueWith: 1

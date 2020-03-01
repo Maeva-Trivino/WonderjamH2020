@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Destroyed1
   m_EditorClassIdentifier: 
   textSpeaker1: NOOOOO ! YOU'LL PAY FOR THIS !
-  textSpeaker2: Hahahahah Haha Haa \n *cough violently*
+  textSpeaker2: Hahahahah Haha Haa *coughs violently*
   timeSpeaker1: 2
   timeSpeaker2: 2
   beginDialogueWith: 0
