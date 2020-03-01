@@ -2414,7 +2414,6 @@ Transform:
   m_Children:
   - {fileID: 1359705349}
   - {fileID: 1766880799}
-  - {fileID: 164690337}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2738,12 +2737,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 100
+  maxHealth: 100
   healthBar: {fileID: 162934920}
   repairingAmount: 5
   reparationCosts: 0
   ownerPlayer: {fileID: 0}
   enemyPlayer: {fileID: 1259327765}
   endScreen: {fileID: 0}
+  themeAudio: {fileID: 63588026}
+  endGameAudio: {fileID: 1771800794}
   sprites:
   - {fileID: 3107508111494870052, guid: e83ef9e8cb780974ba5d441fcfb39aab, type: 3}
   - {fileID: -8184418211298074948, guid: e83ef9e8cb780974ba5d441fcfb39aab, type: 3}
@@ -3645,12 +3647,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 100
+  maxHealth: 100
   healthBar: {fileID: 0}
   repairingAmount: 5
   reparationCosts: 0
   ownerPlayer: {fileID: 0}
   enemyPlayer: {fileID: 1259327765}
   endScreen: {fileID: 0}
+  themeAudio: {fileID: 63588026}
+  endGameAudio: {fileID: 1771800794}
   sprites:
   - {fileID: 1661193485724221311, guid: e83ef9e8cb780974ba5d441fcfb39aab, type: 3}
   - {fileID: 7819105419346469886, guid: e83ef9e8cb780974ba5d441fcfb39aab, type: 3}
@@ -30927,7 +30932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1903849078}
   timerStartGameText: {fileID: 120281692}
-  initialTime: 13
+  initialTime: 300
   bipCompteurAudio: {fileID: 94249266}
   bipStartGameAudio: {fileID: 1526211644}
   endGameAudio: {fileID: 1771800794}
