@@ -190,14 +190,14 @@ MonoBehaviour:
   opponentHouse: {fileID: 0}
   flightDuration: 2
   height: 10
-  missileDamage: 30
+  missileDamage: 10
   shakeAmplitude: 0.2
   shakePeriod: 0.05
   shakeDuration: 1
   launchSound: {fileID: 0}
   impactSound: {fileID: 0}
   deliverySystem: {fileID: 0}
-  missilePrice: 100
+  missilePrice: 20
   spawnPointOffSet: {fileID: 3362013827553848098}
   firePoint: {fileID: 1445020995889875243}
 --- !u!95 &7266403573407675313
