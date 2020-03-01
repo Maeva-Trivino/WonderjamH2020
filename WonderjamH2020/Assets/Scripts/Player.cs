@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
     private QTEPopup QTEPopup;
     [SerializeField]
     private LabelPopup LabelPopup;
+
+    [SerializeField]
+    Timer timer;
     #endregion
 
     #region Public
@@ -71,6 +74,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (timer.TimeIsStopped())
+        {
+            return;
+        }
         if (canMove)
         {
             PlayerMove();
@@ -180,6 +187,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (timer.TimeIsStopped())
+        {
+            return;
+        }
         if (canMove)
             _rigidbody2D.MovePosition(_rigidbody2D.position + speed * input * Time.fixedDeltaTime);
     }

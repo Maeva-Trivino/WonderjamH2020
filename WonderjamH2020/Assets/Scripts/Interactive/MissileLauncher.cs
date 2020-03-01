@@ -19,6 +19,8 @@ public class MissileLauncher : ChoicesSenderBehaviour
 
     [SerializeField] public DeliverySystem deliverySystem;
     [SerializeField] private int missilePrice = 100;
+    [SerializeField] private Transform spawnPointOffSet;
+    [SerializeField] private Transform firePoint;
 
     private void Start()
     {
@@ -39,7 +41,7 @@ public class MissileLauncher : ChoicesSenderBehaviour
         if(missile == null)
         {
             missile = Instantiate(missilePrefab, transform).GetComponent<Missile>();
-            missile.transform.position = transform.position;
+            missile.transform.position = spawnPointOffSet.position;
             missile.Initialize(opponentHouse,flightDuration,height,missileDamage,shakeAmplitude,shakePeriod,shakeDuration,
                                 launchSound,impactSound);
         }
@@ -48,8 +50,10 @@ public class MissileLauncher : ChoicesSenderBehaviour
     {
         if(missile != null)
         {
+            missile.transform.position = firePoint.position;
             missile.LaunchMissile();
             GetComponent<Animator>().SetTrigger("shoot");
+            missile = null;
         }
     }
 
@@ -61,7 +65,7 @@ public class MissileLauncher : ChoicesSenderBehaviour
     public override List<GameAction> GetChoices(Player contextPlayer)
     {
         return new List<GameAction>() {
-                new GameAction("Feu !", () => Fire(), () => true),
+                new GameAction("Feu !", () => Fire(), () => missile != null),
                 new GameAction("Recharger", () => OrderMissile(contextPlayer), () => contextPlayer.CanAffordMissile(missilePrice)),
                 new GameAction("Upgrade", () => Upgrade(), () => true)
             };
