@@ -21,6 +21,7 @@ public class MissileLauncher : ChoicesSenderBehaviour
     [SerializeField] private int missilePrice = 100;
     [SerializeField] private Transform spawnPointOffSet;
     [SerializeField] private Transform firePoint;
+    private bool charged = false;
 
     private void Start()
     {
@@ -38,22 +39,26 @@ public class MissileLauncher : ChoicesSenderBehaviour
 
     public void RechargeMissile()
     {
-        if(missile == null)
+        /*if(missile == null)
         {
             missile = Instantiate(missilePrefab, transform).GetComponent<Missile>();
-            missile.transform.position = spawnPointOffSet.position;
+            missile.transform.position = firePoint.position;
             missile.Initialize(opponentHouse,flightDuration,height,missileDamage,shakeAmplitude,shakePeriod,shakeDuration,
                                 launchSound,impactSound);
-        }
+        }*/
+        charged = true;
     }
     public void Fire()
     {
-        if(missile != null)
+        if(charged)
         {
+            missile = Instantiate(missilePrefab, transform).GetComponent<Missile>();
             missile.transform.position = firePoint.position;
+            missile.Initialize(opponentHouse, flightDuration, height, missileDamage, shakeAmplitude, shakePeriod, shakeDuration,
+                                launchSound, impactSound);
             missile.LaunchMissile();
             GetComponent<Animator>().SetTrigger("shoot");
-            missile = null;
+            charged = false;
         }
     }
 
@@ -65,7 +70,7 @@ public class MissileLauncher : ChoicesSenderBehaviour
     public override List<GameAction> GetChoices(Player contextPlayer)
     {
         return new List<GameAction>() {
-                new GameAction("Feu !", () => Fire(), () => missile != null),
+                new GameAction("Feu !", () => Fire(), () => charged),
                 new GameAction("Recharger", () => OrderMissile(contextPlayer), () => contextPlayer.CanAffordMissile(missilePrice)),
                 new GameAction("Upgrade", () => Upgrade(), () => true)
             };
