@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 3837052351730792881}
   - component: {fileID: 7856161728055233204}
   m_Layer: 5
-  m_Name: Press A text
+  m_Name: ReturnToMainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,8 +165,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -321,8 +321,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -420,7 +420,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.024993896, y: 0}
+  m_AnchoredPosition: {x: 0.025024414, y: 0}
   m_SizeDelta: {x: -0.050049, y: 0.000061035}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7165080791463793996
@@ -473,4 +473,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winnerMessage: {fileID: 3675086046670319312}
+  returnToMainMenuText: {fileID: 7856161728055233204}
   container: {fileID: 5423233855218775461}
