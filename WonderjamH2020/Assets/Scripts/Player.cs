@@ -72,13 +72,6 @@ public class Player : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         actionsInRange = new HashSet<GameObject>();
         choicePopup.SetInputManager(inputManager);
-        if(playerID == 0)
-        {
-            Speak("I'm the one selling Lemonade on Sunday !", 1f,0f) ;
-        } else
-        {
-            Speak("You wish, old cow !", 1f, -1);
-        }
     }
 
 
