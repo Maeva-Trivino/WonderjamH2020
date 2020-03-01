@@ -729,7 +729,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -848,7 +848,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &162934918
 PrefabInstance:
@@ -1064,6 +1064,7 @@ MonoBehaviour:
   currentHealth: 50
   healthBar: {fileID: 0}
   repairingAmount: 5
+  reparationCosts: 0
   ownerPlayer: {fileID: 0}
   enemyPlayer: {fileID: 0}
   endScreen: {fileID: 0}
@@ -1105,7 +1106,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1066314539
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fb21d43469c422e4799d052c515883f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1188,7 +1189,7 @@ PrefabInstance:
     - target: {fileID: 555359875346147941, guid: 3e8c6e5cff3a58844bdc9d2b03faaebe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 555359875346147941, guid: 3e8c6e5cff3a58844bdc9d2b03faaebe,
         type: 3}
@@ -2514,8 +2515,9 @@ Transform:
   m_Children:
   - {fileID: 1359705349}
   - {fileID: 1766880799}
+  - {fileID: 164690337}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &249929718
 PrefabInstance:
@@ -2789,7 +2791,7 @@ Transform:
   - {fileID: 400467955}
   - {fileID: 1077463635}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &400467954
 GameObject:
@@ -3072,6 +3074,18 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 41611282}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &653668640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7649687524271883772, guid: 5f97f57c7e1cda24bb279c5c2a140e4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1978637786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6976e3e1bb467346ab0a19ca43b6291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &691165901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3526,7 +3540,7 @@ PrefabInstance:
     - target: {fileID: 1960297758106252903, guid: 7d5c2b1130610ac4ab0b4bdaf71ac318,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1960297758106252903, guid: 7d5c2b1130610ac4ab0b4bdaf71ac318,
         type: 3}
@@ -3708,7 +3722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 100
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 653668640}
   repairingAmount: 5
   reparationCosts: 0
   ownerPlayer: {fileID: 0}
@@ -14971,7 +14985,7 @@ PrefabInstance:
     - target: {fileID: 555359875346147941, guid: 3e8c6e5cff3a58844bdc9d2b03faaebe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 555359875346147941, guid: 3e8c6e5cff3a58844bdc9d2b03faaebe,
         type: 3}
@@ -16624,7 +16638,7 @@ PrefabInstance:
     - target: {fileID: 555359875346147941, guid: 3e8c6e5cff3a58844bdc9d2b03faaebe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 555359875346147941, guid: 3e8c6e5cff3a58844bdc9d2b03faaebe,
         type: 3}
@@ -30882,7 +30896,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -31488,7 +31502,7 @@ PrefabInstance:
     - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
         type: 3}
