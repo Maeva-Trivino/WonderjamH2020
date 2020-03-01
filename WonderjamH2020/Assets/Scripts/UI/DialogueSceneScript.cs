@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Popup;
+using Rewired;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -31,9 +32,13 @@ public class DialogueSceneScript : MonoBehaviour
     private AudioSource parolesGrognonAudio;
     #endregion
 
+    //InputManager
+    private Rewired.Player inputManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        inputManager = ReInput.players.GetPlayer(0);
         memeImage = transform.GetComponent<Image>();
         RoutineSpeak();
     }
@@ -41,7 +46,10 @@ public class DialogueSceneScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (inputManager.GetButtonDown("Interact"))
+        {
+            SceneManager.LoadScene("DirectivesMenu");
+        }
     }
 
     private void RoutineSpeak()
