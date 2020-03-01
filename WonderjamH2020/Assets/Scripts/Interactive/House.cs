@@ -83,7 +83,7 @@ public class House : ChoicesSenderBehaviour
         GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
         //TODO Règler ce truc moche, commentez si besoin de tester d'autres valeurs
-        CurrentHealth = maxHealth;
+        //CurrentHealth = maxHealth;
 
         //Init Dictionnary
         spritesDictionnary = new Dictionary<HouseState, Sprite>();
