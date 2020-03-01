@@ -14,14 +14,14 @@ public class MissileLauncherSpot : QTEBehaviour
         GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
     }
 
-    public void BuildMissileLauncher()
+    public void BuildMissileLauncher(Player contextPlayer)
     {
         Instantiate(missileLauncherPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject, 0.2f);
+        contextPlayer.DestroyInteractive(this.gameObject);
     }
 
     public override UserAction GetAction(Player contextPlayer)
     {
-        return new ComboAction(contextPlayer.inputManager, new List<string> { "→" }, 5, () => BuildMissileLauncher(), "Build");
+        return new ComboAction(contextPlayer.inputManager, new List<string> { "→" }, 5, () => BuildMissileLauncher(contextPlayer), "Build");
     }
 }
