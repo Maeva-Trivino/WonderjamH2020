@@ -72,7 +72,13 @@ public class Player : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         actionsInRange = new HashSet<GameObject>();
         choicePopup.SetInputManager(inputManager);
-        Speak("Meurs !");
+        if(playerID == 0)
+        {
+            Speak("I'm the one selling Lemonade on Sunday !") ;
+        } else
+        {
+            Speak("You wish !", -1);
+        }
     }
 
 
@@ -367,11 +373,16 @@ public class Player : MonoBehaviour
         Destroy(toDestroy);
     }
 
-    public void Speak(string message)
+    public void Speak(string message, float delay=0)
     {
+        float baseTime = 1.5f;
         DialoguePopup.Display();
         DialoguePopup.SetText(message);
-        StartCoroutine(DialoguePopup.PopupDeactivation(3f));
+        if(delay == -1)
+        {
+            delay += baseTime;
+        }
+        StartCoroutine(DialoguePopup.PopupDeactivation(baseTime+delay));
     }
     #endregion
 }
