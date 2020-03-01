@@ -14,9 +14,7 @@ public class Player : MonoBehaviour
     #region Editor
     [Header("General")]
     [SerializeField]
-    private float minSpeed = 2;
-    [SerializeField]
-    private float speed = 2;
+    private float baseSpeed = 6;
     [SerializeField]
     private int playerID = 0;
 
@@ -54,6 +52,7 @@ public class Player : MonoBehaviour
     private Animator _animator;
     private bool isRunning;
     private bool canMove = true;
+    private float speed;
     #endregion
     #endregion
 
@@ -218,7 +217,7 @@ public class Player : MonoBehaviour
         Color color = new Color(redValue/255f, gbValue/255f, gbValue/255f,1f);
         this.GetComponentInChildren<SpriteRenderer>().color = color;
 
-        speed = minSpeed + (1 - newPercentage) * (minSpeed*3);
+        speed = baseSpeed + (1 - newPercentage) * (baseSpeed * 2.5f);
     }
 
     #region Private
