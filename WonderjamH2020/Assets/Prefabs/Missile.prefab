@@ -48,7 +48,7 @@ MonoBehaviour:
   price: 10
   flightDuration: 5
   height: 5
-  missileDamage: 5
+  missileDamage: 40
   opponentHouse: {fileID: 0}
   timeToDeliver: 0
   shakeAmplitude: 0
@@ -129,7 +129,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1066314539
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4868,7 +4868,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1066314539
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 900a5ccb6a653e74db7ef1c3a2637f9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

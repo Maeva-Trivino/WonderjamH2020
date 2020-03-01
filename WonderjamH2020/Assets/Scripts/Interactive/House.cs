@@ -119,25 +119,25 @@ public class House : ChoicesSenderBehaviour
     {
         if (currentState != HouseState.Destroyed && newPercentage <= Mathf.Epsilon)
         {
-            currentState = HouseState.Destroyed;
+            CurrentState = HouseState.Destroyed;
             return;
         }
 
         if (currentState != HouseState.HeavilyDamaged && newPercentage > Mathf.Epsilon && newPercentage <= 0.3f)
         {
-            currentState = HouseState.HeavilyDamaged;
+            CurrentState = HouseState.HeavilyDamaged;
             return;
         }
 
         if (currentState != HouseState.LightlyDamaged && newPercentage > 0.3 && newPercentage <= 0.75)
         {
-            currentState = HouseState.LightlyDamaged;
+            CurrentState = HouseState.LightlyDamaged;
             return;
         }
 
         if (currentState != HouseState.FullHeatlh && newPercentage > 0.75)
         {
-            currentState = HouseState.FullHeatlh;
+            CurrentState = HouseState.FullHeatlh;
             return;
         }
     }
