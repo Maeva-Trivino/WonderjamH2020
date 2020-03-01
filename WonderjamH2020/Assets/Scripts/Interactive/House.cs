@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class House : QTEBehaviour
 {
-    [SerializeField]
     protected int currentHealth;
     [SerializeField]
     protected int maxHealth;

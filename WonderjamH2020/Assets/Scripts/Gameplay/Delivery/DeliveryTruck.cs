@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Gameplay.Delivery;
 using Gameplay;
 using UnityEngine;
 
@@ -25,11 +26,11 @@ public class DeliveryTruck : MonoBehaviour
         set { outForDelivery = value; }
     }
 
-    private MissileLauncher recipientToDeliver;
-    public MissileLauncher RecipientToDeliver
+    private OrderItem itemToDeliver;
+    public OrderItem ItemToDeliver
     {
-        get { return recipientToDeliver; }
-        set { recipientToDeliver = value; }
+        get { return itemToDeliver; }
+        set { itemToDeliver = value; }
     }
 
     #region music
@@ -50,10 +51,10 @@ public class DeliveryTruck : MonoBehaviour
         endPosition = endPoint.position;
     }
 
-    public void Deliver(MissileLauncher recipient)
+    public void Deliver(OrderItem item)
     {
         outForDelivery = true;
-        recipientToDeliver = recipient;
+        itemToDeliver = item;
 
         StartCoroutine(PlayStopCar());
         LTDescr tweenDesc= LeanTween.move(this.gameObject, deliveryTargetPosition, 5.0f);
@@ -73,7 +74,7 @@ public class DeliveryTruck : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         ItemBox newItemBox = Instantiate(itemBoxPrefab, this.transform.position + new Vector3(0, 2.5f, 0), Quaternion.identity);
-        newItemBox.recipient = recipientToDeliver;
+        newItemBox.item = itemToDeliver;
         newItemBox.enabled = true;
 
         klazonCarAudio.Play();
@@ -100,7 +101,7 @@ public class DeliveryTruck : MonoBehaviour
     public void LeaveMap()
     {
         this.transform.position = startingPosition;
-        recipientToDeliver = null;
+        itemToDeliver = null;
         outForDelivery = false;
     }
 }
