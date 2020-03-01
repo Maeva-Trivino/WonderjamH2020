@@ -59,27 +59,27 @@ public class DialogueSceneScript : MonoBehaviour
     {
         if (isMemeBlue)
         {
-            Speak("My lemonade company was the best \n in the city and still is !", 3.0f, 1.0f);
+            Speak("My lemonade company has always been \n the best !", 3.0f, 1.0f);
             StartCoroutine(ChangeSpriteMeme(5.0f, memeSemiEnervee));
             StartCoroutine(PlaySoundAngry(parolesGrognonAudio, 5.0f));
-            Speak("It's a joke, you stole my receipe !", 3.0f, 5.0f);
+            Speak("Are you kidding ? You stole my recipe !", 3.0f, 5.0f);
             StartCoroutine(ChangeSpriteMeme(14.0f, memeEnervee));
             StartCoroutine(PlaySoundAngry(parolesGrognonAudio, 14.0f));
-            Speak("AAHHH you make me mad !", 3.0f, 14.0f);
-            Speak("SO ME TOO !", 3.0f, 18.0f);
+            Speak("AAHHH you're triggering me !\n I'll burn your lemon tree!", 3.0f, 14.0f);
+            Speak("And you will meet mines!", 3.0f, 18.0f);
             Speak("FINE !", 2.0f, 22.0f);
             StartCoroutine(StartShakeAndGame(10f, 0.05f));
         }
         else
         {
-            Speak("So logical, you stole \n my beautiful lemons !", 3.0f, 3.0f);
+            Speak("Of course, you stole \n my beautiful lemons !", 3.0f, 3.0f);
             StartCoroutine(ChangeSpriteMeme(7.0f, memeSemiEnervee));
             StartCoroutine(PlaySoundAngry(parolesGrognonAudio, 7.0f));
-            Speak("What ? I told you I never did this !", 3.0f, 7.0f);
-            Speak("And you know that all children love \n MY lemonade now because you're a liar !", 3.0f, 11.0f);
+            Speak("What ? I would never use \n this cheap recipe of yours !", 3.0f, 7.0f);
+            Speak("And you know that all children prefer \n MY lemonade !", 3.0f, 11.0f);
             StartCoroutine(ChangeSpriteMeme(16.0f, memeEnervee));
             StartCoroutine(PlaySoundAngry(parolesGrognonAudio, 16.0f));
-            Speak("WELL ! I'll order some cannons \n to destroy your house on Azamon !", 3.0f, 16.0f);
+            Speak("Is that so ?! Then you'll get \n to know my missiles launchers. :)", 3.0f, 16.0f);
             Speak("FINE !", 2.0f, 20.0f);
             StartCoroutine(StartShakeAndGame(10f, 0.05f));
 
