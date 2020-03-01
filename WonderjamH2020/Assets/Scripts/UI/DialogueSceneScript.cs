@@ -30,6 +30,9 @@ public class DialogueSceneScript : MonoBehaviour
     #region music
     [SerializeField]
     private AudioSource parolesGrognonAudio;
+
+    [SerializeField]
+    private AudioSource tremblementsAudio;
     #endregion
 
     //InputManager
@@ -99,6 +102,10 @@ public class DialogueSceneScript : MonoBehaviour
     private IEnumerator StartShakeAndGame(float amplitude, float periode)
     {
         yield return new WaitForSeconds(24.0f);
+        if (isMemeBlue)
+        {
+            tremblementsAudio.Play();
+        }
         transform.GetComponent<ScreenShaker>().ScreenShakeUI(amplitude, periode, 1f);
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("DirectivesMenu");
