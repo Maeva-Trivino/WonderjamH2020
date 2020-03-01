@@ -214,7 +214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &39297179
 Transform:
   m_ObjectHideFlags: 0
@@ -3540,6 +3540,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 919715670}
     m_Modifications:
+    - target: {fileID: 1960297757670316046, guid: 7d5c2b1130610ac4ab0b4bdaf71ac318,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960297758065854782, guid: 7d5c2b1130610ac4ab0b4bdaf71ac318,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960297758106252888, guid: 7d5c2b1130610ac4ab0b4bdaf71ac318,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: acfaa80cec99b5448add165a19409765,
+        type: 3}
     - target: {fileID: 1960297758106252889, guid: 7d5c2b1130610ac4ab0b4bdaf71ac318,
         type: 3}
       propertyPath: stopCarAudio
