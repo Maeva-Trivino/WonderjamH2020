@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     private ChoicePopup choicePopup;
     [SerializeField]
     private QTEPopup QTEPopup;
+    [SerializeField]
+    private LabelPopup LabelPopup;
     #endregion
 
     #region Public
@@ -50,7 +52,6 @@ public class Player : MonoBehaviour
     private Vector2 input;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
-    private Canvas _canvas;
     private bool isRunning;
     private bool canMove = true;
     #endregion
@@ -63,7 +64,6 @@ public class Player : MonoBehaviour
         inputManager = ReInput.players.GetPlayer(playerID);
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
-        _canvas = GetComponentInChildren<Canvas>();
         actionsInRange = new HashSet<GameObject>();
         choicePopup.SetInputManager(inputManager);
     }
@@ -117,6 +117,9 @@ public class Player : MonoBehaviour
         {
             if (inputManager.GetButtonDown("Interact") && canMove)
             {
+                if (currentPopup != null)
+                    currentPopup.Hide();
+
                 // Set static player
                 canMove = false;
                 _animator.SetBool("IsWalkingUp", false);
@@ -144,12 +147,29 @@ public class Player : MonoBehaviour
                 // Display popup
                 currentPopup.Display();
                 currentPopup.onClose.RemoveAllListeners();
-                currentPopup.onClose.AddListener(() => canMove = true);
+                currentPopup.onClose.AddListener(() =>
+                {
+                    canMove = true;
+                    currentPopup = null;
+                });
             }
             else if (inputManager.GetButtonDown("Cancel"))
             {
                 currentPopup.Hide();
+                currentPopup = null;
             }
+            else
+            {
+                LabelPopup.SetText(selection.GetComponent<Interactable>().GetDecription(this));
+                if (currentPopup == null)
+                    LabelPopup.Display();
+                currentPopup = LabelPopup;
+            }
+        }
+        else if (currentPopup != null)
+        {
+            currentPopup.Hide();
+            currentPopup = null;
         }
     }
 
@@ -216,8 +236,6 @@ public class Player : MonoBehaviour
             input = Vector2.zero;
         }
 
-        //_animator.SetBool("Walking", !isRunning && isMoving);
-        _animator.speed = isMoving ? input.magnitude : 1;
 
         bool wu = false, wr = false, wd = false, wl = false;
         if (input != Vector2.zero && !choicePopup.IsVisible)
@@ -238,6 +256,7 @@ public class Player : MonoBehaviour
         _animator.SetBool("IsWalkingLeft", wl);
         _animator.SetBool("IsRunningLeft", isRunning && wl);
         _animator.SetBool("IsRunningRight", isRunning && wr);
+        _animator.speed = isMoving ? input.magnitude : 1;
     }
 
     public bool CanAffordMissile(MissileBlueprint blueprint)

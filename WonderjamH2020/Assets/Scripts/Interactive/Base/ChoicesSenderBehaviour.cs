@@ -17,7 +17,8 @@ namespace Interactive.Base
             transform.localScale *= 1.01f;
         }
 
-        public abstract List<GameAction> GetChoices(Player contextPlayer);
+        public virtual string GetDecription(Player contextPlayer) => "...";
 
+        public abstract List<GameAction> GetChoices(Player contextPlayer);
     }
 }

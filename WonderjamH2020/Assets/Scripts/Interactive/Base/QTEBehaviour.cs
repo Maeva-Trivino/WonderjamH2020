@@ -16,6 +16,8 @@ namespace Interactive.Base
             transform.localScale *= 1.01f;
         }
 
+        public virtual string GetDecription(Player contextPlayer) => GetAction(contextPlayer).name;
         public abstract UserAction GetAction(Player contextPlayer);
+
     }
 }

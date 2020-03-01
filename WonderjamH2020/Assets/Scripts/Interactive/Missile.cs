@@ -95,6 +95,7 @@ public class Missile : MonoBehaviour
         opponentHouse.DoDamage(missileDamage);
         Camera.main.GetComponent<ScreenShaker>().ScreenShake(shakeAmplitude, shakePeriod,shakeDuration);
         fireTray.Stop();
+        GetComponentInChildren<Animator>().SetTrigger("explode");
         DetachParticle();
         impactSound.Play();
         Destroy(gameObject);
