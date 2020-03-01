@@ -25,11 +25,11 @@ public class DeliveryTruck : MonoBehaviour
         set { outForDelivery = value; }
     }
 
-    private Missile itemToDeliver;
-    public Missile ItemToDeliver
+    private MissileLauncher recipientToDeliver;
+    public MissileLauncher RecipientToDeliver
     {
-        get { return itemToDeliver; }
-        set { itemToDeliver = value; }
+        get { return recipientToDeliver; }
+        set { recipientToDeliver = value; }
     }
 
     #region music
@@ -50,10 +50,10 @@ public class DeliveryTruck : MonoBehaviour
         endPosition = endPoint.position;
     }
 
-    public void Deliver(Missile item)
+    public void Deliver(MissileLauncher recipient)
     {
         outForDelivery = true;
-        itemToDeliver = item;
+        recipientToDeliver = recipient;
 
         StartCoroutine(PlayStopCar());
         LTDescr tweenDesc= LeanTween.move(this.gameObject, deliveryTargetPosition, 5.0f);
@@ -73,7 +73,7 @@ public class DeliveryTruck : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         ItemBox newItemBox = Instantiate(itemBoxPrefab, this.transform.position + new Vector3(0, 2.5f, 0), Quaternion.identity);
-        newItemBox.item = itemToDeliver;
+        newItemBox.recipient = recipientToDeliver;
         newItemBox.enabled = true;
 
         klazonCarAudio.Play();
@@ -100,7 +100,7 @@ public class DeliveryTruck : MonoBehaviour
     public void LeaveMap()
     {
         this.transform.position = startingPosition;
-        itemToDeliver = null;
+        recipientToDeliver = null;
         outForDelivery = false;
     }
 }
