@@ -2433,6 +2433,16 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 7318443783337489678, guid: 719eed4fe2f381b44aa20ac60d628daf,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318443783337489678, guid: 719eed4fe2f381b44aa20ac60d628daf,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8835243088690199202, guid: 719eed4fe2f381b44aa20ac60d628daf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29663,6 +29673,16 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 2705204791999725428, guid: 68a4fe175eff00147b077d3e60f27cf5,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705204791999725428, guid: 68a4fe175eff00147b077d3e60f27cf5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4217500600221724888, guid: 68a4fe175eff00147b077d3e60f27cf5,
         type: 3}
       propertyPath: m_LocalPosition.x

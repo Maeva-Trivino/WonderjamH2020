@@ -130,7 +130,7 @@ namespace Popup
 
             RectTransform tr = (RectTransform)button.transform;
             float angle = (maxIndex - index) * Mathf.PI / maxIndex;
-            tr.anchoredPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * .4f) * 50f;
+            tr.anchoredPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * .5f) * 100f;
         }
         #endregion
         #endregion

@@ -238,7 +238,7 @@ RectTransform:
   m_GameObject: {fileID: 3382180867575017397}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.015, y: 0.015, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
   m_Children:
   - {fileID: 6009074787878577443}
   - {fileID: 2705204790251624180}
@@ -249,7 +249,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0.2}
-  m_SizeDelta: {x: 65, y: 30}
+  m_SizeDelta: {x: 100, y: 34.375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &647445156995623581
 Canvas:
@@ -455,16 +455,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3298871794951183388}
     m_Modifications:
-    - target: {fileID: 3876217452430539591, guid: e71024afa2e328e4d9ec6c8be993ab0d,
-        type: 3}
-      propertyPath: m_subTextObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 3771029367801280868}
-    - target: {fileID: 3876217452430539591, guid: e71024afa2e328e4d9ec6c8be993ab0d,
-        type: 3}
-      propertyPath: m_textAlignment
-      value: 4098
-      objectReference: {fileID: 0}
     - target: {fileID: 9169798961506460669, guid: e71024afa2e328e4d9ec6c8be993ab0d,
         type: 3}
       propertyPath: m_Name
@@ -538,7 +528,7 @@ PrefabInstance:
     - target: {fileID: 9169798961506460670, guid: e71024afa2e328e4d9ec6c8be993ab0d,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -68.75
       objectReference: {fileID: 0}
     - target: {fileID: 9169798961506460670, guid: e71024afa2e328e4d9ec6c8be993ab0d,
         type: 3}
@@ -730,17 +720,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd5a017af7f8074595f5aba42aba900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3771029367801280868 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7970836720443247726, guid: 1474d193f0a375140a559e09d0090de3,
-    type: 3}
-  m_PrefabInstance: {fileID: 6542458118884078858}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
