@@ -147,9 +147,15 @@ public class Player : MonoBehaviour
                 }
                 else if (script is QTEBehaviour)
                 {
+
                     UserAction action = (script as QTEBehaviour).GetAction(this);
                     if (action == null)
                         return;
+
+                    if (!(action is ComboAction))
+                    {
+                       action.DoAction();
+                    }
 
                     currentPopup = QTEPopup;
                     QTEPopup.SetAction(action);
@@ -164,14 +170,21 @@ public class Player : MonoBehaviour
                 _animator.SetBool("IsRunningLeft", false);
                 _animator.SetBool("IsRunningRight", false);
 
-                // Display popup
-                currentPopup.Display();
-                currentPopup.onClose.RemoveAllListeners();
-                currentPopup.onClose.AddListener(() =>
+                if (currentPopup != null)
+                {
+                    // Display popup
+                    currentPopup.Display();
+                    currentPopup.onClose.RemoveAllListeners();
+                    currentPopup.onClose.AddListener(() =>
+                    {
+                        canMove = true;
+                        currentPopup = null;
+                    });
+                }
+                else
                 {
                     canMove = true;
-                    currentPopup = null;
-                });
+                }
             }
             else if (inputManager.GetButtonDown("Cancel"))
             {
@@ -216,12 +229,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.GetComponent<ItemBox>())
-        {
-            ItemBox itemBox = collision.transform.GetComponent<ItemBox>();
-            StartCoroutine(PickUpItemBox(itemBox));
-        }
-
         Interactable interactive = collision.GetComponent<Interactable>();
         if (interactive != null && !actionsInRange.Contains(collision.gameObject))
         {
@@ -231,12 +238,6 @@ public class Player : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-
-        if (other.transform.GetComponent<ItemBox>())
-        {
-            isPickingUpItem = false;
-        }
-
         Interactable interactive = other.GetComponent<Interactable>();
         if (interactive != null)
         {
@@ -247,7 +248,7 @@ public class Player : MonoBehaviour
 
     public void ChangeMood(float newPercentage)
     {
-        speed = baseSpeed + (1 - newPercentage) * (baseSpeed * 2.5f);
+        speed = baseSpeed + (1 - newPercentage) * (baseSpeed * 1.4f);
 
         //Maj Color
         newPercentage = map(newPercentage, 0, 1, .2f, 1);
@@ -331,37 +332,21 @@ public class Player : MonoBehaviour
         money -= price;
     }
 
-    public bool CanMakeLemonade()
+    public bool CanMakeLemonade(int lemonsAmount)
     {
-        return lemons > 0;
+        return lemons > lemonsAmount;
     }
 
-    public void SellLemonade(int lemonadePrice)
+    public void SellLemonade(int lemonadePrice,int lemonsAmount)
     {
         this.money += lemonadePrice;
-        this.lemons -= 1;
+        this.lemons -= lemonsAmount;
         Debug.Log("Grandma now has $" + money);
     }
 
     public void HarvestLemons(int lemonsCount)
     {
         lemons += lemonsCount;
-    }
-
-    private IEnumerator PickUpItemBox(ItemBox itemBox)
-    {
-        isPickingUpItem = true;
-        while (isPickingUpItem)
-        {
-            if (inputManager.GetButtonDown("Interact"))
-            {
-                itemBox.item.Use(this);
-                isPickingUpItem = false;
-                Destroy(itemBox.gameObject);
-            }
-
-            yield return null;
-        }
     }
     #endregion
     #endregion

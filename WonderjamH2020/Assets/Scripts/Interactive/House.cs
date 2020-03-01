@@ -161,26 +161,26 @@ public class House : QTEBehaviour
         {
             if(ownerPlayer.PlayerId == 0)
             {
-                ownerPlayer.Speak("NOOOOO ! YOU'LL PAY FOR THIS !", 1f, 0f);
-                enemyPlayer.Speak("Hahahahah Haha Haa \n *cough violently*", 1f, 1f);
+                ownerPlayer.Speak("NOOOOO ! YOU'LL PAY FOR THIS !", 2f, 0f);
+                enemyPlayer.Speak("Hahahahah Haha Haa \n *cough violently*", 2f, 2f);
 
             }
             else
             {
-                enemyPlayer.Speak("Get wrecked !", 1f, 0f);
-                ownerPlayer.Speak("I'm no done with you !\nYou better watch your back.", 1f, 1f);
+                enemyPlayer.Speak("Get wrecked !", 2f, 0f);
+                ownerPlayer.Speak("I'm no done with you !\nYou better watch your back.", 2f, 2f);
             }
             return true;
         }
         if (((float)CurrentHealth/maxHealth) <= 0.75f && !lightlyDamagedDialogueTriggered)
         {
-            enemyPlayer.Speak("Take this !", 1f, 0f);
+            enemyPlayer.Speak("Take this !", 2f, 0f);
             lightlyDamagedDialogueTriggered = true;
         } 
         else if (((float)CurrentHealth / maxHealth) <= 0.3f && !heavilyDamagedDialogueTriggered)
         {
-            enemyPlayer.Speak("I'm soon done with you !\n*evil laughter*", 1f, 0f);
-            ownerPlayer.Speak("We'll see...", 1f, 1f);
+            enemyPlayer.Speak("I'm soon done with you !\n*evil laughter*", 2f, 0f);
+            ownerPlayer.Speak("We'll see...", 2f, 2f);
             heavilyDamagedDialogueTriggered = true;
         }
         return false;
