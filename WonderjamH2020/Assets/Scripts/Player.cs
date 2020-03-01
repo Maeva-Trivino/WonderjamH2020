@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     private Vector2 input;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
-    private bool isRunning;
+    private bool IsRunning => speed > 15f;
     private bool canMove = true;
     private float speed;
     #endregion
@@ -254,20 +254,20 @@ public class Player : MonoBehaviour
         _animator.SetBool("IsWalkingRight", wr);
         _animator.SetBool("IsWalkingDown", wd);
         _animator.SetBool("IsWalkingLeft", wl);
-        _animator.SetBool("IsRunningLeft", isRunning && wl);
-        _animator.SetBool("IsRunningRight", isRunning && wr);
+        _animator.SetBool("IsRunningLeft", IsRunning && wl);
+        _animator.SetBool("IsRunningRight", IsRunning && wr);
         _animator.speed = isMoving ? input.magnitude : 1;
     }
 
-    public bool CanAffordMissile(MissileBlueprint blueprint)
+    public bool CanAffordMissile(int price)
     {
-        return money >= blueprint.price;
+        return money >= price;
     }
 
     // Returns true if successful
-    public void PayForMissile(MissileBlueprint blueprint)
+    public void PayForMissile(int price)
     {
-        money -= blueprint.price;
+        money -= price;
     }
 
     public void SellLemonade(int lemonadePrice)
@@ -287,9 +287,9 @@ public class Player : MonoBehaviour
         isPickingUpItem = true;
         while (isPickingUpItem)
         {
-            if (inputManager.GetButtonDown("PickUp"))
+            if (inputManager.GetButtonDown("Interact"))
             {
-                //TODO GET ITEM
+                itemBox.recipient.RechargeMissile();
                 isPickingUpItem = false;
                 Destroy(itemBox.gameObject);
             }

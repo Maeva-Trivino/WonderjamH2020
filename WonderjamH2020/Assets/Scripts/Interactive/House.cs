@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class House : ChoicesSenderBehaviour
 {
     [SerializeField]
-    protected int currentHealth = 50;
-    protected int maxHealth = 100;
+    protected int currentHealth;
+    [SerializeField]
+    protected int maxHealth;
 
     public HealthBar healthBar;
     
@@ -21,6 +22,12 @@ public class House : ChoicesSenderBehaviour
 
     [SerializeField] private EndScreen endScreen;
 
+    [SerializeField]
+    private AudioSource themeAudio;
+
+    [SerializeField]
+    private AudioSource endGameAudio;
+
     public enum HouseState
     {
         FullHeatlh,
@@ -30,6 +37,8 @@ public class House : ChoicesSenderBehaviour
     }
 
     private HouseState currentState;
+
+    private Timer timer;
 
     public HouseState CurrentState
     {
@@ -63,7 +72,9 @@ public class House : ChoicesSenderBehaviour
 
             if (currentHealth <= 0)
             {
-                endScreen.Show(enemyPlayer.name);
+                themeAudio.Stop();
+                endGameAudio.Play();
+                endScreen.Show(enemyPlayer.PlayerId);
             }
         }
     }
@@ -72,6 +83,8 @@ public class House : ChoicesSenderBehaviour
     void Start()
     {
         GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+
+        //TODO Règler ce truc moche, commentez si besoin de tester d'autres valeurs
         CurrentHealth = maxHealth;
 
         //Init Dictionnary
@@ -136,11 +149,9 @@ public class House : ChoicesSenderBehaviour
         CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
-            // %TODO% trigger end scene
             return true;
         }
         return false;
-
     }
 
     public void Repair(Player player, int repairPoint)
@@ -152,6 +163,22 @@ public class House : ChoicesSenderBehaviour
         }
         Debug.Log("Hp maison: " + currentHealth);
         player.money -= reparationCosts;
+    }
+
+    public void RegisterTimer(Timer timer)
+    {
+        this.timer = timer;
+    }
+
+    public void EndGame()
+    {
+        if (timer != null)
+        {
+            timer.PauseTimer();
+        }
+        themeAudio.Stop();
+        endGameAudio.Play();
+        endScreen.Show(enemyPlayer.PlayerId);
     }
 
     public UserAction GetAction(Player player)
