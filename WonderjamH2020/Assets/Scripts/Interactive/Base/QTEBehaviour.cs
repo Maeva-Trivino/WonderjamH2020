@@ -8,14 +8,23 @@ namespace Interactive.Base
         {
             // TODO
             transform.localScale *= 1f / 1.01f;
-            GetComponent<SpriteRenderer>().material.SetInt("_OutlineEnabled", 0);
+
+            SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.material.SetInt("_OutlineEnabled", 0);
+            }
         }
 
         public virtual void Select()
         {
             // TODO
             transform.localScale *= 1.01f;
-            GetComponent<SpriteRenderer>().material.SetInt("_OutlineEnabled", 1);
+            SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.material.SetInt("_OutlineEnabled", 1);
+            }
         }
 
         public virtual string GetDecription(Player contextPlayer)
@@ -23,7 +32,7 @@ namespace Interactive.Base
             UserAction a = GetAction(contextPlayer);
             if (a == null)
                 return string.Empty;
-            return a.name;
+          return a.name;
         }
 
         public abstract UserAction GetAction(Player contextPlayer);
