@@ -6,7 +6,8 @@ public class LemonadeStand : QTEBehaviour
 {
     [SerializeField]
     private int lemonadePrice;
-
+    [SerializeField]
+    private LimonadeQueue queue;
     [SerializeField]
     private AudioSource sellLemonadeAudio;
 
@@ -19,13 +20,14 @@ public class LemonadeStand : QTEBehaviour
     public void SellLemonade(Player player)
     {
         sellLemonadeAudio.Play();
+        queue.ServeFirst();
         player.SellLemonade(lemonadePrice);
         Debug.Log("Lemonade Sold");
     }
 
     public override UserAction GetAction(Player contextPlayer)
     {
-        if (!contextPlayer.CanMakeLemonade())
+        if (!contextPlayer.CanMakeLemonade() || queue.IsEmpty)
         {
             return null;
         }
