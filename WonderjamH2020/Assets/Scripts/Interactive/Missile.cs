@@ -73,13 +73,20 @@ public class Missile : MonoBehaviour
 
     public void LaunchMissile()
     {
-        fireTray.Play();
-        launched = true;
-        Vector3[] bezier = {gameObject.transform.position, opponentHouse.transform.position + height * Vector3.up
-                            ,gameObject.transform.position + height * Vector3.up, opponentHouse.transform.position};
-        LeanTween.move(gameObject, bezier, flightDuration).setEaseInExpo();
-        LeanTween.rotateZ(gameObject,180, flightDuration).setEaseInExpo();
-        launchSound.Play();
+        if(!launched)
+        {
+            fireTray.Play();
+            launched = true;
+            /*Vector3[] bezierCloche = {gameObject.transform.position, opponentHouse.transform.position + height * Vector3.up
+                            ,gameObject.transform.position + height * Vector3.up, opponentHouse.transform.position};*/
+            Vector3 midle = new Vector3((gameObject.transform.position.x + opponentHouse.transform.position.x)/2,
+                                         (gameObject.transform.position.y + opponentHouse.transform.position.y)/2,0);
+            Vector3[] bezier = {gameObject.transform.position, midle + Vector3.up * height
+                                ,Vector3.up * height, opponentHouse.transform.position};
+            LeanTween.move(gameObject, bezier, flightDuration);//.setEaseInExpo();
+            //LeanTween.rotateZ(gameObject, 180, flightDuration).setEaseInExpo();
+            launchSound.Play();
+        }
     }
 
     private void Explode()

@@ -125,7 +125,7 @@ MonoBehaviour:
     type: 3}
   opponentHouse: {fileID: 0}
   flightDuration: 5
-  height: 20
+  height: 10
   missileDamage: 5
   shakeAmplitude: 0.2
   shakePeriod: 0.05
