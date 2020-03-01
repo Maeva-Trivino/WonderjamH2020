@@ -14,6 +14,9 @@ public class LemonTree : QTEBehaviour
     [SerializeField] private float refreshTimeMin;
     [SerializeField] private float refreshTimeMax;
 
+    [SerializeField]
+    private AudioSource pickupLemonAudio;
+
     private bool hasLemons = true;
     public bool HasLemons
     {
@@ -41,6 +44,7 @@ public class LemonTree : QTEBehaviour
 
     public void HarvestLemons(Player player)
     {
+        pickupLemonAudio.Play();
         HasLemons = false;
 
         int lemonYield = Random.Range(lemonsPerBatchMin, lemonsPerBatchMax);

@@ -6,7 +6,7 @@ public class MissileLauncher : ChoicesSenderBehaviour
 {
     [SerializeField] private GameObject missilePrefab;
     private Missile missile;
-    [SerializeField] private House opponentHouse;
+    [SerializeField] public House opponentHouse;
     [SerializeField] private float flightDuration = 5f;
     [SerializeField] private float height = 5f;
     [SerializeField] private int missileDamage = 5;
@@ -14,11 +14,12 @@ public class MissileLauncher : ChoicesSenderBehaviour
     [SerializeField] public float shakePeriod = 0.1f;
     [SerializeField] public float shakeDuration = 2;
     //Audio
-    [SerializeField] private AudioSource launchSound;
-    [SerializeField] private AudioSource impactSound;
+    [SerializeField] public AudioSource launchSound;
+    [SerializeField] public AudioSource impactSound;
 
-    [SerializeField] private DeliverySystem deliverySystem;
+    [SerializeField] public DeliverySystem deliverySystem;
     [SerializeField] private int missilePrice = 100;
+
 
     public void OrderMissile(Player contextPlayer)
     {

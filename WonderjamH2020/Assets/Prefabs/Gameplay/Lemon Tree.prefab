@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 555359875346147937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.47, y: 8.96, z: 0}
-  m_LocalScale: {x: 7.3543468, y: 7.3543468, z: 7.3543468}
+  m_LocalScale: {x: 8.76197, y: 8.76197, z: 8.76197}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   lemonsPerBatchMax: 5
   refreshTimeMin: 10
   refreshTimeMax: 15
+  pickupLemonAudio: {fileID: 0}
 --- !u!61 &555359875346147936
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.030521497}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -128,5 +129,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.48, y: 0.64}
+  m_Size: {x: 0.31296182, y: 0.5211266}
   m_EdgeRadius: 0

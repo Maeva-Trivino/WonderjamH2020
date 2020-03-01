@@ -28,6 +28,9 @@ public class House : ChoicesSenderBehaviour
     [SerializeField]
     private AudioSource endGameAudio;
 
+    [SerializeField]
+    private AudioSource repairHouseAudio;
+
     public enum HouseState
     {
         FullHeatlh,
@@ -37,6 +40,8 @@ public class House : ChoicesSenderBehaviour
     }
 
     private HouseState currentState;
+
+    private Timer timer;
 
     public HouseState CurrentState
     {
@@ -154,6 +159,7 @@ public class House : ChoicesSenderBehaviour
 
     public void Repair(Player player, int repairPoint)
     {
+        repairHouseAudio.Play();
         CurrentHealth += repairPoint;
         if (CurrentHealth > maxHealth)
         {
@@ -161,6 +167,22 @@ public class House : ChoicesSenderBehaviour
         }
         Debug.Log("Hp maison: " + currentHealth);
         player.money -= reparationCosts;
+    }
+
+    public void RegisterTimer(Timer timer)
+    {
+        this.timer = timer;
+    }
+
+    public void EndGame()
+    {
+        if (timer != null)
+        {
+            timer.PauseTimer();
+        }
+        themeAudio.Stop();
+        endGameAudio.Play();
+        endScreen.Show(enemyPlayer.PlayerId);
     }
 
     public UserAction GetAction(Player player)
