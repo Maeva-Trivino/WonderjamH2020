@@ -332,15 +332,15 @@ public class Player : MonoBehaviour
         money -= price;
     }
 
-    public bool CanMakeLemonade()
+    public bool CanMakeLemonade(int lemonsAmount)
     {
-        return lemons > 0;
+        return lemons > lemonsAmount;
     }
 
-    public void SellLemonade(int lemonadePrice)
+    public void SellLemonade(int lemonadePrice,int lemonsAmount)
     {
         this.money += lemonadePrice;
-        this.lemons -= 1;
+        this.lemons -= lemonsAmount;
         Debug.Log("Grandma now has $" + money);
     }
 
