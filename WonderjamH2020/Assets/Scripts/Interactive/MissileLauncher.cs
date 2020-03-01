@@ -11,6 +11,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
     [SerializeField] private float flightDuration = 5f;
     [SerializeField] private float height = 5f;
     [SerializeField] private int missileDamage = 5;
+    //ShakeCreen
     [SerializeField] public float shakeAmplitude = 0.2f;
     [SerializeField] public float shakePeriod = 0.1f;
     [SerializeField] public float shakeDuration = 2;

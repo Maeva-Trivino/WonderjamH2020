@@ -170,6 +170,7 @@ MonoBehaviour:
   missileLauncherPrefab: {fileID: 3586227844683522293, guid: ba6ba765dcc34784098705a711e61b7d,
     type: 3}
   opponentHouse: {fileID: 0}
+  buildingCosts: 0
   impactSound: {fileID: 0}
   launchSound: {fileID: 0}
   deliverySystem: {fileID: 0}
@@ -950,7 +951,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -2660,6 +2661,11 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 1940780126}
+    - target: {fileID: 2029420117338643615, guid: 719eed4fe2f381b44aa20ac60d628daf,
+        type: 3}
+      propertyPath: money
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4781375910495078806, guid: 719eed4fe2f381b44aa20ac60d628daf,
         type: 3}
       propertyPath: m_Name
@@ -2869,6 +2875,7 @@ MonoBehaviour:
   timeForDelivery: 0
   rightDeliveryTruck: {fileID: 950710265}
   leftDeliveryTruck: {fileID: 355692736}
+  CanOrder: 0
 --- !u!1 &334286337
 GameObject:
   m_ObjectHideFlags: 0
