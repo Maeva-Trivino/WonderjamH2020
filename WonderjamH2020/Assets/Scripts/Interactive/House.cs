@@ -161,36 +161,26 @@ public class House : QTEBehaviour
         {
             if(ownerPlayer.PlayerId == 0)
             {
-                ownerPlayer.Speak("NOOOOO ! YOU'LL PAY FOR THIS !", 1f, 0f);
-                enemyPlayer.Speak("Hahahahah Haha Haa \n *cough violently*", 1f, 0f);
+                ownerPlayer.Speak("NOOOOO ! YOU'LL PAY FOR THIS !", 2f, 0f);
+                enemyPlayer.Speak("Hahahahah Haha Haa \n *cough violently*", 2f, 2f);
 
             }
             else
             {
-                enemyPlayer.Speak("Hahahahah Haha Haa \n *cough violently*", 1f, 0f);
-                ownerPlayer.Speak("I'm the one selling Lemonade on Sunday !", 1f, 0f);
+                enemyPlayer.Speak("Get wrecked !", 2f, 0f);
+                ownerPlayer.Speak("I'm no done with you !\nYou better watch your back.", 2f, 2f);
             }
             return true;
         }
-        if (ownerPlayer.PlayerId == 0 && ((float)CurrentHealth/maxHealth) <= 0.75f && !lightlyDamagedDialogueTriggered)
+        if (((float)CurrentHealth/maxHealth) <= 0.75f && !lightlyDamagedDialogueTriggered)
         {
-            ownerPlayer.Speak("I'm the one selling Lemonade on Sunday !", 1f, 0f);
+            enemyPlayer.Speak("Take this !", 2f, 0f);
             lightlyDamagedDialogueTriggered = true;
         } 
-        else if (ownerPlayer.PlayerId == 1 && ((float)CurrentHealth / maxHealth) <= 0.75f && !lightlyDamagedDialogueTriggered)
+        else if (((float)CurrentHealth / maxHealth) <= 0.3f && !heavilyDamagedDialogueTriggered)
         {
-            ownerPlayer.Speak("I'm the one selling Lemonade on Sunday !", 1f, 0f);
-            lightlyDamagedDialogueTriggered = true;
-
-        }
-        else if (ownerPlayer.PlayerId == 0 && ((float)CurrentHealth / maxHealth) <= 0.3f && !heavilyDamagedDialogueTriggered)
-        {
-            ownerPlayer.Speak("I'm the one selling Lemonade on Sunday !", 1f, 0f);
-            heavilyDamagedDialogueTriggered = true;
-        }
-        else if (ownerPlayer.PlayerId == 1 && ((float)CurrentHealth / maxHealth) <= 0.3f && !heavilyDamagedDialogueTriggered)
-        {
-            ownerPlayer.Speak("I'm the one selling Lemonade on Sunday !", 1f, 0f);
+            enemyPlayer.Speak("I'm soon done with you !\n*evil laughter*", 2f, 0f);
+            ownerPlayer.Speak("We'll see...", 2f, 2f);
             heavilyDamagedDialogueTriggered = true;
         }
         return false;

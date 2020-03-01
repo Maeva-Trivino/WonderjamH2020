@@ -2690,6 +2690,16 @@ PrefabInstance:
       propertyPath: money
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 4631799433293679702, guid: 719eed4fe2f381b44aa20ac60d628daf,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631799433293679702, guid: 719eed4fe2f381b44aa20ac60d628daf,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4781375910495078806, guid: 719eed4fe2f381b44aa20ac60d628daf,
         type: 3}
       propertyPath: m_Name
@@ -32409,6 +32419,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 382924459}
     m_Modifications:
+    - target: {fileID: 26442976112641580, guid: 68a4fe175eff00147b077d3e60f27cf5,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 26442976112641580, guid: 68a4fe175eff00147b077d3e60f27cf5,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 162227145610331116, guid: 68a4fe175eff00147b077d3e60f27cf5,
         type: 3}
       propertyPath: m_Name
@@ -34977,7 +34997,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyPlayer
       value: 
-      objectReference: {fileID: 1259327765}
+      objectReference: {fileID: 1062285800}
     - target: {fileID: 1092555953443743268, guid: cc7a0fa7b409d476781456e4eaa2b138,
         type: 3}
       propertyPath: endScreen

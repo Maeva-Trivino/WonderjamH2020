@@ -248,7 +248,7 @@ public class Player : MonoBehaviour
 
     public void ChangeMood(float newPercentage)
     {
-        speed = baseSpeed + (1 - newPercentage) * (baseSpeed * 2.5f);
+        speed = baseSpeed + (1 - newPercentage) * (baseSpeed * 1.4f);
 
         //Maj Color
         newPercentage = map(newPercentage, 0, 1, .2f, 1);
