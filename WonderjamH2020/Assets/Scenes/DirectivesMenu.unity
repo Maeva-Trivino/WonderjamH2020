@@ -1038,8 +1038,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a5e82d11e2e6fbe4293eb2651c841c08, type: 2}
+  m_sharedMaterial: {fileID: 6924977356364368655, guid: a5e82d11e2e6fbe4293eb2651c841c08,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3143,8 +3144,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Your mission : destroy your old neighbour in 5 minutes !'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a5e82d11e2e6fbe4293eb2651c841c08, type: 2}
+  m_sharedMaterial: {fileID: 6924977356364368655, guid: a5e82d11e2e6fbe4293eb2651c841c08,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
