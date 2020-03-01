@@ -2,7 +2,7 @@ using UnityEngine;
 using Interactive.Base;
 using System.Collections.Generic;
 
-public class House : ChoicesSenderBehaviour
+public class House : QTEBehaviour
 {
     [SerializeField]
     protected int currentHealth;
@@ -119,25 +119,25 @@ public class House : ChoicesSenderBehaviour
     {
         if (currentState != HouseState.Destroyed && newPercentage <= Mathf.Epsilon)
         {
-            currentState = HouseState.Destroyed;
+            CurrentState = HouseState.Destroyed;
             return;
         }
 
         if (currentState != HouseState.HeavilyDamaged && newPercentage > Mathf.Epsilon && newPercentage <= 0.3f)
         {
-            currentState = HouseState.HeavilyDamaged;
+            CurrentState = HouseState.HeavilyDamaged;
             return;
         }
 
         if (currentState != HouseState.LightlyDamaged && newPercentage > 0.3 && newPercentage <= 0.75)
         {
-            currentState = HouseState.LightlyDamaged;
+            CurrentState = HouseState.LightlyDamaged;
             return;
         }
 
         if (currentState != HouseState.FullHeatlh && newPercentage > 0.75)
         {
-            currentState = HouseState.FullHeatlh;
+            CurrentState = HouseState.FullHeatlh;
             return;
         }
     }
@@ -185,24 +185,15 @@ public class House : ChoicesSenderBehaviour
         endScreen.Show(enemyPlayer.PlayerId);
     }
 
-    public UserAction GetAction(Player player)
+    public override UserAction GetAction(Player contextPlayer)
     {
-        if (CurrentHealth == maxHealth || player.money < reparationCosts)
+        if (CurrentHealth == maxHealth || contextPlayer.money < reparationCosts)
         {
             return null;
-        } else
-        {
-            return new ComboAction(player.inputManager ,new List<string> { "←", "→" }, 2, () => Repair(player, repairingAmount), "Repair");
         }
-    }
-
-    public override List<GameAction> GetChoices(Player contextPlayer)
-    {
-        // Test
-        bool lol = true;
-        return new List<GameAction>() {
-                new GameAction("Toquer", () => Debug.Log("Knock! Knock!"), () => true),
-                new GameAction("Désactiver ce bouton", () => lol = false, () => lol),
-            };
+        else
+        {
+            return new ComboAction(contextPlayer.inputManager, new List<string> { "←", "→" }, 2, () => Repair(contextPlayer, repairingAmount), "Repair - $" + reparationCosts);
+        }
     }
 }

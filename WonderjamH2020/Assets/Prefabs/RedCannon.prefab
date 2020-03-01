@@ -190,7 +190,7 @@ MonoBehaviour:
   opponentHouse: {fileID: 0}
   flightDuration: 2
   height: 10
-  missileDamage: 5
+  missileDamage: 30
   shakeAmplitude: 0.2
   shakePeriod: 0.05
   shakeDuration: 1

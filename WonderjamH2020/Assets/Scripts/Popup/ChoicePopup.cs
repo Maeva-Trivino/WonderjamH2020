@@ -9,7 +9,7 @@ namespace Popup
     public class ChoicePopup : Popup
     {
         #region Consts
-        private readonly static Color COLOR_DISABLED = new Color(.8f, .8f, .8f);
+        private readonly static Color COLOR_DISABLED = new Color(.6f, .4f, .4f);
         private readonly static Color COLOR_ENABLED = Color.white;
         private readonly static Vector3 SCALE_SELECTED = Vector3.one * 1.1f;
         private readonly static Vector3 SCALE_NORMAL = Vector3.one;

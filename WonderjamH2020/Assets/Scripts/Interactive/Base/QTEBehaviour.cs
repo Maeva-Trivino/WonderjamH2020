@@ -18,7 +18,14 @@ namespace Interactive.Base
             GetComponent<SpriteRenderer>().material.SetInt("_OutlineEnabled", 1);
         }
 
-        public virtual string GetDecription(Player contextPlayer) => GetAction(contextPlayer).name;
+        public virtual string GetDecription(Player contextPlayer)
+        {
+            UserAction a = GetAction(contextPlayer);
+            if (a == null)
+                return string.Empty;
+            return a.name;
+        }
+
         public abstract UserAction GetAction(Player contextPlayer);
 
     }

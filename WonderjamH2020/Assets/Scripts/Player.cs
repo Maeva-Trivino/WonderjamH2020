@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     private Vector2 input;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
-    private bool IsRunning => speed > 15f;
+    private bool IsRunning => speed > 10f;
     private bool canMove = true;
     private float speed;
     #endregion
@@ -146,9 +146,11 @@ public class Player : MonoBehaviour
                 }
                 else if (script is QTEBehaviour)
                 {
-                    QTEBehaviour iObj = script as QTEBehaviour;
+                    UserAction action = (script as QTEBehaviour).GetAction(this);
+                    if (action == null)
+                        return;
                     currentPopup = QTEPopup;
-                    QTEPopup.SetAction(iObj.GetAction(this));
+                    QTEPopup.SetAction(action);
                 }
 
                 // Display popup
@@ -167,7 +169,10 @@ public class Player : MonoBehaviour
             }
             else if(currentPopup == null || currentPopup == LabelPopup)
             {
-                LabelPopup.SetText(selection.GetComponent<Interactable>().GetDecription(this));
+                string text = selection.GetComponent<Interactable>().GetDecription(this);
+                if (string.IsNullOrWhiteSpace(text))
+                    return;
+                LabelPopup.SetText(text);
                 if (currentPopup == null)
                     LabelPopup.Display();
                 currentPopup = LabelPopup;
@@ -223,15 +228,16 @@ public class Player : MonoBehaviour
 
     public void ChangeMood(float newPercentage)
     {
+        speed = baseSpeed + (1 - newPercentage) * (baseSpeed * 2.5f);
+
         //Maj Color
+        newPercentage = map(newPercentage, 0, 1, .2f, 1);
         float redValue = 30 * newPercentage + 225;
         float gbValue = newPercentage * 255;
-        Color color = new Color(redValue/255f, gbValue/255f, gbValue/255f,1f);
+        Color color = new Color(redValue / 255f, gbValue / 255f, gbValue / 255f, 1f);
         this.GetComponentInChildren<SpriteRenderer>().color = color;
-
-        speed = baseSpeed + (1 - newPercentage) * (baseSpeed * 2.5f);
     }
-
+    float map(float value, float from1, float to1, float from2, float to2) => (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     #region Private
     private void PlayerOrderInLayer()
     {
