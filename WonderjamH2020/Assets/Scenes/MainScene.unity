@@ -28544,7 +28544,7 @@ PrefabInstance:
         type: 3}
       propertyPath: opponentHouse
       value: 
-      objectReference: {fileID: 400467956}
+      objectReference: {fileID: 1077463638}
     - target: {fileID: 2958956078741284333, guid: fe897f08b7632304db4834b3e3caa5b0,
         type: 3}
       propertyPath: m_Name
@@ -29285,7 +29285,7 @@ PrefabInstance:
         type: 3}
       propertyPath: opponentHouse
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 400467956}
     - target: {fileID: 3586227844683522288, guid: ba6ba765dcc34784098705a711e61b7d,
         type: 3}
       propertyPath: launchSound
