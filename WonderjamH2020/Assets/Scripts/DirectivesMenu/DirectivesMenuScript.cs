@@ -27,9 +27,9 @@ public class DirectivesMenuScript : MonoBehaviour
     void Update()
     {
         joystick = ReInput.controllers.GetJoystick(0);
-        ChangeTextsMenu(goOnGameText, "Validate", "Let's play !");
+        ChangeTextsMenu(goOnGameText, "Interact", "Let's play !");
 
-        if (inputManager.GetButtonDown("Validate"))
+        if (inputManager.GetButtonDown("Interact"))
         {
             SceneManager.LoadScene("MainScene");
         }
