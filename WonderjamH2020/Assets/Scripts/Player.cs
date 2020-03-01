@@ -164,14 +164,21 @@ public class Player : MonoBehaviour
                 _animator.SetBool("IsRunningLeft", false);
                 _animator.SetBool("IsRunningRight", false);
 
-                // Display popup
-                currentPopup.Display();
-                currentPopup.onClose.RemoveAllListeners();
-                currentPopup.onClose.AddListener(() =>
+                if (currentPopup != null)
+                {
+                    // Display popup
+                    currentPopup.Display();
+                    currentPopup.onClose.RemoveAllListeners();
+                    currentPopup.onClose.AddListener(() =>
+                    {
+                        canMove = true;
+                        currentPopup = null;
+                    });
+                }
+                else
                 {
                     canMove = true;
-                    currentPopup = null;
-                });
+                }
             }
             else if (inputManager.GetButtonDown("Cancel"))
             {
