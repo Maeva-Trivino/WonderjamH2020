@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashCoefficient = 2.5f;
     [SerializeField] private float dashDuration = 0.10f;
     [SerializeField] private int dashPrice = 1;
+    [SerializeField] ParticleSystem dashEffect;
 
     public int PlayerId
     {
@@ -72,6 +73,8 @@ public class Player : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         actionsInRange = new HashSet<GameObject>();
         choicePopup.SetInputManager(inputManager);
+        var main = dashEffect.main;
+        main.duration = dashDuration;
     }
 
 
@@ -275,6 +278,7 @@ public class Player : MonoBehaviour
             {
                 Pay(dashPrice);
                 dashTimeRemaining = dashDuration;
+                dashEffect.Play();
             }
         }
 
