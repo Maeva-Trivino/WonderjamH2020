@@ -360,12 +360,12 @@ public class Player : MonoBehaviour
 
     public void Speak(string message, float baseTime= 1.5f, float delay=0f)
     {
-        DialoguePopup.SetText(message);
+        //DialoguePopup.SetText(message);
         if(delay == -1)
         {
             delay = baseTime;
         }
-        StartCoroutine(DialoguePopup.PopupDeactivation(delay,baseTime+delay));
+        StartCoroutine(DialoguePopup.PopupDeactivation(delay, baseTime, message));  ;
     }
     #endregion
 }
