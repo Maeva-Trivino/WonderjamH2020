@@ -28,6 +28,9 @@ public class House : ChoicesSenderBehaviour
     [SerializeField]
     private AudioSource endGameAudio;
 
+    [SerializeField]
+    private AudioSource repairHouseAudio;
+
     public enum HouseState
     {
         FullHeatlh,
@@ -156,6 +159,7 @@ public class House : ChoicesSenderBehaviour
 
     public void Repair(Player player, int repairPoint)
     {
+        repairHouseAudio.Play();
         CurrentHealth += repairPoint;
         if (CurrentHealth > maxHealth)
         {
