@@ -65,7 +65,7 @@ public class MissileLauncher : ChoicesSenderBehaviour
     public override List<GameAction> GetChoices(Player contextPlayer)
     {
         return new List<GameAction>() {
-                new GameAction("Feu !", () => Fire(), () => true),
+                new GameAction("Feu !", () => Fire(), () => missile != null),
                 new GameAction("Recharger", () => OrderMissile(contextPlayer), () => contextPlayer.CanAffordMissile(missilePrice)),
                 new GameAction("Upgrade", () => Upgrade(), () => true)
             };
