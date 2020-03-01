@@ -11,6 +11,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
     [SerializeField] private float flightDuration = 5f;
     [SerializeField] private float height = 5f;
     [SerializeField] private int missileDamage = 5;
+    //ShakeCreen
     [SerializeField] public float shakeAmplitude = 0.2f;
     [SerializeField] public float shakePeriod = 0.1f;
     [SerializeField] public float shakeDuration = 2;
@@ -22,6 +23,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
     [SerializeField] private int missilePrice = 100;
     [SerializeField] private Transform spawnPointOffSet;
     [SerializeField] private Transform firePoint;
+    private bool charged = false;
 
     private void Start()
     {
@@ -40,24 +42,27 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
 
     public void RechargeMissile()
     {
-        if(missile == null)
+        /*if(missile == null)
         {
             missile = Instantiate(missilePrefab, transform).GetComponent<Missile>();
-            missile.transform.position = spawnPointOffSet.position;
+            missile.transform.position = firePoint.position;
             missile.Initialize(opponentHouse,flightDuration,height,missileDamage,shakeAmplitude,shakePeriod,shakeDuration,
                                 launchSound,impactSound);
-        }
+        }*/
+        charged = true;
     }
     public void Fire()
     {
-        if(missile != null)
+        if(charged)
         {
+            missile = Instantiate(missilePrefab, transform).GetComponent<Missile>();
             missile.transform.position = firePoint.position;
+            missile.Initialize(opponentHouse, flightDuration, height, missileDamage, shakeAmplitude, shakePeriod, shakeDuration,
+                                launchSound, impactSound);
             missile.LaunchMissile();
             GetComponent<Animator>().SetTrigger("shoot");
-            missile = null;
-
             deliverySystem.CanOrder = true;
+            charged = false;
         }
     }
 
@@ -69,8 +74,8 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
     public override List<GameAction> GetChoices(Player contextPlayer)
     {
         return new List<GameAction>() {
-                new GameAction("Feu !", () => {Fire(); contextPlayer.HideCurrentPopup(); }, () => missile != null),
-                new GameAction("Recharger - $" + missilePrice, () => {OrderMissile(contextPlayer); contextPlayer.HideCurrentPopup(); }, () => CanOrder(contextPlayer))
+                new GameAction("Fire !", () => {Fire(); contextPlayer.HideCurrentPopup(); }, () => charged),
+                new GameAction("Reload - $" + missilePrice, () => {OrderMissile(contextPlayer); contextPlayer.HideCurrentPopup(); }, () => CanOrder(contextPlayer))
             };
     }
 

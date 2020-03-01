@@ -13,9 +13,11 @@ public class Missile : MonoBehaviour
     [SerializeField] private float height = 5f;
     [SerializeField] private int missileDamage = 5;
     [SerializeField] public House opponentHouse;
+    [SerializeField] private float randomOffSetRange = 2;
     [SerializeField] public int timeToDeliver;
     private bool launched = false;
-    private ParticleSystem fireTray;
+    [SerializeField] private Vector3 target;
+    [SerializeField] private ParticleSystem fireTray;
 
     //ScreenShake
     [SerializeField] public float shakeAmplitude;
@@ -43,14 +45,11 @@ public class Missile : MonoBehaviour
         this.launchSound = blueprint.launchSound;
     }
 
-    private void Start()
-    {
-        fireTray = GetComponentInChildren<ParticleSystem>();
-    }
 
     private void Update()
     {
-        if(launched && Vector2.Distance(transform.position,opponentHouse.transform.position) < 0.1f)
+        Debug.Log(Vector2.Distance(transform.position, target));
+        if(launched && Vector2.Distance(transform.position, target) < 0.1f)
         {
             Explode();
         }
@@ -79,10 +78,12 @@ public class Missile : MonoBehaviour
             launched = true;
             /*Vector3[] bezierCloche = {gameObject.transform.position, opponentHouse.transform.position + height * Vector3.up
                             ,gameObject.transform.position + height * Vector3.up, opponentHouse.transform.position};*/
-            Vector3 midle = new Vector3((gameObject.transform.position.x + opponentHouse.transform.position.x)/2,
-                                         (gameObject.transform.position.y + opponentHouse.transform.position.y)/2,0);
+            Vector3 randomOffSet = new Vector3(Random.Range(0, randomOffSetRange), Random.Range(0, randomOffSetRange));
+            target = opponentHouse.transform.position + randomOffSet;
+            Vector3 midle = new Vector3((gameObject.transform.position.x + target.x)/2,
+                                         (gameObject.transform.position.y + target.y)/2,0);
             Vector3[] bezier = {gameObject.transform.position, midle + Vector3.up * height
-                                ,Vector3.up * height, opponentHouse.transform.position};
+                                ,Vector3.up * height, target};
             LeanTween.move(gameObject, bezier, flightDuration);//.setEaseInExpo();
             //LeanTween.rotateZ(gameObject, 180, flightDuration).setEaseInExpo();
             launchSound.Play();

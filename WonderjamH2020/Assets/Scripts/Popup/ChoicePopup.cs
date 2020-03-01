@@ -69,7 +69,7 @@ namespace Popup
                 Destroy(child.gameObject);
 
             selection = 0;
-            choices.Add(new GameAction("Fermer", () => Hide(), () => true));
+            choices.Add(new GameAction("Close", () => Hide(), () => true));
 
             for (int i = 0; i < choices.Count; i++)
             {
