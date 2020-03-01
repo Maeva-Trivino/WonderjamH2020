@@ -3741,6 +3741,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &600640108
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016456162939295843, guid: 18b50d613f6486f40819d2e1477fadf4,
+        type: 3}
+      propertyPath: m_Name
+      value: Rewired Input Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 18b50d613f6486f40819d2e1477fadf4, type: 3}
 --- !u!1 &624501663
 GameObject:
   m_ObjectHideFlags: 0
@@ -35124,180 +35193,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c874db1decfbd44e69b52dd82f833407, type: 3}
---- !u!1001 &8016456161946386363
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295841, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.size
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.actions.Array.data[15]._id
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.actions.Array.data[15]._name
-      value: Action0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.actions.Array.data[15]._type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.actions.Array.data[15]._descriptiveName
-      value: Action0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.actions.Array.data[15]._userAssignable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.data[11]
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.mapCategories.Array.data[1]._name
-      value: PauseCategory
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.mapCategories.Array.data[1]._descriptiveName
-      value: PauseCategory
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[14]._actionId
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[14]._elementType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[14]._elementIdentifierId
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[15]._actionId
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[15]._elementType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[15]._elementIdentifierId
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[14]._keyboardKeyCode
-      value: 122
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[15]._keyboardKeyCode
-      value: 115
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[16]._actionId
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[16]._elementType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[16]._elementIdentifierId
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295842, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[16]._keyboardKeyCode
-      value: 101
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016456162939295843, guid: 18b50d613f6486f40819d2e1477fadf4,
-        type: 3}
-      propertyPath: m_Name
-      value: Rewired Input Manager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 18b50d613f6486f40819d2e1477fadf4, type: 3}
 --- !u!1001 &8102190434467225776
 PrefabInstance:
   m_ObjectHideFlags: 0
