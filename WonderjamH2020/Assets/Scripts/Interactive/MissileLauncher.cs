@@ -11,6 +11,8 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
     [SerializeField] private float flightDuration = 5f;
     [SerializeField] private float height = 5f;
     [SerializeField] private int missileDamage = 5;
+    [SerializeField] private Transform spawnPointOffSet;
+    [SerializeField] private Transform firePoint;
     //ShakeCreen
     [SerializeField] public float shakeAmplitude = 0.2f;
     [SerializeField] public float shakePeriod = 0.1f;
@@ -18,11 +20,12 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
     //Audio
     [SerializeField] public AudioSource launchSound;
     [SerializeField] public AudioSource impactSound;
-
+    //Delivery
     [SerializeField] public DeliverySystem deliverySystem;
     [SerializeField] private int missilePrice = 100;
-    [SerializeField] private Transform spawnPointOffSet;
-    [SerializeField] private Transform firePoint;
+    //ReadyIndicator
+    [SerializeField] private CannonReady cannonReady;
+
     private bool charged = false;
 
     private void Start()
@@ -49,6 +52,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
             missile.Initialize(opponentHouse,flightDuration,height,missileDamage,shakeAmplitude,shakePeriod,shakeDuration,
                                 launchSound,impactSound);
         }*/
+        cannonReady.StartReady();
         charged = true;
     }
     public void Fire()
@@ -62,6 +66,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
             missile.LaunchMissile();
             GetComponent<Animator>().SetTrigger("shoot");
             deliverySystem.CanOrder = true;
+            cannonReady.StopReady();
             charged = false;
         }
     }
