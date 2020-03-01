@@ -32,6 +32,17 @@ public class DeliveryTruck : MonoBehaviour
         set { itemToDeliver = value; }
     }
 
+    #region music
+    [SerializeField]
+    private AudioSource stopCarAudio;
+
+    [SerializeField]
+    private AudioSource klazonCarAudio;
+
+    [SerializeField]
+    private AudioSource startCarAudio;
+    #endregion
+
     public void Start()
     {
         startingPosition = this.transform.position;
@@ -44,6 +55,7 @@ public class DeliveryTruck : MonoBehaviour
         outForDelivery = true;
         itemToDeliver = item;
 
+        StartCoroutine(PlayStopCar());
         LTDescr tweenDesc= LeanTween.move(this.gameObject, deliveryTargetPosition, 5.0f);
         if (tweenDesc != null)
         {
@@ -64,7 +76,11 @@ public class DeliveryTruck : MonoBehaviour
         newItemBox.item = itemToDeliver;
         newItemBox.enabled = true;
 
+        klazonCarAudio.Play();
+
         yield return new WaitForSeconds(0.5f);
+
+        startCarAudio.Play();
 
         LTDescr tweenDesc = LeanTween.move(this.gameObject, endPosition, 2.0f);
         if (tweenDesc != null)
@@ -74,6 +90,12 @@ public class DeliveryTruck : MonoBehaviour
     }
 
 
+    public IEnumerator PlayStopCar()
+    {
+        yield return new WaitForSeconds(4.5f);
+
+        stopCarAudio.Play();
+    }
 
     public void LeaveMap()
     {

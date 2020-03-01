@@ -29,22 +29,13 @@ public class Player : MonoBehaviour
     private ChoicePopup choicePopup;
     [SerializeField]
     private QTEPopup QTEPopup;
-
-    [Header("Inventory")]
-    [SerializeField]
-    private int lemons = 0;
-    [SerializeField]
-    private int money = 100;
     #endregion
 
     #region Public
     public Rewired.Player inputManager;
-
-    public int Lemons
-    {
-        get { return lemons; }
-        set { lemons = value; }
-    }
+    [Header("Inventory")]
+    public int money = 100;
+    public int lemons = 0;
     #endregion
 
     #region Private
@@ -53,7 +44,6 @@ public class Player : MonoBehaviour
     private HashSet<GameObject> actionsInRange;
     private GameObject selection;
     private Popup.Popup currentPopup;
-
 
     private Vector2 input;
     private Rigidbody2D _rigidbody2D;
@@ -257,7 +247,7 @@ public class Player : MonoBehaviour
     public void HarvestLemons(int lemonsCount)
     {
         Debug.Log("LEMONS");
-        Lemons += lemonsCount;
+        lemons += lemonsCount;
     }
 
     private IEnumerator PickUpItemBox(ItemBox itemBox)
