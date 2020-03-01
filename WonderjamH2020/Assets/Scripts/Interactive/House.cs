@@ -38,6 +38,8 @@ public class House : ChoicesSenderBehaviour
 
     private HouseState currentState;
 
+    private Timer timer;
+
     public HouseState CurrentState
     {
         get { return currentState;}
@@ -161,6 +163,22 @@ public class House : ChoicesSenderBehaviour
         }
         Debug.Log("Hp maison: " + currentHealth);
         player.money -= reparationCosts;
+    }
+
+    public void RegisterTimer(Timer timer)
+    {
+        this.timer = timer;
+    }
+
+    public void EndGame()
+    {
+        if (timer != null)
+        {
+            timer.PauseTimer();
+        }
+        themeAudio.Stop();
+        endGameAudio.Play();
+        endScreen.Show(enemyPlayer.PlayerId);
     }
 
     public UserAction GetAction(Player player)
