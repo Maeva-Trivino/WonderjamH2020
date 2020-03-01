@@ -3361,7 +3361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 100
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 1171401109}
   repairingAmount: 5
   ownerPlayer: {fileID: 1259327765}
   enemyPlayer: {fileID: 1062285800}
@@ -14553,6 +14553,18 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 1122749544}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1171401109 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7649687524271883772, guid: 5f97f57c7e1cda24bb279c5c2a140e4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1978637786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6976e3e1bb467346ab0a19ca43b6291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1239433915
 GameObject:
   m_ObjectHideFlags: 0
