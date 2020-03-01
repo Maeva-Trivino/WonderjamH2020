@@ -13,15 +13,50 @@ public class House : ChoicesSenderBehaviour
     [SerializeField]
     private int repairingAmount;
 
+    [SerializeField] private Player ownerPlayer;
+
     [SerializeField] private Player enemyPlayer;
+
     [SerializeField] private EndScreen endScreen;
+
+    public enum HouseState
+    {
+        FullHeatlh,
+        LightlyDamaged,
+        HeavilyDamaged,
+        Destroyed
+    }
+
+    private HouseState currentState;
+
+    public HouseState CurrentState
+    {
+        get { return currentState;}
+        set
+        {
+            currentState = value;
+            UpdateSprite();
+        }
+    }
+
+    [Header("From Destroyed (0) to Full Health (4)")]
+    [SerializeField] 
+    private List<Sprite> sprites;
+
+    private Dictionary<HouseState, Sprite> spritesDictionnary;
+
+
     public int CurrentHealth
     {
         get { return currentHealth; }
         set
         {
             float newPercentage = (float)value / (float)maxHealth;
+
+            UpdateOwnerMood(newPercentage);
             UpdateHealthBar(newPercentage);
+            UpdateState(newPercentage);
+
             currentHealth = value;
 
             if (currentHealth <= 0)
@@ -36,6 +71,14 @@ public class House : ChoicesSenderBehaviour
     {
         GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
         CurrentHealth = maxHealth;
+
+        //Init Dictionnary
+        spritesDictionnary = new Dictionary<HouseState, Sprite>();
+
+        spritesDictionnary.Add(HouseState.Destroyed,sprites[0]);
+        spritesDictionnary.Add(HouseState.HeavilyDamaged, sprites[1]);
+        spritesDictionnary.Add(HouseState.LightlyDamaged, sprites[2]);
+        spritesDictionnary.Add(HouseState.FullHeatlh, sprites[3]);
     }
 
     private void UpdateHealthBar(float newPercentage)
@@ -44,6 +87,46 @@ public class House : ChoicesSenderBehaviour
         {
             healthBar.UpdateBar(newPercentage);
         }
+    }
+
+    private void UpdateOwnerMood(float newPercentage)
+    {
+        if (ownerPlayer != null)
+        {
+            ownerPlayer.ChangeMood(newPercentage);
+        }
+    }
+
+    private void UpdateState(float newPercentage)
+    {
+        if (currentState != HouseState.Destroyed && newPercentage <= Mathf.Epsilon)
+        {
+            currentState = HouseState.Destroyed;
+            return;
+        }
+
+        if (currentState != HouseState.HeavilyDamaged && newPercentage > Mathf.Epsilon && newPercentage <= 0.3f)
+        {
+            currentState = HouseState.HeavilyDamaged;
+            return;
+        }
+
+        if (currentState != HouseState.LightlyDamaged && newPercentage > 0.3 && newPercentage <= 0.75)
+        {
+            currentState = HouseState.LightlyDamaged;
+            return;
+        }
+
+        if (currentState != HouseState.FullHeatlh && newPercentage > 0.75)
+        {
+            currentState = HouseState.FullHeatlh;
+            return;
+        }
+    }
+
+    private void UpdateSprite()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = spritesDictionnary[currentState];
     }
 
     public bool DoDamage(int damage)
