@@ -31,9 +31,13 @@ namespace Popup
             UpdateDisplay();
         }
 
-        public override void Hide()
+        /*public override void Hide()
         {
             slider.transform.localScale = new Vector3(0, 0, 0);
+            base.Hide();
+        }*/
+        public override void Hide()
+        {
             base.Hide();
         }
         #endregion
