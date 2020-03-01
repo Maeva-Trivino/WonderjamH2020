@@ -11,10 +11,12 @@ public class Player : MonoBehaviour
     #region Variables
     #region Editor
     [Header("General")]
-    [SerializeField]
-    private float baseSpeed = 6;
-    [SerializeField]
-    private int playerID = 0;
+    [SerializeField] private float baseSpeed = 6;
+    [SerializeField] private int playerID = 0;
+    [Header("Dash")]
+    [SerializeField] private float dashCoefficient = 2.5f;
+    [SerializeField] private float dashDuration = 0.10f;
+    [SerializeField] private int dashPrice = 1;
 
     public int PlayerId
     {
@@ -54,6 +56,7 @@ public class Player : MonoBehaviour
     private bool IsRunning => speed > 10f;
     private bool canMove = true;
     private float speed;
+    private float dashTimeRemaining = 0.0f;
     #endregion
     #endregion
 
@@ -250,6 +253,10 @@ public class Player : MonoBehaviour
     {
         GetComponentInChildren<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
     }
+
+    #region Movement
+
+    
     private void PlayerMove()
     {
         input = new Vector2(inputManager.GetAxis("Horizontal"), inputManager.GetAxis("Vertical"));
@@ -258,6 +265,14 @@ public class Player : MonoBehaviour
         if (!isMoving)
         {
             input = Vector2.zero;
+        }
+        else if(!IsDashing() && CanAfford(dashPrice))
+        {
+            if (input != Vector2.zero && inputManager.GetButtonDown("Dash"))
+            {
+                Pay(dashPrice);
+                dashTimeRemaining = dashDuration;
+            }
         }
 
 
@@ -274,6 +289,12 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (IsDashing())
+        {
+            input = input * dashCoefficient;
+            dashTimeRemaining -= Time.deltaTime;
+        }
+
         _animator.SetBool("IsWalkingUp", wu);
         _animator.SetBool("IsWalkingRight", wr);
         _animator.SetBool("IsWalkingDown", wd);
@@ -283,6 +304,13 @@ public class Player : MonoBehaviour
         _animator.speed = isMoving ? input.magnitude : 1;
     }
 
+    private bool IsDashing()
+    {
+        return dashTimeRemaining > 0;
+    }
+    #endregion
+
+
     public bool CanAfford(int price)
     {
         return money >= price;
@@ -291,9 +319,6 @@ public class Player : MonoBehaviour
     // Returns true if successful
     public void Pay(int price)
     {
-        Debug.Log(money);
-        Debug.Log(price);
-        Debug.Log(money);
         money -= price;
     }
 
@@ -311,7 +336,6 @@ public class Player : MonoBehaviour
 
     public void HarvestLemons(int lemonsCount)
     {
-        Debug.Log("LEMONS");
         lemons += lemonsCount;
     }
 
