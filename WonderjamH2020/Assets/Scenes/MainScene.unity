@@ -33129,6 +33129,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1062285800}
   moneyText: {fileID: 1289203417}
+--- !u!114 &1669413488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1983690473855999637, guid: e60060d42cf43ce4a92cb57e58b5b582,
+    type: 3}
+  m_PrefabInstance: {fileID: 220693554}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb59de15bf515d34e9b03897e825e33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1693581925
 GameObject:
   m_ObjectHideFlags: 0
@@ -35610,6 +35622,11 @@ PrefabInstance:
       propertyPath: repairHouseAudio
       value: 
       objectReference: {fileID: 1226191493}
+    - target: {fileID: 1092555953443743268, guid: cc7a0fa7b409d476781456e4eaa2b138,
+        type: 3}
+      propertyPath: dialogueSystem
+      value: 
+      objectReference: {fileID: 1669413488}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc7a0fa7b409d476781456e4eaa2b138, type: 3}
 --- !u!1001 &5296167572870819814
@@ -35654,6 +35671,11 @@ PrefabInstance:
       propertyPath: repairHouseAudio
       value: 
       objectReference: {fileID: 1226191493}
+    - target: {fileID: 5296167573144389650, guid: c874db1decfbd44e69b52dd82f833407,
+        type: 3}
+      propertyPath: dialogueSystem
+      value: 
+      objectReference: {fileID: 1669413488}
     - target: {fileID: 5296167573144389652, guid: c874db1decfbd44e69b52dd82f833407,
         type: 3}
       propertyPath: m_Name

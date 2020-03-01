@@ -9,7 +9,7 @@ public class House : QTEBehaviour
     private bool heavilyDamagedDialogueTriggered = false;
     private bool destroyedDialogueTriggered = false;
 
-
+    [SerializeField]
     protected int currentHealth;
     [SerializeField]
     protected int maxHealth;
@@ -156,6 +156,7 @@ public class House : QTEBehaviour
 
     public bool DoDamage(int damage)
     {
+        Debug.Log("DAMAGES");
         // Yoann je sais que c'est dur de voir ca
         // Mais on a plus le temps ):
         CurrentHealth -= damage;
