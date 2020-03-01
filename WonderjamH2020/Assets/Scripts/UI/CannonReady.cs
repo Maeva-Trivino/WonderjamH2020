@@ -16,6 +16,7 @@ public class CannonReady : MonoBehaviour
     private void Start()
     {
         text.color = offColor;
+        GetComponent<Canvas>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
     }
 
     private void SwapColor()
@@ -38,7 +39,6 @@ public class CannonReady : MonoBehaviour
             timer += Time.deltaTime;
             if(timer > flashPeriod)
             {
-                Debug.Log("Swap");
                 buttonOn = !buttonOn;
                 SwapColor();
                 timer = 0f;
