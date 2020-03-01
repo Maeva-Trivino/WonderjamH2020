@@ -157,6 +157,7 @@ MonoBehaviour:
   dashCoefficient: 2.5
   dashDuration: 0.1
   dashPrice: 1
+  dashEffect: {fileID: 486113988709738092}
   choicePopup: {fileID: 4408863553649239099}
   QTEPopup: {fileID: 8110993291911257978}
   LabelPopup: {fileID: 5537935824163404382}
@@ -1087,6 +1088,12 @@ PrefabInstance:
 --- !u!4 &7540603290439157807 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3903941883031928644, guid: d6c84c39943c7704eb8dc06d7c0fd2d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6811708493006354283}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &486113988709738092 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6356561288302416135, guid: d6c84c39943c7704eb8dc06d7c0fd2d9,
     type: 3}
   m_PrefabInstance: {fileID: 6811708493006354283}
   m_PrefabAsset: {fileID: 0}

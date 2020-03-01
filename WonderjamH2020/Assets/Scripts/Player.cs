@@ -75,7 +75,9 @@ public class Player : MonoBehaviour
         actionsInRange = new HashSet<GameObject>();
         choicePopup.SetInputManager(inputManager);
         var main = dashEffect.main;
-        main.duration = dashDuration;
+        main.duration = dashDuration * 1.5f;
+        var emission = dashEffect.emission;
+        emission.rateOverTime = 5/dashDuration;
     }
 
 
