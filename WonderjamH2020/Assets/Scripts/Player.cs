@@ -147,9 +147,15 @@ public class Player : MonoBehaviour
                 }
                 else if (script is QTEBehaviour)
                 {
+
                     UserAction action = (script as QTEBehaviour).GetAction(this);
                     if (action == null)
                         return;
+
+                    if (!(action is ComboAction))
+                    {
+                       action.DoAction();
+                    }
 
                     currentPopup = QTEPopup;
                     QTEPopup.SetAction(action);
