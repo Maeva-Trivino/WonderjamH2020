@@ -81,11 +81,6 @@ public class Timer : MonoBehaviour
     {
         timeIsTicking = false;
         themeAudio.Pause();
-        if(remainingTime < 0f)
-        {
-            themeAudio.Stop();
-            endGameAudio.Play();
-        }
     }
 
     public void UnpauseTimer()
@@ -96,6 +91,8 @@ public class Timer : MonoBehaviour
 
     private void EndGame()
     {
+        themeAudio.Stop();
+        endGameAudio.Play();
         if (redHouse.CurrentHealth > blueHouse.CurrentHealth)
         {
             blueHouse.EndGame();
