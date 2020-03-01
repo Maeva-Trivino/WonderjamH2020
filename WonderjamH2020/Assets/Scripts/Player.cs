@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
         // ECOUTE DE L'INTERACTION
         if (selection != null)
         {
-            if (inputManager.GetButtonDown("Interact"))
+            if (inputManager.GetButtonDown("Interact") && canMove)
             {
                 // Set static player
                 canMove = false;
