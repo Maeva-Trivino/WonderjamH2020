@@ -267,4 +267,12 @@ public class Player : MonoBehaviour
     }
     #endregion
     #endregion
+
+    #region Public
+    public void DestroyInteractive(GameObject toDestroy)
+    {
+        actionsInRange.Remove(toDestroy);
+        Destroy(toDestroy);
+    }
+    #endregion
 }
