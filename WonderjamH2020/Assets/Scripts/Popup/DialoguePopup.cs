@@ -17,8 +17,13 @@ namespace Popup
             text.text = message;
         }
 
-        public IEnumerator PopupDeactivation(float time)
+        public IEnumerator PopupDeactivation(float delay, float time, string message)
         {
+            
+            yield return new WaitForSeconds(delay);
+            Display();
+            text.text = message;
+
             yield return new WaitForSeconds(time);
             this.Hide();
         }

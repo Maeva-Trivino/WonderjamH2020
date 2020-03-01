@@ -137,14 +137,15 @@ public class Timer : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         bipStartGameAudio.Play();
         timerStartGameText.text = "GO !";
+        timeIsTicking = true;
+        inputManager1.controllers.maps.SetAllMapsEnabled(true);
+        inputManager2.controllers.maps.SetAllMapsEnabled(true);
         yield return new WaitForSeconds(1.0f);
         timerStartGameText.text = null;
 
-        inputManager1.controllers.maps.SetAllMapsEnabled(true);
-        inputManager2.controllers.maps.SetAllMapsEnabled(true);
 
         themeAudio.Play();
 
-        timeIsTicking = true;
+        
     }
 }

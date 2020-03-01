@@ -11,13 +11,20 @@ public class MissileLauncherSpot : QTEBehaviour, OrderItem
     [SerializeField]
     private House opponentHouse;
     [SerializeField] private int buildingCosts;
+    [SerializeField] private DeliverySystem deliverySystem;
+    private bool canOrder;
+
+    //Audio
     [SerializeField] private AudioSource impactSound;
     [SerializeField] private AudioSource launchSound;
-    [SerializeField] private DeliverySystem deliverySystem;
+    [SerializeField] private AudioSource constructionSound;
+
+    
 
     public void Start()
     {
         GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        canOrder = true;
     }
 
     public void OrderMissileLauncher(Player contextPlayer)
@@ -27,12 +34,13 @@ public class MissileLauncherSpot : QTEBehaviour, OrderItem
             deliverySystem.OrderItem(this,contextPlayer.PlayerId);
             Debug.Log(buildingCosts);
             contextPlayer.Pay(buildingCosts);
-            deliverySystem.CanOrder = false;
+            canOrder = false;
         }
     }
 
     public void BuildMissileLauncher(Player contextPlayer)
     {
+        constructionSound.Play();
         GameObject missileLauncher = Instantiate(missileLauncherPrefab, transform.position, Quaternion.identity);
         MissileLauncher ml = missileLauncher.GetComponent<MissileLauncher>();
         ml.opponentHouse = opponentHouse;
@@ -40,18 +48,17 @@ public class MissileLauncherSpot : QTEBehaviour, OrderItem
         ml.launchSound = launchSound;
         ml.deliverySystem = deliverySystem;
         contextPlayer.DestroyInteractive(this.gameObject);
-        deliverySystem.CanOrder = true;
     }
 
     public override UserAction GetAction(Player contextPlayer)
     {
-        if (!deliverySystem.CanOrder || !contextPlayer.CanAfford(buildingCosts))
+        if (!canOrder || !contextPlayer.CanAfford(buildingCosts))
         {
             return null;
         }
         else
         {
-            return new ComboAction(contextPlayer.inputManager, new List<string> {"→"}, 5,
+            return new ComboAction(contextPlayer.inputManager, new List<string> { "←", "→", "→" }, 1,
                 () => OrderMissileLauncher(contextPlayer), "Build - $" + buildingCosts);
         }
     }

@@ -17,7 +17,7 @@ public class DeliveryTruck : MonoBehaviour
 
     public float maxSpeed = 15;
 
-    public ItemBox itemBoxPrefab;
+    [SerializeField] private ItemBoxContainer itemBoxContainer;
 
     private bool outForDelivery = false;
     public bool IsOutForDelivery
@@ -73,9 +73,8 @@ public class DeliveryTruck : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        ItemBox newItemBox = Instantiate(itemBoxPrefab, this.transform.position + new Vector3(0, 2.5f, 0), Quaternion.identity);
-        newItemBox.item = itemToDeliver;
-        newItemBox.enabled = true;
+        ItemBox newItemBox = new ItemBox(this.itemToDeliver);
+        itemBoxContainer.Add(newItemBox);
 
         klazonCarAudio.Play();
 

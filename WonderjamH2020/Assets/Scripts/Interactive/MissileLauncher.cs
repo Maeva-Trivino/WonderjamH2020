@@ -11,6 +11,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
     [SerializeField] private float flightDuration = 5f;
     [SerializeField] private float height = 5f;
     [SerializeField] private int missileDamage = 5;
+    [SerializeField] private Transform firePoint;
     //ShakeCreen
     [SerializeField] public float shakeAmplitude = 0.2f;
     [SerializeField] public float shakePeriod = 0.1f;
@@ -18,16 +19,20 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
     //Audio
     [SerializeField] public AudioSource launchSound;
     [SerializeField] public AudioSource impactSound;
-
+    //Delivery
     [SerializeField] public DeliverySystem deliverySystem;
     [SerializeField] private int missilePrice = 100;
-    [SerializeField] private Transform spawnPointOffSet;
-    [SerializeField] private Transform firePoint;
+    //ReadyIndicator
+    [SerializeField] private CannonReady cannonReady;
+
     private bool charged = false;
+
+    [SerializeField] private bool canOrder;
 
     private void Start()
     {
         GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        canOrder = true;
     }
 
     public void OrderMissile(Player contextPlayer)
@@ -36,7 +41,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
         {
             contextPlayer.Pay(missilePrice);
             deliverySystem.OrderItem(this,contextPlayer.PlayerId);
-            deliverySystem.CanOrder = false;
+            canOrder = false;
         }
     }
 
@@ -49,6 +54,7 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
             missile.Initialize(opponentHouse,flightDuration,height,missileDamage,shakeAmplitude,shakePeriod,shakeDuration,
                                 launchSound,impactSound);
         }*/
+        cannonReady.StartReady();
         charged = true;
     }
     public void Fire()
@@ -61,14 +67,15 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
                                 launchSound, impactSound);
             missile.LaunchMissile();
             GetComponent<Animator>().SetTrigger("shoot");
-            deliverySystem.CanOrder = true;
+            canOrder = true;
+            cannonReady.StopReady();
             charged = false;
         }
     }
 
     public bool CanOrder(Player contextPlayer)
     {
-        return deliverySystem.CanOrder && contextPlayer.CanAfford(missilePrice);
+        return canOrder && contextPlayer.CanAfford(missilePrice);
     }
 
     public override List<GameAction> GetChoices(Player contextPlayer)

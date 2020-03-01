@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +18,7 @@ public class LimonadeQueue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TryPopCharacter();
+        Invoke("TryPopCharacter", 3f);
     }
 
     public void TryPopCharacter()
@@ -42,7 +41,7 @@ public class LimonadeQueue : MonoBehaviour
                 .setOnComplete(() => { animator.SetBool("IsWalking", false); });
         }
 
-        Invoke("TryPopCharacter", UnityEngine.Random.Range(1f, 3f));
+        Invoke("TryPopCharacter", Random.Range(1f, 3f));
     }
 
     public void ServeFirst()

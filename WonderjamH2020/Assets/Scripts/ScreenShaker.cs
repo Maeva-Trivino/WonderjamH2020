@@ -19,6 +19,14 @@ public class ScreenShaker : MonoBehaviour
         StartCoroutine(SlowDownShake(amplitude,shakeDuration,shakeTween));
     }
 
+    public void ScreenShakeUI(float amplitude, float period, float shakeDuration)
+    {
+        transform.position -= amplitude * Vector3.right;
+        LTDescr shakeTween = LeanTween.moveX(transform as RectTransform, 2 * amplitude, period)
+                            .setLoopPingPong();
+        StartCoroutine(SlowDownShake(amplitude, shakeDuration, shakeTween));
+    }
+
     private IEnumerator SlowDownShake(float amplitude, float shakeDuration, LTDescr tween)
     {
         float timer = 0f;

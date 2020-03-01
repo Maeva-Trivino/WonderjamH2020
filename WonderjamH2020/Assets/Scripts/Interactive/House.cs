@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 public class House : QTEBehaviour
 {
+    private bool fullHeathDialogueTriggered = false;
+    private bool lightlyDamagedDialogueTriggered = false;
+    private bool heavilyDamagedDialogueTriggered = false;
+    private bool destroyedDialogueTriggered = false;
+
+
     protected int currentHealth;
     [SerializeField]
     protected int maxHealth;
@@ -20,6 +26,8 @@ public class House : QTEBehaviour
     [SerializeField] private Player enemyPlayer;
 
     [SerializeField] private EndScreen endScreen;
+
+    [SerializeField] private DialogueSystem dialogueSystem;
 
     [SerializeField]
     private AudioSource themeAudio;
@@ -148,10 +156,23 @@ public class House : QTEBehaviour
 
     public bool DoDamage(int damage)
     {
+        // Yoann je sais que c'est dur de voir ca
+        // Mais on a plus le temps ):
         CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
+            dialogueSystem.DisplayDamagedHouseDialogue(ownerPlayer, enemyPlayer, HouseState.Destroyed);
             return true;
+        }
+        if (((float)CurrentHealth/maxHealth) <= 0.75f && !lightlyDamagedDialogueTriggered)
+        {
+            dialogueSystem.DisplayDamagedHouseDialogue(ownerPlayer, enemyPlayer, HouseState.LightlyDamaged);
+            lightlyDamagedDialogueTriggered = true;
+        } 
+        else if (((float)CurrentHealth / maxHealth) <= 0.3f && !heavilyDamagedDialogueTriggered)
+        {
+            dialogueSystem.DisplayDamagedHouseDialogue(ownerPlayer, enemyPlayer, HouseState.HeavilyDamaged);
+            heavilyDamagedDialogueTriggered = true;
         }
         return false;
     }
