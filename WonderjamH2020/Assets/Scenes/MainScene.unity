@@ -195,6 +195,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3328851}
   m_CullTransparentMesh: 0
+--- !u!114 &20713874 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7649687524271883772, guid: 5f97f57c7e1cda24bb279c5c2a140e4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1978637786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6976e3e1bb467346ab0a19ca43b6291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &39297178
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +939,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -3034,6 +3046,7 @@ MonoBehaviour:
   endScreen: {fileID: 85566275}
   themeAudio: {fileID: 63588026}
   endGameAudio: {fileID: 1771800794}
+  repairHouseAudio: {fileID: 0}
   sprites:
   - {fileID: 3107508111494870052, guid: e83ef9e8cb780974ba5d441fcfb39aab, type: 3}
   - {fileID: -8184418211298074948, guid: e83ef9e8cb780974ba5d441fcfb39aab, type: 3}
@@ -4075,7 +4088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   maxHealth: 100
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 20713874}
   repairingAmount: 5
   reparationCosts: 0
   ownerPlayer: {fileID: 1259327765}
@@ -4083,6 +4096,7 @@ MonoBehaviour:
   endScreen: {fileID: 85566275}
   themeAudio: {fileID: 0}
   endGameAudio: {fileID: 0}
+  repairHouseAudio: {fileID: 0}
   sprites:
   - {fileID: 1661193485724221311, guid: e83ef9e8cb780974ba5d441fcfb39aab, type: 3}
   - {fileID: 7819105419346469886, guid: e83ef9e8cb780974ba5d441fcfb39aab, type: 3}
@@ -29465,21 +29479,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2958956078741284328, guid: fe897f08b7632304db4834b3e3caa5b0,
         type: 3}
+      propertyPath: opponentHouse
+      value: 
+      objectReference: {fileID: 1077463638}
+    - target: {fileID: 2958956078741284328, guid: fe897f08b7632304db4834b3e3caa5b0,
+        type: 3}
       propertyPath: launchSound
       value: 
-      objectReference: {fileID: 1387603434680680440, guid: fee78d1348fe246ccafd925c75246742,
-        type: 3}
+      objectReference: {fileID: 1780181972}
     - target: {fileID: 2958956078741284328, guid: fe897f08b7632304db4834b3e3caa5b0,
         type: 3}
       propertyPath: impactSound
       value: 
-      objectReference: {fileID: 3901834598124070413, guid: cadddc0d2dd9c4740ba3eb4838f4d0cb,
-        type: 3}
-    - target: {fileID: 2958956078741284328, guid: fe897f08b7632304db4834b3e3caa5b0,
-        type: 3}
-      propertyPath: opponentHouse
-      value: 
-      objectReference: {fileID: 1077463638}
+      objectReference: {fileID: 1536899885}
     - target: {fileID: 2958956078741284328, guid: fe897f08b7632304db4834b3e3caa5b0,
         type: 3}
       propertyPath: deliverySystem
