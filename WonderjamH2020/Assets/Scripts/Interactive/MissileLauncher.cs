@@ -65,6 +65,11 @@ public class MissileLauncher : ChoicesSenderBehaviour, OrderItem
         }
     }
 
+    public bool CanOrder(Player contextPlayer)
+    {
+        return deliverySystem.CanOrder && contextPlayer.CanAfford(missilePrice);
+    }
+
     private void Upgrade()
     {
         Debug.Log("Upgrade");
