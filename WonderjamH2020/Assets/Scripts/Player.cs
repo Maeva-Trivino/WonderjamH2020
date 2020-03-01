@@ -182,6 +182,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (timer.TimeIsStopped())
+        {
+            return;
+        }
         if (canMove)
             _rigidbody2D.MovePosition(_rigidbody2D.position + speed * input * Time.fixedDeltaTime);
     }
