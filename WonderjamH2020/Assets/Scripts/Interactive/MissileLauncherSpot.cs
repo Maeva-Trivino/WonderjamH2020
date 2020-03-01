@@ -1,32 +1,27 @@
-﻿using QTE;
+﻿using Interactive.Base;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class MissileLauncherSpot : MonoBehaviour, Interactive
+public class MissileLauncherSpot : QTEBehaviour
 {
     [SerializeField]
     private GameObject missileLauncherPrefab;
 
-    public void Deselect()
-    {
-    }
 
-    public UserAction GetAction(Player player)
-    {
-        return new ComboAction(player.inputManager, new List<string> {"→"}, 5, () => BuildMissileLauncher(), "Build");
-    }
-
-    public void BuildMissileLauncher()
-    {
-        Instantiate(missileLauncherPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject,0.2f);
-    }
-    public void Select()
-    {
-    }
     public void Start()
     {
         GetComponent<Renderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+    }
+
+    public void BuildMissileLauncher(Player contextPlayer)
+    {
+        Instantiate(missileLauncherPrefab, transform.position, Quaternion.identity);
+        contextPlayer.DestroyInteractive(this.gameObject);
+    }
+
+    public override UserAction GetAction(Player contextPlayer)
+    {
+        return new ComboAction(contextPlayer.inputManager, new List<string> { "→" }, 5, () => BuildMissileLauncher(contextPlayer), "Build");
     }
 }

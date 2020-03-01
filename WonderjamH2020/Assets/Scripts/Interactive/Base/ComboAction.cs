@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using Rewired;
-using UnityEngine;
-using UnityEngine.UI;
 
-namespace QTE
+namespace Interactive.Base
 {
     public class ComboAction : UserAction
     {

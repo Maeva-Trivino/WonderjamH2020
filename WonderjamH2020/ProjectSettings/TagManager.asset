@@ -59,6 +59,9 @@ TagManager:
   - name: Missile
     uniqueID: 1066314539
     locked: 0
+  - name: Lemon Trees
+    uniqueID: 473639117
+    locked: 0
   - name: Computer
     uniqueID: 1222708271
     locked: 0

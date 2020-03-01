@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace QTE
+﻿namespace Interactive.Base
 {
     public class UserAction
     {

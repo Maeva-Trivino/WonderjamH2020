@@ -1,24 +1,20 @@
-using System;
 using Rewired;
 using UnityEngine;
-using ChoicePopup;
-using QTE;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 using Gameplay.Delivery;
-using UnityEditor.PackageManager;
+using Popup;
+using Interactive.Base;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    #region Enum
-    public enum Mode { MOVING, CHOOSING, QTEING }
-    #endregion
-
     #region Variables
     #region Editor
     [Header("General")]
+    [SerializeField]
+    private float minSpeed = 2;
     [SerializeField]
     private float speed = 2;
     [SerializeField]
@@ -29,40 +25,35 @@ public class Player : MonoBehaviour
         get { return playerID; }
         set { playerID = value; }
     }
-    [SerializeField]
-    private GameObject QTEPopup;
 
     [Header("UI")]
     [SerializeField]
-    private ChoicePopup.ChoicePopup choicePopup;
+    private ChoicePopup choicePopup;
+    [SerializeField]
+    private QTEPopup QTEPopup;
+    [SerializeField]
+    private LabelPopup LabelPopup;
     #endregion
 
     #region Public
     public Rewired.Player inputManager;
+    [Header("Inventory")]
     public int money = 100;
-
-    public int Lemons
-    {
-        get { return lemons; }
-        set { lemons = value; }
-    }
+    public int lemons = 0;
     #endregion
 
     #region Private
     private bool isPickingUpItem;
 
     private HashSet<GameObject> actionsInRange;
-    private UserAction currentAction;
-    private GameObject selected;
-
-    [SerializeField]
-    private int lemons = 0;
+    private GameObject selection;
+    private Popup.Popup currentPopup;
 
     private Vector2 input;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private bool isRunning;
-    private Mode mode;
+    private bool canMove = true;
     #endregion
     #endregion
 
@@ -73,70 +64,132 @@ public class Player : MonoBehaviour
         inputManager = ReInput.players.GetPlayer(playerID);
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
-        choicePopup.onClose.AddListener(() => mode = Mode.MOVING);
         actionsInRange = new HashSet<GameObject>();
-        updateQTEPopup(null);
+        choicePopup.SetInputManager(inputManager);
     }
 
 
     private void Update()
     {
-        switch (mode)
+        if (canMove)
         {
-            case Mode.MOVING:
-                PlayerMove();
-                PlayerQTE();
-                PlayerOrderInLayer();
-                break;
-            case Mode.CHOOSING:
-                PlayerChoose();
-                break;
-            case Mode.QTEING:
-                PlayerQTE();
-                break;
+            PlayerMove();
+            PlayerOrderInLayer();
         }
+
+        ListenInteraction();
     }
 
-    private void PlayerQTE()
+    private void ListenInteraction()
     {
-        HandleQTEAction();
-        UpdateQTESelection();
+        // MISE A JOUR DE LA SELECTION
+        // On cherche l'objet intéractif le plus proche
+        float distanceMin = float.PositiveInfinity;
+        GameObject nearest = null;
+
+        foreach (GameObject go in actionsInRange)
+        {
+            float distance = (go.transform.position - transform.position).magnitude;
+            if (distance < distanceMin)
+            {
+                distanceMin = distance;
+                nearest = go;
+            }
+        }
+
+        // On désélectionne l'objet sélectionné auparavant
+        if (selection != null)
+        {
+            selection.GetComponent<Interactable>().Deselect();
+        }
+
+        selection = nearest;
+        // Si l'interactive le plus proche a une action disponible, alors on la selectionne
+        if (nearest != null)
+        {
+            Interactable interactive = selection.GetComponent<Interactable>();
+            interactive.Select();
+        }
+
+
+        // ECOUTE DE L'INTERACTION
+        if (selection != null)
+        {
+            if (inputManager.GetButtonDown("Interact") && canMove)
+            {
+                if (currentPopup != null)
+                    currentPopup.Hide();
+
+                // Set static player
+                canMove = false;
+                _animator.SetBool("IsWalkingUp", false);
+                _animator.SetBool("IsWalkingRight", false);
+                _animator.SetBool("IsWalkingDown", false);
+                _animator.SetBool("IsWalkingLeft", false);
+                _animator.SetBool("IsRunningLeft", false);
+                _animator.SetBool("IsRunningRight", false);
+
+                // Start interaction
+                Interactable script = selection.GetComponent<Interactable>();
+                if (script is ChoicesSenderBehaviour)
+                {
+                    ChoicesSenderBehaviour iObj = script as ChoicesSenderBehaviour;
+                    currentPopup = choicePopup;
+                    choicePopup.SetChoices(iObj.GetChoices(this));
+                }
+                else if (script is QTEBehaviour)
+                {
+                    QTEBehaviour iObj = script as QTEBehaviour;
+                    currentPopup = QTEPopup;
+                    QTEPopup.SetAction(iObj.GetAction(this));
+                }
+
+                // Display popup
+                currentPopup.Display();
+                currentPopup.onClose.RemoveAllListeners();
+                currentPopup.onClose.AddListener(() =>
+                {
+                    canMove = true;
+                    currentPopup = null;
+                });
+            }
+            else if (inputManager.GetButtonDown("Cancel"))
+            {
+                currentPopup.Hide();
+                currentPopup = null;
+            }
+            else
+            {
+                LabelPopup.SetText(selection.GetComponent<Interactable>().GetDecription(this));
+                if (currentPopup == null)
+                    LabelPopup.Display();
+                currentPopup = LabelPopup;
+            }
+        }
+        else if (currentPopup != null)
+        {
+            currentPopup.Hide();
+            currentPopup = null;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (mode == Mode.MOVING)
-        {
+        if (canMove)
             _rigidbody2D.MovePosition(_rigidbody2D.position + speed * input * Time.fixedDeltaTime);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.GetComponent<ChoicesSenderBehaviour>())
-        {
-            choicePopup.SetChoices(collision.transform.GetComponent<ChoicesSenderBehaviour>().GetChoices(this));
-            choicePopup.Display();
-
-            mode = Mode.CHOOSING;
-
-            _animator.SetBool("IsWalkingUp", false);
-            _animator.SetBool("IsWalkingRight", false);
-            _animator.SetBool("IsWalkingDown", false);
-            _animator.SetBool("IsWalkingLeft", false);
-            _animator.SetBool("IsRunningLeft", false);
-            _animator.SetBool("IsRunningRight", false);
-        }
-
         if (collision.transform.GetComponent<ItemBox>())
         {
             ItemBox itemBox = collision.transform.GetComponent<ItemBox>();
             StartCoroutine(PickUpItemBox(itemBox));
         }
-        Interactive interactive = collision.GetComponent<Interactive>();
-        if (interactive != null)
+
+        Interactable interactive = collision.GetComponent<Interactable>();
+        if (interactive != null && !actionsInRange.Contains(collision.gameObject))
         {
-            currentAction = null;
             actionsInRange.Add(collision.gameObject);
         }
     }
@@ -148,15 +201,25 @@ public class Player : MonoBehaviour
         {
             isPickingUpItem = false;
         }
-        Interactive interactive = other.GetComponent<Interactive>();
+
+        Interactable interactive = other.GetComponent<Interactable>();
         if (interactive != null)
         {
-            currentAction = null;
             actionsInRange.Remove(other.gameObject);
         }
-
     }
     #endregion
+
+    public void ChangeMood(float newPercentage)
+    {
+        //Maj Color
+        float redValue = 30 * newPercentage + 225;
+        float gbValue = newPercentage * 255;
+        Color color = new Color(redValue/255f, gbValue/255f, gbValue/255f,1f);
+        this.GetComponentInChildren<SpriteRenderer>().color = color;
+
+        speed = minSpeed + (1 - newPercentage) * (minSpeed*3);
+    }
 
     #region Private
     private void PlayerOrderInLayer()
@@ -173,8 +236,6 @@ public class Player : MonoBehaviour
             input = Vector2.zero;
         }
 
-        //_animator.SetBool("Walking", !isRunning && isMoving);
-        _animator.speed = isMoving ? input.magnitude : 1;
 
         bool wu = false, wr = false, wd = false, wl = false;
         if (input != Vector2.zero && !choicePopup.IsVisible)
@@ -195,30 +256,7 @@ public class Player : MonoBehaviour
         _animator.SetBool("IsWalkingLeft", wl);
         _animator.SetBool("IsRunningLeft", isRunning && wl);
         _animator.SetBool("IsRunningRight", isRunning && wr);
-    }
-
-    private void PlayerChoose()
-    {
-        if (inputManager.GetButtonDown("Cancel"))
-        {
-            Debug.Log("Cancel");
-            choicePopup.Hide();
-        }
-        else if (inputManager.GetButtonDown("MenuLeft"))
-        {
-            Debug.Log("Gauche");
-            choicePopup.GoLeft();
-        }
-        else if (inputManager.GetButtonDown("MenuRight"))
-        {
-            Debug.Log("Droite");
-            choicePopup.GoRight();
-        }
-        if (inputManager.GetButtonDown("Validate"))
-        {
-            Debug.Log("Validé !");
-            choicePopup.Validate();
-        }
+        _animator.speed = isMoving ? input.magnitude : 1;
     }
 
     public bool CanAffordMissile(MissileBlueprint blueprint)
@@ -241,7 +279,7 @@ public class Player : MonoBehaviour
     public void HarvestLemons(int lemonsCount)
     {
         Debug.Log("LEMONS");
-        Lemons += lemonsCount;
+        lemons += lemonsCount;
     }
 
     private IEnumerator PickUpItemBox(ItemBox itemBox)
@@ -259,154 +297,14 @@ public class Player : MonoBehaviour
             yield return null;
         }
     }
-
-    #region QTE
-    public void HandleQTEAction()
-    {
-        if (currentAction != null)
-        {
-            if (inputManager.GetButtonDown("Interact"))
-            {
-                mode = Mode.QTEING; // inQTE = true;
-                updateQTEPopup(currentAction);
-            }
-            else if (inputManager.GetButtonUp("Interact"))
-            {
-                mode = Mode.MOVING; // = false;
-                currentAction = null;
-            }
-            if (mode == Mode.QTEING)
-            {
-                currentAction.Do();
-                if (currentAction.IsDone())
-                {
-                    currentAction = null;
-                    mode = Mode.MOVING; //inQTE = false;
-                }
-                updateQTEPopup(currentAction);
-
-            }
-        }
-    }
-    public void UpdateQTESelection()
-    {
-        if (currentAction == null)
-        {
-            if (actionsInRange.Count > 0)
-            {
-                // On cherche l'objet intéractif le plus proche
-                UserAction bestAction = null;
-                float distanceMin = float.PositiveInfinity;
-                GameObject nearest = null;
-
-                foreach (GameObject o in actionsInRange)
-                {
-                    UserAction action = o.GetComponent<Interactive>().GetAction(this);
-                    float distance = (o.transform.position - transform.position).magnitude;
-                    if (action != null && distance < distanceMin)
-                    {
-                        distanceMin = distance;
-                        nearest = o;
-                        bestAction = action;
-                    }
-                }
-
-                // On désélectionne l'objet sélectionné auparavant
-                if (selected != null)
-                {
-                    selected.GetComponent<Interactive>().Deselect();
-                }
-
-                selected = nearest;
-                // Si l'interactive le plus proche a une action disponible, alors on la selectionne
-                if (nearest != null)
-                {
-                    Interactive interactive = selected.GetComponent<Interactive>();
-                    interactive.Select();
-                }
-
-                //L'action de l'object selectionner devient notre nouvelle action courante
-                currentAction = bestAction;
-
-                updateQTEPopup(currentAction);
-            }
-            else
-            {
-
-                updateQTEPopup(null);
-                if (selected != null)
-                {
-                    selected.GetComponent<Interactive>().Deselect();
-                    selected = null;
-                }
-            }
-        }
-    }
-
-    //Display of the popup
-    private void updateQTEPopup(UserAction action)
-    {
-        if (action != null)
-        {
-            Text text = QTEPopup.GetComponentsInChildren<Text>()[0];
-            Text button = QTEPopup.GetComponentsInChildren<Text>()[1];
-            Text combos = QTEPopup.GetComponentsInChildren<Text>()[2];
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, transform.GetComponentInChildren<Renderer>().bounds.size.y));
-
-            if (mode == Mode.QTEING)
-            {
-                if (!(action is ComboAction))
-                {
-                    text.text = "";
-                    button.text = "";
-                    combos.text = "";
-                }
-                else
-                {
-                    ComboAction comboAction = (ComboAction)action;
-                    text.text = "";
-                    combos.text = "";
-                    foreach (string s in comboAction.expectedCombos)
-                    {
-                        combos.text += s + " ";
-                    }
-
-                    combos.text = combos.text.Remove(combos.text.Length - 1);
-                    button.text = "";
-                }
-
-                Slider slider = QTEPopup.GetComponentInChildren<Slider>();
-                slider.transform.localScale = new Vector3(1, 1, 1);
-                slider.value = action.progression;
-                slider.gameObject.SetActive(true);
-                // QTEPopup.gameObject.SetActive(true);
-
-            }
-            else
-            {
-                text.text = action.name;
-                text.fontSize = 15;
-                button.text = "";
-                combos.text = "";
-                QTEPopup.GetComponentInChildren<Slider>().gameObject.transform.localScale = new Vector3(0, 0, 0);
-                // QTEPopup.gameObject.SetActive(false);
-
-            }
-
-            QTEPopup.transform.position = screenPos;
-            QTEPopup.gameObject.SetActive(true);
-
-        }
-        else
-        {
-            if (QTEPopup != null && QTEPopup.activeSelf)
-            {
-                QTEPopup.GetComponentInChildren<Slider>().gameObject.transform.localScale = new Vector3(0, 0, 0);
-                QTEPopup.gameObject.SetActive(false);
-            }
-        }
-    }
     #endregion
     #endregion
+
+    #region Public
+    public void DestroyInteractive(GameObject toDestroy)
+    {
+        actionsInRange.Remove(toDestroy);
+        Destroy(toDestroy);
+    }
     #endregion
 }
